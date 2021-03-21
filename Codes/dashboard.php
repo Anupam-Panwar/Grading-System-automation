@@ -27,8 +27,6 @@
 
     <?php
     $name=$_SESSION["username"];
-    //$name=$_GET["username"];
-    //$name="Anupam Panwar";
     $x = 7;
     $CN = array("Computer Network", "Computer Organization", "Design and Analysis of Algorithm", "Theory of Computation", "Software Engineering ","Sports", "Discrete Mathematics");
     $CC = array("CSL 255", "CSL 256", "CSL 254", "CSl 259", "CSL 256", "SSP 151", "SCL-254");
@@ -105,6 +103,5 @@
 </html>
 
 <?php
-    //unset($_SESSION["username"]);
     session_unset();
 ?>

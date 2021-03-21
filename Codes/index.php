@@ -21,13 +21,11 @@
                          <input type="text" name="username" placeholder="Username"> 
                          <input type="password" name="password" placeholder="Password"> 
                          <?php
-                         if(isset($_SESSION["error"])){
+                         if(isset($_SESSION["error"]))
+                         {
                             $error = $_SESSION["error"];
                             echo "<span>$error</span>";
                             echo "<br><br>";
-                            /*echo "<script language='javascript'>";
-                            echo "alert('$error')";
-                            echo "</script>";*/
                          }
                          ?>
                          <a class="forgot text-muted" href="#">Forgot password?</a> 
@@ -41,6 +39,5 @@
 </html>
 
 <?php
-    //unset($_SESSION["error"]);
     session_unset();
 ?>
