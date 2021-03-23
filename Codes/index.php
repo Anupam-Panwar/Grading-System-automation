@@ -29,16 +29,17 @@
 	<link rel="stylesheet" type="text/css" href="css/indexcss.css">
 </head>
 <body>
+
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
                     <form class="box" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                        <h1>Login</h1>
+                        <img src="images/logo0.png" class="img-fluid" style ="width:35%; height:35%;"alt="...">
                         <p class="text-muted"> Please enter your Username and Password !</p>
                          <input type="text" name="username" placeholder="Username"> 
                          <input type="password" name="password" placeholder="Password"> 
-                         <a class="forgot text-muted" href="#">Forgot password?</a> 
+                         <span class="text-muted">Forgot password? Contact Admin</span> 
                          <input type="submit" name="" value="Login" href="#"> 
                     </form>
                 </div>
