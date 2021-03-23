@@ -1,5 +1,23 @@
 <?php
-    session_start();
+
+    require_once 'connect.php';
+    if($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        $user=$_POST["username"];
+        $pass=$_POST["password"];
+        $query = "SELECT `password` FROM `users` WHERE `username`='$user'";
+        $result = $mysqli->query($query);
+        $row = $result->fetch_assoc();
+        if($pass==$row["password"])
+        {
+            header('Location:dashboard.php?username='.$user);
+        }
+        else
+        {
+            //error code
+        }
+    }
+    require_once 'disconnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,21 +33,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <form class="box" action="validate.php" method="POST">
+                    <form class="box" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                         <h1>Login</h1>
                         <p class="text-muted"> Please enter your Username and Password !</p>
                          <input type="text" name="username" placeholder="Username"> 
                          <input type="password" name="password" placeholder="Password"> 
-                         <?php
-                         if(isset($_SESSION["error"]))
-                         {
-                            $error = $_SESSION["error"];
-                            echo "<span>$error</span>";
-                            echo "<br><br>";
-                         }
-                         ?>
                          <a class="forgot text-muted" href="#">Forgot password?</a> 
-                         <input type="submit" name="" value="Login" href="#">  
+                         <input type="submit" name="" value="Login" href="#"> 
                     </form>
                 </div>
             </div>
@@ -37,7 +47,3 @@
     </div>
 </body>
 </html>
-
-<?php
-    session_unset();
-?>

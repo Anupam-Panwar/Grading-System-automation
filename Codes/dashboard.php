@@ -1,7 +1,3 @@
-<?php
-    session_start();
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +22,7 @@
 <body>
 
     <?php
-    $name=$_SESSION["username"];
+    $name=$_GET["username"];
     $x = 7;
     $CN = array("Computer Network", "Computer Organization", "Design and Analysis of Algorithm", "Theory of Computation", "Software Engineering ","Sports", "Discrete Mathematics");
     $CC = array("CSL 255", "CSL 256", "CSL 254", "CSl 259", "CSL 256", "SSP 151", "SCL-254");
@@ -66,7 +62,7 @@
         <div id="content">
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <?php
-                for ($i = 0; $i < $x; $i++) {
+                while($i < $x) {
                 ?>
                     <div class="col">
                         <div class="card h-100">
@@ -77,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php $i++; } ?>
 
             </div>
         </div>
@@ -101,7 +97,3 @@
 </body>
 
 </html>
-
-<?php
-    session_unset();
-?>
