@@ -3,6 +3,20 @@
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+@media print {
+    .d-print-none{
+        display: none  !important;
+    }
+    /* * {
+      display: none;
+    } */
+    #printableTable {
+      display: block;
+      width: 100%;
+      font-family: 'Times New Roman', Times, serif;
+      table-layout: auto;
+    }
+  }
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -221,3 +235,5 @@ ul.CTAs a {
     }
 
 }
+
+
