@@ -22,7 +22,7 @@
 <body>
 
     <?php
-    $name="Purvi Panwar";
+    $name="Surendra Singh";
     $x = 6;
     $CN = array("Computer Organization","Computer Network", "Design and Analysis of Algorithm", "Theory of Computation", "Software Engineering ","Sports");
     $CC = array("CSL 256", "CSL 255","CSL 254", "CSl 259", "CSL 256", "SSP 151");
