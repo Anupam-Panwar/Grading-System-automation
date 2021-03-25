@@ -22,7 +22,7 @@
                         <?php if (isset($_GET["error"])) {
                         ?>
                             <p class="text-muted"> Please enter your Email and Password !</p>
-                            <div class="alert" style="background-color: #f44336; color:white; padding: 15px;  margin-bottom: 15px;">
+                            <div class="alert">
                                 <strong>Error!!</strong> <?php echo $_GET['error']; ?>
                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                             </div>

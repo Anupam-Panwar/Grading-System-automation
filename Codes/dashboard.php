@@ -50,7 +50,7 @@ if(isset($_SESSION['id']))
             <span class="text-white h3">Courses</span>
             <form class="d-flex">
                 <a href="logout.php">
-                <button class="btn btn-outline-success" type="txt">Log Out</button>
+                <button class="btn btn-outline-success" type="button">Log Out</button>
 </a>
             </form>
         </div>
