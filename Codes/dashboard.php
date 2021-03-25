@@ -1,3 +1,21 @@
+<?php
+session_start();
+if(isset($_SESSION['id']))
+{
+    require_once __DIR__ .'\connection\connect.php';
+    $name;
+    $sql="SELECT username FROM users WHERE id=".$_SESSION['id'];
+    $result = $conn->query($sql);
+    if ($result->num_rows==1) 
+    {
+        $row=$result->fetch_assoc();
+        $name=$row['username'];
+    }
+    $x = 7;
+    $CN = array("Computer Network", "Computer Organization", "Design and Analysis of Algorithm", "Theory of Computation", "Software Engineering ","Sports", "Discrete Mathematics");
+    $CC = array("CSL 255", "CSL 256", "CSL 254", "CSl 259", "CSL 256", "SSP 151", "SCL-254");
+
+    ?>
 <!DOCTYPE html>
 <html>
 
@@ -21,12 +39,7 @@
 
 <body>
 
-    <?php
-    $name=$_GET["username"];
-    $x = 7;
-    $CN = array("Computer Network", "Computer Organization", "Design and Analysis of Algorithm", "Theory of Computation", "Software Engineering ","Sports", "Discrete Mathematics");
-    $CC = array("CSL 255", "CSL 256", "CSL 254", "CSl 259", "CSL 256", "SSP 151", "SCL-254");
-    ?>
+
     <nav class="navbar navbar-light bg-dark">
         <div class="container-fluid">
             <button type="button" id="sidebarCollapse" class="navbar-btn">
@@ -36,7 +49,9 @@
             </button>
             <span class="text-white h3">Courses</span>
             <form class="d-flex">
+                <a href="logout.php">
                 <button class="btn btn-outline-success" type="txt">Log Out</button>
+</a>
             </form>
         </div>
     </nav>
@@ -62,6 +77,7 @@
         <div id="content">
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <?php
+                $i=0;   
                 while($i < $x) {
                 ?>
                     <div class="col">
@@ -78,7 +94,14 @@
             </div>
         </div>
     </div>
-
+<?php
+}
+else
+{
+    header('Location: index.php?error=dashbord');
+    exit();
+}
+?>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
