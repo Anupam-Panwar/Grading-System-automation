@@ -1,6 +1,6 @@
 <?php
     
-    $mysqli = new mysqli('localhost', 'root', 'slpappndb', 'example');
+    $mysqli = new mysqli('localhost', 'root', '', 'gradingautomation');
 
     if(!$mysqli)
     {
