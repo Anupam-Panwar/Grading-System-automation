@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Course-name</title>
+    <title>Edit Course-name</title>
 
   
 
@@ -37,7 +37,10 @@
   <nav class="navbar navbar-light bg-dark">
     <div class="container-fluid">
       
-      <span class="text-white h3">Grades</span>
+      <span>......... ..</span>   <!--do not remove. for alignment purposes -->
+
+      <span class="text-white h3">Control Sheet</span>
+      
       <form class="d-flex">
         <button class="btn btn-outline-success" type="txt">Log Out</button>
       </form>
@@ -51,41 +54,56 @@
       <div id="content">
 
           
-        <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto " id="printableTable">
+        <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <h3 class="h3">Current Course Name</h3>
+                <h4 class="h4">Course: XXX-YYY ZZZZZZZZZ</h4>
 
                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
                   <a type="button" class="btn btn-outline-secondary d-print-none" href="coursetable.php">Save</a>
                 </div>
               </div>
         
-              <h5>Batch 2019-2023 Sem-4</h5>
+              <h5>Session: Odd Semester-2021</h5>
+              <br>
               <div class="table-responsive" >
-                <table class="table table-striped table-sm">
+                <table class="table table-striped table-sm tablecustom">
                   <thead>
                     <tr>
-                    <th>S.N.</th>
-                      <th>Student Name</th>
-                      <th>Roll No</th>
+                    <th></th>
+                      <th></th>
+                      <th>Name ↓</th>
                       <th>Teachers Assmt.</th>
                       <th>Mid Term Exam-I</th>
                       <th>Mid Term Exam-II</th>
+                      <th>Total Assmt.</th>
                       <th>End Term Exam</th>
                       <th>Total</th>
                       <th>Grade</th>
+                    </tr>
+                    <tr>
+                      <th>S. No.</th>
+                      <th>Roll No.</th>
+                      <th>Maximum Marks 🠖</th>
+                      <th><input class="marks"></input></th>
+                      <th><input class="marks"></input></th>
+                      <th><input class="marks"></input></th>
+                      <th>MM</th>
+                      <th><input class="marks"></input></th>
+                      <th>100</th>
+                      <th>AA</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php for($i=1; $i<=20; $i++){?>
                     <tr>
                       <td><?php echo "$i"?></td>
-                      <td>S Name</td>
-                      <td>Roll</td>
-                      <td><input></input></td>
-                      <td><input></input></td>
-                      <td><input></input></td>
-                      <td><input></input></td>
+                      <td>BTXXYYYZZZ</td>
+                      <td>Student Name</td>
+                      <td><input class="marks"></input></td>
+                      <td><input class="marks"></input></td>
+                      <td><input class="marks"></input></td>
+                      <td>MT1+MT2+CT</td>
+                      <td><input class="marks"></input></td>
                       <td>100</td>
                       <td>AA</td>
                     </tr>
@@ -97,68 +115,69 @@
             <br>
             <hr>
             <br>
-            <div class="table-responsive grade" >
-            <table class="table table-bordered border-primary grades">
+
+            <div class="table-responsive" >
+            <table class="table table-bordered border-primary">
                     <thead>
                       <tr>
                           <strong>Grade Window</strong>
                       </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><strong>Grade</strong></td>
-                        <td>AA</td>
-                        <td>AB</td>
-                        <td>BB</td>
-                        <td>BC</td>
-                        <td>CC</td>
-                        <td>DD</td>
-                        <td>FF</td>
-                        <td>GG</td>
-                        <td>UU</td>
-                        <td>PP</td>
-                        <td>YY</td>
-                        <td>SS</td>
-                        <td>ZZ</td>
-                        <td>XX</td>
-                        <td>JJ</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><strong>Cutoff</strong></th>
-                        <th scope="row">100-79</th>
-                        <th scope="row">79-70</th>
-                        <th scope="row">69-60</th>
-                        <th scope="row">59-50</th>
-                        <th scope="row">49-40</th>
-                        <th scope="row">39-35</th>
-                        <th scope="row">34-0</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>                     
-                      </tr>
-                      <tr>
-                        <td><strong>Total Students</strong></td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                      </tr>
+                        <tr>
+                            <td><strong>Grade</strong></td>
+                            <td>AA</td>
+                            <td>AB</td>
+                            <td>BB</td>
+                            <td>BC</td>
+                            <td>CC</td>
+                            <td>DD</td>
+                            <td>FF</td>
+                            <td>GG</td>
+                            <td>UU</td>
+                            <td>PP</td>
+                            <td>YY</td>
+                            <td>SS</td>
+                            <td>ZZ</td>
+                            <td>XX</td>
+                            <td>JJ</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Cutoff</strong></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>                       
+                          </tr>
+                          <tr>
+                            <td><strong>Total Students</strong></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                          </tr>
                     </tbody>
             </table>
             </div>
