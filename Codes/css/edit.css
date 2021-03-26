@@ -74,7 +74,45 @@ CONTENT STYLE
     max-width: 10vw;
 }
 
+.classtest{
+    max-width: 5vw;
+    min-width: 2vw;
+}
+
 .gradewin{
     max-width: 5vw !important;
-    min-width: 4vw;
+    min-width: 5vw;
+}
+
+.initials{
+    background-color: purple;
+    border:0.5px red;    
+    height:40px;
+    width: 40px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+}
+.initial{
+    margin-left:12.5px;
+}
+
+@media (max-width:400px){
+   
+    .classtest{
+        max-width: 10vw;
+        min-width: 6vw;
+    }
+    .initials{
+        background-color: purple;
+        border:0.5px red;    
+        height:35px;
+        width: 35px;
+        border-radius:50%;
+        -moz-border-radius:0%;
+        -webkit-border-radius:50%;
+    }
+    .initial{
+        margin-left:11px;
+    }
 }

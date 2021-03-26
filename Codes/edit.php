@@ -19,15 +19,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-      
-    <!-- print function -->
-        <script>
-        function printDiv() {
-          window.frames["print_frame"].document.body.innerHTML = document.getElementById("printableTable").innerHTML;
-          window.frames["print_frame"].window.focus();
-          window.frames["print_frame"].window.print();
-        }
-        </script>
 </head>
 
 <body>
@@ -35,10 +26,10 @@
 
 <!-- navbar -->
   <nav class="navbar navbar-light bg-dark">
-    <div class="container-fluid">
-      
-      <span>......... ..</span>   <!--do not remove. for alignment purposes -->
-
+    <div class="container-fluid sameline">
+      <div class="initials">
+        <span class="text-white text-center fs-3 initial">P</span>
+      </div>
       <span class="text-white h3">Control Sheet</span>
       
       <form class="d-flex">
@@ -72,7 +63,10 @@
                     <th></th>
                       <th></th>
                       <th>Name ↓</th>
-                      <th>Teachers Assmt.</th>
+                      <th>Class Test-1</th>
+                      <th>Class Test-2</th>
+                      <th>Class Test-3</th>
+                      <th>Class Test-4</th>
                       <th>Mid Term Exam-I</th>
                       <th>Mid Term Exam-II</th>
                       <th>Total Assmt.</th>
@@ -84,11 +78,14 @@
                       <th>S. No.</th>
                       <th>Roll No.</th>
                       <th>Maximum Marks 🠖</th>
-                      <th><input class="marks"></input></th>
-                      <th><input class="marks"></input></th>
-                      <th><input class="marks"></input></th>
+                      <th><input placeholder="M.M." class="classtest"></input></th>
+                      <th><input placeholder="M.M." class="classtest"></input></th>
+                      <th><input placeholder="M.M." class="classtest"></input></th>
+                      <th><input placeholder="M.M." class="classtest"></input></th>
+                      <th><input placeholder="M.M." class="marks"></input></th>
+                      <th><input placeholder="M.M." class="marks"></input></th>
                       <th>MM</th>
-                      <th><input class="marks"></input></th>
+                      <th><input placeholder="M.M." class="marks"></input></th>
                       <th>100</th>
                       <th>AA</th>
                     </tr>
@@ -99,7 +96,10 @@
                       <td><?php echo "$i"?></td>
                       <td>BTXXYYYZZZ</td>
                       <td>Student Name</td>
-                      <td><input class="marks"></input></td>
+                      <td><input class="classtest"></input></td>
+                      <td><input class="classtest"></input></td>
+                      <td><input class="classtest"></input></td>
+                      <td><input class="classtest"></input></td>
                       <td><input class="marks"></input></td>
                       <td><input class="marks"></input></td>
                       <td>MT1+MT2+CT</td>
@@ -185,8 +185,6 @@
       </div>
   </div>
 
-<!-- iframe -->
-  <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
 
   <!-- jQuery CDN - Slim version (=without AJAX) -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

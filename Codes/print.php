@@ -53,7 +53,10 @@
                       <th></th>
                       <th></th>
                       <th>Name ↓</th>
-                      <th>Teachers Assmt.</th>
+                      <th>Class Test-1</th>
+                      <th>Class Test-2</th>
+                      <th>Class Test-3</th>
+                      <th>Class Test-4</th>
                       <th>Mid Term Exam-I</th>
                       <th>Mid Term Exam-II</th>
                       <th>Total Assmt.</th>
@@ -65,7 +68,10 @@
                       <th>S. No.</th>
                       <th>Roll No.</th>
                       <th>Maximum Marks🠖</th>
-                      <th>20</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
                       <th>20</th>
                       <th>20</th>
                       <th>60</th>
@@ -86,6 +92,9 @@
                       <td>int</td>
                       <td>int</td>
                       <td>int</td>
+                      <td>int</td>
+                      <td>int</td>
+                      <td>int</td>
                       <td>text</td>
                     </tr>
                     <?php }?>
@@ -94,9 +103,12 @@
                       <td></td>
                       <td></td>
                       <td><strong>Total</strong></td>
-                      <td>total ct</td>
-                      <td>total mt1</td>
-                      <td>total mt2</td>
+                      <td>total ct-1</td>
+                      <td>total ct-2</td>
+                      <td>total ct-3</td>
+                      <td>total ct-4</td>
+                      <td>total mt-1</td>
+                      <td>total mt-2</td>
                       <td>total ass</td>
                       <td>total et</td>
                       <td>total total</td>

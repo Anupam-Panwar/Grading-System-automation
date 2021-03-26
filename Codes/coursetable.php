@@ -97,10 +97,13 @@
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>
-                    <th>S. No.</th>
+                      <th>S. No.</th>
                       <th>Roll No.</th>
                       <th>Name ↓</th>
-                      <th>Teachers Assmt.</th>
+                      <th>Class Test-1</th>
+                      <th>Class Test-2</th>
+                      <th>Class Test-3</th>
+                      <th>Class Test-4</th>
                       <th>Mid Term Exam-I</th>
                       <th>Mid Term Exam-II</th>
                       <th>Total Assmt.</th>
@@ -113,7 +116,10 @@
                       <th></th>
                       
                       <th>Maximum Marks🠖</th>
-                      <th>20</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
                       <th>20</th>
                       <th>20</th>
                       <th>60</th>
@@ -128,6 +134,9 @@
                       <td><?php echo "$i"?>.</td>
                       <td>data</td>
                       <td>S Name <?php echo"$i"?></td>
+                      <td>text</td>
+                      <td>text</td>
+                      <td>text</td>
                       <td>text</td>
                       <td>text</td>
                       <td>int</td>
