@@ -28,6 +28,10 @@
           window.frames["print_frame"].window.print();
         }
         </script>
+        <?php
+        require_once __DIR__ .'\connection\connect.php';
+        $cd="CSL-258";
+        ?>
 </head>
 
 <body>
@@ -53,27 +57,45 @@
       <nav id="sidebar">
         <ul class="list-unstyled components">
             <div class="sidebar-header">
-                <h3>Surendra Singh</h3>
+            <?php
+            $sql="SELECT id FROM courses WHERE course_code='$cd'";
+            $result=$conn->query($sql);
+            $id;
+            if($result->num_rows>0)
+            {
+              $row=$result->fetch_assoc();
+              $id=$row['id'];
+            }
+            else
+            {
+              header('Location: index.php');
+              exit();
+            }
+            $sql="SELECT username FROM users WHERE id=$id";
+            $result=$conn->query($sql);
+            $uname;
+            if($result->num_rows==1)
+            {
+              $row=$result->fetch_assoc();
+              $uname=$row['username'];
+            }
+            
+
+            ?>
+                <h3><?php echo $uname; ?></h3>
             </div>
           <p class="h4">Courses</p>
-          <li>
-            <a href="#">Computer Organization</a>
-          </li>
-          <li>
-            <a href="#">Computer Network</a>
-          </li>
-          <li>
-            <a href="#">Design and Analysis of Algorithm</a>
-          </li>
-          <li>
-            <a href="#">Sports</a>
-          </li>
-          <li>
-            <a href="#">Theory of Computation</a>
-          </li>
-          <li>
-            <a href="#">Software Engineering</a>
-          </li>
+          <?php
+                $sql="SELECT course_name FROM courses WHERE id=$id";
+                $result = $conn->query($sql);
+                while($row=$result->fetch_assoc())
+                {        
+                 ?>
+                    <li>
+                        <a href="#"><?php echo $row['course_name']; ?></a>
+                    </li>
+                <?php } ?>
+          
         </ul>
       </nav>
 
@@ -129,14 +151,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php for($i=1; $i<=20; $i++){?>
+                    <?php
+                    $sql="SELECT name ,roll_no FROM controlsheet WHERE course_code='$cd'";
+                    $result = $conn->query($sql);
+                    $n=$result->num_rows;
+                    $a=$n-1;
+                    while($row=$result->fetch_assoc()){?>
                     <tr>
-                      <td><?php echo "$i"?>.</td>
-                      <td>data</td>
-                      <td>S Name <?php echo"$i"?></td>
-                      <td>text</td>
-                      <td>text</td>
-                      <td>text</td>
+                      <td><?php echo $n-$a;?></td>
+                      <td> <?php echo $row['name'];?></td>
+                      <td><?php echo $row['roll_no'];?></td>
+                      <td>placeholder</td>
                       <td>text</td>
                       <td>text</td>
                       <td>int</td>
@@ -145,7 +170,8 @@
                       <td>placeholder</td>
                       <td>text</td>
                     </tr>
-                    <?php }?>
+                    
+                    <?php $a--; }?>
                   </tbody>
                 </table>
               </div>
