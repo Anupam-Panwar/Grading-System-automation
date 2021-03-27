@@ -39,7 +39,12 @@ if(isset($_SESSION['id']))
 
 <body>
 
-
+    <?php
+    $name="Surendra Singh";
+    $x = 7;
+    $CN = array("Computer Network", "Computer Organization", "Design and Analysis of Algorithm", "Theory of Computation", "Software Engineering ","Sports", "Discrete Mathematics");
+    $CC = array("CSL 255", "CSL 256", "CSL 254", "CSl 259", "CSL 256", "SSP 151", "SCL-254");
+    ?>
     <nav class="navbar navbar-light bg-dark">
         <div class="container-fluid">
             <button type="button" id="sidebarCollapse" class="navbar-btn">
@@ -77,7 +82,7 @@ if(isset($_SESSION['id']))
         <div id="content">
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <?php
-                $i=0;   
+                $i=0;
                 while($i < $x) {
                 ?>
                     <div class="col">
