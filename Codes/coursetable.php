@@ -180,13 +180,12 @@
             <hr>
             <br>
             <div class="table-responsive grade" >
+            <div class="sameline grades">
+              <div class="text-start h5">Grade Point Cutoff</div>
+                <a class="btn btn-outline-secondary mb-2">Generate Grades</a>
+              </div>
             <table class="table table-bordered border-primary grades">
                     <thead>
-                      <tr>
-                          <strong>Grade Point Cutoff</strong>
-                      </tr>
-                    </thead>
-                    <tbody>
                       <tr>
                         <td><strong>Grade</strong></td>
                         <td>AA</td>
@@ -205,6 +204,8 @@
                         <td>XX</td>
                         <td>JJ</td>
                       </tr>
+                    </thead>
+                    <tbody>
                       <tr>
                         <td scope="row"><strong>Cutoff</strong></td>
                         <td scope="row">-</td>

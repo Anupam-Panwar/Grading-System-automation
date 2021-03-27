@@ -1,0 +1,13 @@
+@media print{
+    body{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    
+
+    #printbutton{
+        display:none;
+        visibility: none;
+    }
+}
