@@ -3,18 +3,15 @@ session_start();
 if(isset($_SESSION['id']))
 {
     require_once __DIR__ .'\connection\connect.php';
+    $id=$_SESSION['id'];
     $name;
-    $sql="SELECT username FROM users WHERE id=".$_SESSION['id'];
+    $sql="SELECT username FROM users WHERE id=$id";
     $result = $conn->query($sql);
     if ($result->num_rows==1) 
     {
         $row=$result->fetch_assoc();
         $name=$row['username'];
     }
-    $x = 7;
-    $CN = array("Computer Network", "Computer Organization", "Design and Analysis of Algorithm", "Theory of Computation", "Software Engineering ","Sports", "Discrete Mathematics");
-    $CC = array("CSL 255", "CSL 256", "CSL 254", "CSl 259", "CSL 256", "SSP 151", "SCL-254");
-
     ?>
 <!DOCTYPE html>
 <html>
@@ -65,9 +62,13 @@ if(isset($_SESSION['id']))
                 </div>
                 <p class="h4">Courses</p>
                 <?php
-                for ($i = 0; $i < $x; $i++) { ?>
+                $sql="SELECT course_name FROM courses WHERE id=".$_SESSION['id'];
+                $result = $conn->query($sql);
+                while($row=$result->fetch_assoc())
+                {        
+                 ?>
                     <li>
-                        <a href="#"><?php echo "$CN[$i]"; ?></a>
+                        <a href="#"><?php echo $row['course_name']; ?></a>
                     </li>
                 <?php } ?>
             </ul>
@@ -77,19 +78,21 @@ if(isset($_SESSION['id']))
         <div id="content">
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <?php
-                $i=0;   
-                while($i < $x) {
+                 $sql="SELECT course_name,course_code,batch FROM courses WHERE id=$id ORDER BY batch DESC";
+                 $result = $conn->query($sql);
+                 while($row=$result->fetch_assoc())
+                 {       
                 ?>
                     <div class="col">
                         <div class="card h-100">
                             <img src="images/nituk2.jpg" class="card-img-top" alt="img">
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo "$CN[$i]" ?></h5>
-                                <p class="card-text"><?php echo "$CC[$i]" ?><br>BT19-Batch</p>
+                                <h5 class="card-title"><?php echo $row['course_name'] ?></h5>
+                                <p class="card-text"><?php echo $row['course_code'] ?><br><?php echo $row['batch'] ?></p>
                             </div>
                         </div>
                     </div>
-                <?php $i++; } ?>
+                <?php  } ?>
 
             </div>
         </div>
