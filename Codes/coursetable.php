@@ -45,7 +45,7 @@
         <span></span>
         <span></span>
       </button>
-      <span class="text-white h3">Grades</span>
+      <span class="text-white h3">Control Sheet</span>
       <form class="d-flex">
         <button class="btn btn-outline-success" type="txt">Log Out</button>
       </form>
@@ -105,28 +105,49 @@
           
         <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto" id="printableTable">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <h3 class="h3">Current Course Name</h3>
+                <h4 class="h4">Course: XXX-YYY ZZZZZZZZZ</h4>
 
                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                  <a type="button" class="btn btn-outline-secondary d-print-none" href="edit.php">Edit</a>
-                  <a type="button" class="btn btn-outline-secondary d-print-none" href="print.php" >Print</a>
+                  <a type="button" class="btn btn-outline-secondary" href="edit.php">Edit</a>
+                  <a type="button" class="btn btn-outline-secondary" href="print.php">Print</a>
                 </div>
               </div>
         
-              <h5>Batch 2019-2023 Sem-4</h5>
+              <h5>Session: Odd Semester-2021</h5>
+              <br>
               <div class="table-responsive" >
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>
-                      <th>S.N.</th>
-                      <th>Student Name</th>
-                      <th>Roll No</th>
-                      <th>Teachers Assmt.</th>
+                      <th>S. No.</th>
+                      <th>Roll No.</th>
+                      <th>Name ↓</th>
+                      <th>Class Test-1</th>
+                      <th>Class Test-2</th>
+                      <th>Class Test-3</th>
+                      <th>Class Test-4</th>
                       <th>Mid Term Exam-I</th>
                       <th>Mid Term Exam-II</th>
+                      <th>Total Assmt.</th>
                       <th>End Term Exam</th>
                       <th>Total</th>
                       <th>Grade</th>
+                    </tr>
+                    <tr>
+                    <th></th>
+                      <th></th>
+                      
+                      <th>Maximum Marks🠖</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>20</th>
+                      <th>20</th>
+                      <th>60</th>
+                      <th>40</th>
+                      <th>100</th>
+                      <th>AA</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -141,9 +162,9 @@
                       <td> <?php echo $row['name'];?></td>
                       <td><?php echo $row['roll_no'];?></td>
                       <td>placeholder</td>
-
                       <td>text</td>
                       <td>text</td>
+                      <td>int</td>
                       <td>random</td>
                       <td>data</td>
                       <td>placeholder</td>
@@ -185,22 +206,22 @@
                         <td>JJ</td>
                       </tr>
                       <tr>
-                        <th scope="row"><strong>Cutoff</strong></th>
-                        <th scope="row">100-79</th>
-                        <th scope="row">79-70</th>
-                        <th scope="row">69-60</th>
-                        <th scope="row">59-50</th>
-                        <th scope="row">49-40</th>
-                        <th scope="row">39-35</th>
-                        <th scope="row">34-0</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>                     
+                        <td scope="row"><strong>Cutoff</strong></td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>                      
                       </tr>
                       <tr>
                         <td><strong>Total Students</strong></td>
