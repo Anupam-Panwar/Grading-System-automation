@@ -117,31 +117,29 @@
             <br>
 
             <div class="table-responsive" >
+            <div class="text-start h5">Grade Point Cutoff</div>
             <table class="table table-bordered border-primary">
                     <thead>
                       <tr>
-                          <strong>Grade Window</strong>
-                      </tr>
+                          <td><strong>Grade</strong></td>
+                          <td>AA</td>
+                          <td>AB</td>
+                          <td>BB</td>
+                          <td>BC</td>
+                          <td>CC</td>
+                          <td>DD</td>
+                          <td>FF</td>
+                          <td>GG</td>
+                          <td>UU</td>
+                          <td>PP</td>
+                          <td>YY</td>
+                          <td>SS</td>
+                          <td>ZZ</td>
+                          <td>XX</td>
+                          <td>JJ</td>
+                        </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><strong>Grade</strong></td>
-                            <td>AA</td>
-                            <td>AB</td>
-                            <td>BB</td>
-                            <td>BC</td>
-                            <td>CC</td>
-                            <td>DD</td>
-                            <td>FF</td>
-                            <td>GG</td>
-                            <td>UU</td>
-                            <td>PP</td>
-                            <td>YY</td>
-                            <td>SS</td>
-                            <td>ZZ</td>
-                            <td>XX</td>
-                            <td>JJ</td>
-                          </tr>
                           <tr>
                             <td><strong>Cutoff</strong></td>
                             <td><input class="gradewin"></input></td>

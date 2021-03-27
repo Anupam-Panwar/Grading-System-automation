@@ -13,7 +13,8 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/print.css">
+    <link rel="stylesheet" href="css/print.css" >
+    <link rel="stylesheet" href="css/printmedia.css" media="print">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -32,11 +33,14 @@
       <div id="content">
 
           
-        <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto" id="printableTable">
-              <div class="text-center h3">National Institute of Technology, Uttarakhand</div>
-              <div class="text-center h3">Control Sheet</div>
+        <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto">
+              
+              <button class="btn btn-info float-end" onclick="window.print()" id="printbutton">Download</button>
+              <div class="h3 text-center" id="nit">National Institute of Technology, Uttarakhand</div>
+
+              <div class="text-center h4">Control Sheet</div>
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <h4 class="h4">Course: XXX-YYY ZZZZZZZZZ</h4>
+                <h4 class="h5">Course: XXX-YYY ZZZZZZZZZ</h4>
                 <span class="ctno text-end">Control Sheet No.:__/__/_______ <br>CC/HOD/F/CF</span>
               </div>
 
@@ -123,14 +127,11 @@
             <br>
             <hr>
             <br>
-            <div class="table-responsive grade" >
-            <table class="table table-bordered border-primary grades">
+            
+            <div class="table-responsive" id="printmedia" >
+            <div class="text-start h5">Grade Point Cutoff</div>
+              <table class="table table-bordered border-primary grades">
                     <thead>
-                      <tr>
-                          <strong>Grade Point Cutoff</strong>
-                      </tr>
-                    </thead>
-                    <tbody>
                     <tr>
                         <td><strong>Grade</strong></td>
                         <td>AA</td>
@@ -149,23 +150,25 @@
                         <td>XX</td>
                         <td>JJ</td>
                       </tr>
+                    </thead>
+                    <tbody>
                       <tr>
-                        <td scope="row"><strong>Cutoff</strong></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row"></td>
-                        <td scope="row">-</td>
-                        <td scope="row">-</td>
-                        <td scope="row">-</td>
-                        <td scope="row">-</td>
-                        <td scope="row">-</td>
-                        <td scope="row">-</td>
-                        <td scope="row">-</td>
-                        <td scope="row">-</td>                      
+                        <td><strong>Cutoff</strong></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>                      
                       </tr>
                       <tr>
                         <td><strong>Total Students</strong></td>
@@ -193,7 +196,7 @@
           <br>
           <br>
           <br>
-          <div class="fs-5 sameline">
+          <div class="fs-6 sameline">
               <div>Name & Signature of Examiner <br>Date:</div>
               <div>Name & Sign of HOD/Dept. Coordinator with Seal <br>Date:</div>
           </div>
