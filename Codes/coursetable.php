@@ -121,11 +121,10 @@
                       <th>S.N.</th>
                       <th>Student Name</th>
                       <th>Roll No</th>
-                      <th>CT-1</th>
-                      <th>CT-2</th>
-                      <th>MT-1</th>
-                      <th>MT-2</th>
-                      <th>END-TERM</th>
+                      <th>Teachers Assmt.</th>
+                      <th>Mid Term Exam-I</th>
+                      <th>Mid Term Exam-II</th>
+                      <th>End Term Exam</th>
                       <th>Total</th>
                       <th>Grade</th>
                     </tr>
@@ -142,6 +141,7 @@
                       <td> <?php echo $row['name'];?></td>
                       <td><?php echo $row['roll_no'];?></td>
                       <td>placeholder</td>
+
                       <td>text</td>
                       <td>text</td>
                       <td>random</td>
@@ -162,25 +162,63 @@
             <table class="table table-bordered border-primary grades">
                     <thead>
                       <tr>
-                          <strong>Grade Window</strong>
+                          <strong>Grade Point Cutoff</strong>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">100-90</th>
-                        <th scope="row">89-80</th>
-                        <th scope="row">79-70</th>
-                        <th scope="row">69-60</th>
-                        <th scope="row">59-50</th>
-                        <th scope="row"><50</th>                   
-                      </tr>
-                      <tr>
-                        <td>AB</td>
+                        <td><strong>Grade</strong></td>
+                        <td>AA</td>
                         <td>AB</td>
                         <td>BB</td>
                         <td>BC</td>
                         <td>CC</td>
+                        <td>DD</td>
                         <td>FF</td>
+                        <td>GG</td>
+                        <td>UU</td>
+                        <td>PP</td>
+                        <td>YY</td>
+                        <td>SS</td>
+                        <td>ZZ</td>
+                        <td>XX</td>
+                        <td>JJ</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><strong>Cutoff</strong></th>
+                        <th scope="row">100-79</th>
+                        <th scope="row">79-70</th>
+                        <th scope="row">69-60</th>
+                        <th scope="row">59-50</th>
+                        <th scope="row">49-40</th>
+                        <th scope="row">39-35</th>
+                        <th scope="row">34-0</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>                     
+                      </tr>
+                      <tr>
+                        <td><strong>Total Students</strong></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                     </tbody>
             </table>

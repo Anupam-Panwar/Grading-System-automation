@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2021 at 07:32 PM
+-- Generation Time: Mar 25, 2021 at 06:19 PM
 -- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -121,6 +121,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `cut_off`, `no_of_students`) 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -128,10 +129,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'Surendra Singh', 'surendra@123'),
-(2, 'Sneha Chauhan', 'sneha@123'),
-(3, 'Krishanveer Gangwar', 'krish@123');
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(1, 'Surendra Singh', 'suri@nituk.ac.in', 'surendra'),
+(2, 'Sneha Chauhan', 'sneha@nituk.ac.in', 'sneha'),
+(3, 'Krishanveer Gangwar', 'kg@nituk.ac.in', 'krish');
 
 --
 -- Indexes for dumped tables

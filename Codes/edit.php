@@ -13,7 +13,7 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/edit.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -36,11 +36,7 @@
 <!-- navbar -->
   <nav class="navbar navbar-light bg-dark">
     <div class="container-fluid">
-      <button type="button" id="sidebarCollapse" class="navbar-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      
       <span class="text-white h3">Grades</span>
       <form class="d-flex">
         <button class="btn btn-outline-success" type="txt">Log Out</button>
@@ -49,33 +45,7 @@
   </nav>
 
   <div class="wrapper">
-      <!-- Sidebar Holder -->
-      <nav id="sidebar">
-        <ul class="list-unstyled components">
-            <div class="sidebar-header">
-                <h3>Surendra Singh</h3>
-            </div>
-          <p class="h4">Courses</p>
-          <li>
-            <a href="#">Computer Organization</a>
-          </li>
-          <li>
-            <a href="#">Computer Network</a>
-          </li>
-          <li>
-            <a href="#">Design and Analysis of Algorithm</a>
-          </li>
-          <li>
-            <a href="#">Sports</a>
-          </li>
-          <li>
-            <a href="#">Theory of Computation</a>
-          </li>
-          <li>
-            <a href="#">Software Engineering</a>
-          </li>
-        </ul>
-      </nav>
+  
 
       <!-- Page Content Holder -->
       <div id="content">
@@ -87,7 +57,6 @@
 
                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
                   <a type="button" class="btn btn-outline-secondary d-print-none" href="coursetable.php">Save</a>
-                  <a type="button" class="btn btn-outline-secondary d-print-none" onclick="printDiv()">Print</a>
                 </div>
               </div>
         
@@ -96,14 +65,13 @@
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>
-                      <th>S.N.</th>
+                    <th>S.N.</th>
                       <th>Student Name</th>
                       <th>Roll No</th>
-                      <th>CT-1</th>
-                      <th>CT-2</th>
-                      <th>MT-1</th>
-                      <th>MT-2</th>
-                      <th>END-TERM</th>
+                      <th>Teachers Assmt.</th>
+                      <th>Mid Term Exam-I</th>
+                      <th>Mid Term Exam-II</th>
+                      <th>End Term Exam</th>
                       <th>Total</th>
                       <th>Grade</th>
                     </tr>
@@ -111,16 +79,15 @@
                   <tbody>
                     <?php for($i=1; $i<=20; $i++){?>
                     <tr>
-                      <td><input><?php echo "$i"?></input></td>
-                      <td><input>S Name <?php echo"$i"?></input></td>
-                      <td><input>data</input></td>
-                      <td><input>placeholder</input></td>
-                      <td><input>text</input></td>
-                      <td><input>text</input></td>
-                      <td><input>random</input></td>
-                      <td><input>data</input></td>
-                      <td><input>placeholder</input></td>
-                      <td><input>text</input></td>
+                      <td><?php echo "$i"?></td>
+                      <td>S Name</td>
+                      <td>Roll</td>
+                      <td><input></input></td>
+                      <td><input></input></td>
+                      <td><input></input></td>
+                      <td><input></input></td>
+                      <td>100</td>
+                      <td>AA</td>
                     </tr>
                     <?php }?>
                   </tbody>
@@ -138,21 +105,59 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">100-90</th>
-                        <th scope="row">89-80</th>
-                        <th scope="row">79-70</th>
-                        <th scope="row">69-60</th>
-                        <th scope="row">59-50</th>
-                        <th scope="row"><50</th>                   
-                      </tr>
-                      <tr>
-                        <td>AB</td>
+                    <tr>
+                        <td><strong>Grade</strong></td>
+                        <td>AA</td>
                         <td>AB</td>
                         <td>BB</td>
                         <td>BC</td>
                         <td>CC</td>
+                        <td>DD</td>
                         <td>FF</td>
+                        <td>GG</td>
+                        <td>UU</td>
+                        <td>PP</td>
+                        <td>YY</td>
+                        <td>SS</td>
+                        <td>ZZ</td>
+                        <td>XX</td>
+                        <td>JJ</td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><strong>Cutoff</strong></th>
+                        <th scope="row">100-79</th>
+                        <th scope="row">79-70</th>
+                        <th scope="row">69-60</th>
+                        <th scope="row">59-50</th>
+                        <th scope="row">49-40</th>
+                        <th scope="row">39-35</th>
+                        <th scope="row">34-0</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>
+                        <th scope="row">-</th>                     
+                      </tr>
+                      <tr>
+                        <td><strong>Total Students</strong></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
                       </tr>
                     </tbody>
             </table>
