@@ -28,6 +28,10 @@
           window.frames["print_frame"].window.print();
         }
         </script>
+        <?php
+        require_once __DIR__ .'\connection\connect.php';
+        $cd="CSL-258";
+        ?>
 </head>
 
 <body>
@@ -41,7 +45,7 @@
         <span></span>
         <span></span>
       </button>
-      <span class="text-white h3">Grades</span>
+      <span class="text-white h3">Control Sheet</span>
       <form class="d-flex">
         <button class="btn btn-outline-success" type="txt">Log Out</button>
       </form>
@@ -53,27 +57,45 @@
       <nav id="sidebar">
         <ul class="list-unstyled components">
             <div class="sidebar-header">
-                <h3>Surendra Singh</h3>
+            <?php
+            $sql="SELECT id FROM courses WHERE course_code='$cd'";
+            $result=$conn->query($sql);
+            $id;
+            if($result->num_rows>0)
+            {
+              $row=$result->fetch_assoc();
+              $id=$row['id'];
+            }
+            else
+            {
+              header('Location: index.php');
+              exit();
+            }
+            $sql="SELECT username FROM users WHERE id=$id";
+            $result=$conn->query($sql);
+            $uname;
+            if($result->num_rows==1)
+            {
+              $row=$result->fetch_assoc();
+              $uname=$row['username'];
+            }
+            
+
+            ?>
+                <h3><?php echo $uname; ?></h3>
             </div>
           <p class="h4">Courses</p>
-          <li>
-            <a href="#">Computer Organization</a>
-          </li>
-          <li>
-            <a href="#">Computer Network</a>
-          </li>
-          <li>
-            <a href="#">Design and Analysis of Algorithm</a>
-          </li>
-          <li>
-            <a href="#">Sports</a>
-          </li>
-          <li>
-            <a href="#">Theory of Computation</a>
-          </li>
-          <li>
-            <a href="#">Software Engineering</a>
-          </li>
+          <?php
+                $sql="SELECT course_name FROM courses WHERE id=$id";
+                $result = $conn->query($sql);
+                while($row=$result->fetch_assoc())
+                {        
+                 ?>
+                    <li>
+                        <a href="#"><?php echo $row['course_name']; ?></a>
+                    </li>
+                <?php } ?>
+          
         </ul>
       </nav>
 
@@ -83,44 +105,73 @@
           
         <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto" id="printableTable">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <h3 class="h3">Current Course Name</h3>
+                <h4 class="h4">Course: XXX-YYY ZZZZZZZZZ</h4>
 
                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                  <a type="button" class="btn btn-outline-secondary d-print-none" href="edit.php">Edit</a>
-                  <a type="button" class="btn btn-outline-secondary d-print-none" href="print.php">Print</a>
+                  <a type="button" class="btn btn-outline-secondary" href="edit.php">Edit</a>
+                  <a type="button" class="btn btn-outline-secondary" href="print.php">Print</a>
                 </div>
               </div>
         
-              <h5>Batch 2019-2023 Sem-4</h5>
+              <h5>Session: Odd Semester-2021</h5>
+              <br>
               <div class="table-responsive" >
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>
-                      <th>S.N.</th>
-                      <th>Student Name</th>
-                      <th>Roll No</th>
-                      <th>Teachers Assmt.</th>
+                      <th>S. No.</th>
+                      <th>Roll No.</th>
+                      <th>Name ↓</th>
+                      <th>Class Test-1</th>
+                      <th>Class Test-2</th>
+                      <th>Class Test-3</th>
+                      <th>Class Test-4</th>
                       <th>Mid Term Exam-I</th>
                       <th>Mid Term Exam-II</th>
+                      <th>Total Assmt.</th>
                       <th>End Term Exam</th>
                       <th>Total</th>
                       <th>Grade</th>
                     </tr>
+                    <tr>
+                    <th></th>
+                      <th></th>
+                      
+                      <th>Maximum Marks🠖</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>20</th>
+                      <th>20</th>
+                      <th>60</th>
+                      <th>40</th>
+                      <th>100</th>
+                      <th>AA</th>
+                    </tr>
                   </thead>
                   <tbody>
-                    <?php for($i=1; $i<=20; $i++){?>
+                    <?php
+                    $sql="SELECT name ,roll_no FROM controlsheet WHERE course_code='$cd'";
+                    $result = $conn->query($sql);
+                    $n=$result->num_rows;
+                    $a=$n-1;
+                    while($row=$result->fetch_assoc()){?>
                     <tr>
-                      <td><?php echo "$i"?></td>
-                      <td>S Name <?php echo"$i"?></td>
-                      <td>data</td>
+                      <td><?php echo $n-$a;?></td>
+                      <td> <?php echo $row['name'];?></td>
+                      <td><?php echo $row['roll_no'];?></td>
+                      <td>placeholder</td>
                       <td>text</td>
                       <td>text</td>
+                      <td>int</td>
                       <td>random</td>
                       <td>data</td>
                       <td>placeholder</td>
                       <td>text</td>
                     </tr>
-                    <?php }?>
+                    
+                    <?php $a--; }?>
                   </tbody>
                 </table>
               </div>
@@ -155,22 +206,22 @@
                         <td>JJ</td>
                       </tr>
                       <tr>
-                        <th scope="row"><strong>Cutoff</strong></th>
-                        <th scope="row">100-79</th>
-                        <th scope="row">79-70</th>
-                        <th scope="row">69-60</th>
-                        <th scope="row">59-50</th>
-                        <th scope="row">49-40</th>
-                        <th scope="row">39-35</th>
-                        <th scope="row">34-0</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>                     
+                        <td scope="row"><strong>Cutoff</strong></td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>                      
                       </tr>
                       <tr>
                         <td><strong>Total Students</strong></td>
