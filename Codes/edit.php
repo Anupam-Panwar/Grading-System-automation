@@ -99,7 +99,7 @@
                 <?php $cn=$row['course_name']; ?>
 
                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                  <a type="button" class="btn btn-outline-secondary d-print-none" href="coursetable.php">Save</a>
+                  <a type="button" class="btn btn-outline-secondary d-print-none" href="coursetable.php?course=<?php echo $cd; ?>">Save</a>
                 </div>
               </div>
         
