@@ -43,14 +43,14 @@
 
       <!-- Page Content Holder -->
       <div id="content">
-
           
         <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto">
+        <form action="insert.php?course=CSL-258" method="post">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <h4 class="h4">Course: XXX-YYY ZZZZZZZZZ</h4>
 
                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                  <a type="button" class="btn btn-outline-secondary d-print-none" href="coursetable.php">Save</a>
+                  <input type="submit" value="Save" class="btn btn-outline-secondary d-print-none" />
                 </div>
               </div>
         
@@ -96,14 +96,14 @@
                       <td><?php echo "$i"?></td>
                       <td>BTXXYYYZZZ</td>
                       <td>Student Name</td>
-                      <td><input class="classtest"></input></td>
-                      <td><input class="classtest"></input></td>
-                      <td><input class="classtest"></input></td>
-                      <td><input class="classtest"></input></td>
-                      <td><input class="marks"></input></td>
-                      <td><input class="marks"></input></td>
+                      <td><input class="classtest" name="ct1"></input></td>
+                      <td><input class="classtest" name="ct2"></input></td>
+                      <td><input class="classtest" name="ct3"></input></td>
+                      <td><input class="classtest" name="ct4"></input></td>
+                      <td><input class="marks" name="mt1"></input></td>
+                      <td><input class="marks" name="mt2"></input></td>
                       <td>MT1+MT2+CT</td>
-                      <td><input class="marks"></input></td>
+                      <td><input class="marks" name="endterm"></input></td>
                       <td>100</td>
                       <td>AA</td>
                     </tr>
@@ -179,6 +179,7 @@
                     </tbody>
             </table>
             </div>
+            </form>
           </main>
       </div>
   </div>
