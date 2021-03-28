@@ -241,3 +241,15 @@ ul.CTAs a {
     }
 
   }
+
+  /* ---------------------------------------------------
+    Close Button
+----------------------------------------------------- */
+  .closebtn:hover {
+    color:black;
+    cursor:pointer;
+  }
+  .alert
+  {
+      border-radius: 10px;
+  }

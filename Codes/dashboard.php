@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['id'])) {
     require_once __DIR__ . '\connection\connect.php';
     $id = $_SESSION['id'];
-    $name=$_SESSION['name'];
+    $name = $_SESSION['name'];
 ?>
     <!DOCTYPE html>
     <html>
@@ -27,7 +27,7 @@ if (isset($_SESSION['id'])) {
     </head>
 
     <body>
-  
+
         <nav class="navbar navbar-light bg-dark">
             <div class="container-fluid">
                 <button type="button" id="sidebarCollapse" class="navbar-btn">
@@ -43,17 +43,7 @@ if (isset($_SESSION['id'])) {
                 </form>
             </div>
         </nav>
-   
 
-        <?php
-       if(isset($_GET['error']))
-       {
-           ?>
-           <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin:20px;">
-  <strong>Error Occurred</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-<?php } ?>
         <div class="wrapper">
             <!-- Sidebar Holder -->
             <nav id="sidebar">
@@ -68,30 +58,39 @@ if (isset($_SESSION['id'])) {
                     while ($row = $result->fetch_assoc()) {
                     ?>
                         <li>
-                            <a href="coursetable.php?course=<?php echo $row['course_code'];?>"><?php echo $row['course_name']; ?></a>
+                            <a href="coursetable.php?course=<?php echo $row['course_code']; ?>"><?php echo $row['course_name']; ?></a>
                         </li>
                     <?php } ?>
                 </ul>
             </nav>
 
             <!-- Page Content Holder -->
+
             <div id="content">
+                <?php
+                if (isset($_GET['error'])) {
+                ?>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Error Occurred</strong>
+                        <span class="btn-close closebtn" onclick="this.parentElement.style.display='none';" aria-label="Close"></span>
+                    </div>
+                <?php } ?>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     <?php
                     $sql = "SELECT course_name,course_code,batch FROM courses WHERE id=$id ORDER BY batch DESC";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
                     ?>
-                    <a href="coursetable.php?course=<?php echo $row['course_code'];?>">
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="images/nituk2.jpg" class="card-img-top" alt="img">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $row['course_name'] ?></h5>
-                                    <p class="card-text"><?php echo $row['course_code'] ?><br><?php echo $row['batch'] ?></p>
+                        <a href="coursetable.php?course=<?php echo $row['course_code']; ?>">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="images/nituk2.jpg" class="card-img-top" alt="img">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $row['course_name'] ?></h5>
+                                        <p class="card-text"><?php echo $row['course_code'] ?><br><?php echo $row['batch'] ?></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </a>
                     <?php  } ?>
                 </div>
@@ -118,7 +117,7 @@ if (isset($_SESSION['id'])) {
             });
         });
     </script>
-   
+
     </body>
 
     </html>
