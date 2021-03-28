@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Course-name</title>
+    <title>Edit Course-name</title>
 
   
 
@@ -19,15 +19,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-      
-    <!-- print function -->
-        <script>
-        function printDiv() {
-          window.frames["print_frame"].document.body.innerHTML = document.getElementById("printableTable").innerHTML;
-          window.frames["print_frame"].window.focus();
-          window.frames["print_frame"].window.print();
-        }
-        </script>
 </head>
 
 <body>
@@ -35,9 +26,12 @@
 
 <!-- navbar -->
   <nav class="navbar navbar-light bg-dark">
-    <div class="container-fluid">
+    <div class="container-fluid sameline">
+      <div class="initials">
+        <span class="text-white text-center fs-3 initial">P</span>
+      </div>
+      <span class="text-white h3">Control Sheet</span>
       
-      <span class="text-white h3">Grades</span>
       <form class="d-flex">
         <button class="btn btn-outline-success" type="txt">Log Out</button>
       </form>
@@ -51,41 +45,65 @@
       <div id="content">
 
           
-        <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto " id="printableTable">
+        <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <h3 class="h3">Current Course Name</h3>
+                <h4 class="h4">Course: XXX-YYY ZZZZZZZZZ</h4>
 
                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
                   <a type="button" class="btn btn-outline-secondary d-print-none" href="coursetable.php">Save</a>
                 </div>
               </div>
         
-              <h5>Batch 2019-2023 Sem-4</h5>
+              <h5>Session: Odd Semester-2021</h5>
+              <br>
               <div class="table-responsive" >
-                <table class="table table-striped table-sm">
+                <table class="table table-striped table-sm tablecustom">
                   <thead>
                     <tr>
-                    <th>S.N.</th>
-                      <th>Student Name</th>
-                      <th>Roll No</th>
-                      <th>Teachers Assmt.</th>
+                    <th></th>
+                      <th></th>
+                      <th>Name ↓</th>
+                      <th>Class Test-1</th>
+                      <th>Class Test-2</th>
+                      <th>Class Test-3</th>
+                      <th>Class Test-4</th>
                       <th>Mid Term Exam-I</th>
                       <th>Mid Term Exam-II</th>
+                      <th>Total Assmt.</th>
                       <th>End Term Exam</th>
                       <th>Total</th>
                       <th>Grade</th>
+                    </tr>
+                    <tr>
+                      <th>S. No.</th>
+                      <th>Roll No.</th>
+                      <th>Maximum Marks 🠖</th>
+                      <th><input placeholder="M.M." class="classtest"></input></th>
+                      <th><input placeholder="M.M." class="classtest"></input></th>
+                      <th><input placeholder="M.M." class="classtest"></input></th>
+                      <th><input placeholder="M.M." class="classtest"></input></th>
+                      <th><input placeholder="M.M." class="marks"></input></th>
+                      <th><input placeholder="M.M." class="marks"></input></th>
+                      <th>MM</th>
+                      <th><input placeholder="M.M." class="marks"></input></th>
+                      <th>100</th>
+                      <th>AA</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php for($i=1; $i<=20; $i++){?>
                     <tr>
                       <td><?php echo "$i"?></td>
-                      <td>S Name</td>
-                      <td>Roll</td>
-                      <td><input></input></td>
-                      <td><input></input></td>
-                      <td><input></input></td>
-                      <td><input></input></td>
+                      <td>BTXXYYYZZZ</td>
+                      <td>Student Name</td>
+                      <td><input class="classtest"></input></td>
+                      <td><input class="classtest"></input></td>
+                      <td><input class="classtest"></input></td>
+                      <td><input class="classtest"></input></td>
+                      <td><input class="marks"></input></td>
+                      <td><input class="marks"></input></td>
+                      <td>MT1+MT2+CT</td>
+                      <td><input class="marks"></input></td>
                       <td>100</td>
                       <td>AA</td>
                     </tr>
@@ -97,68 +115,67 @@
             <br>
             <hr>
             <br>
-            <div class="table-responsive grade" >
-            <table class="table table-bordered border-primary grades">
+
+            <div class="table-responsive" >
+            <div class="text-start h5">Grade Point Cutoff</div>
+            <table class="table table-bordered border-primary">
                     <thead>
                       <tr>
-                          <strong>Grade Window</strong>
-                      </tr>
+                          <td><strong>Grade</strong></td>
+                          <td>AA</td>
+                          <td>AB</td>
+                          <td>BB</td>
+                          <td>BC</td>
+                          <td>CC</td>
+                          <td>DD</td>
+                          <td>FF</td>
+                          <td>GG</td>
+                          <td>UU</td>
+                          <td>PP</td>
+                          <td>YY</td>
+                          <td>SS</td>
+                          <td>ZZ</td>
+                          <td>XX</td>
+                          <td>JJ</td>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><strong>Grade</strong></td>
-                        <td>AA</td>
-                        <td>AB</td>
-                        <td>BB</td>
-                        <td>BC</td>
-                        <td>CC</td>
-                        <td>DD</td>
-                        <td>FF</td>
-                        <td>GG</td>
-                        <td>UU</td>
-                        <td>PP</td>
-                        <td>YY</td>
-                        <td>SS</td>
-                        <td>ZZ</td>
-                        <td>XX</td>
-                        <td>JJ</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><strong>Cutoff</strong></th>
-                        <th scope="row">100-79</th>
-                        <th scope="row">79-70</th>
-                        <th scope="row">69-60</th>
-                        <th scope="row">59-50</th>
-                        <th scope="row">49-40</th>
-                        <th scope="row">39-35</th>
-                        <th scope="row">34-0</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>
-                        <th scope="row">-</th>                     
-                      </tr>
-                      <tr>
-                        <td><strong>Total Students</strong></td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                      </tr>
+                          <tr>
+                            <td><strong>Cutoff</strong></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>
+                            <td><input class="gradewin"></input></td>                       
+                          </tr>
+                          <tr>
+                            <td><strong>Total Students</strong></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                          </tr>
                     </tbody>
             </table>
             </div>
@@ -166,8 +183,6 @@
       </div>
   </div>
 
-<!-- iframe -->
-  <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
 
   <!-- jQuery CDN - Slim version (=without AJAX) -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

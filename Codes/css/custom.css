@@ -143,6 +143,10 @@ ul.CTAs a {
     width:75%;
 }
 
+.sameline{
+    display: flex;
+    justify-content: space-between;
+}
 
 /* ---------------------------------------------------
     CONTENT STYLE
