@@ -78,6 +78,11 @@ CONTENT STYLE
     max-width: 5vw;
     min-width: 2vw;
 }
+.rollno
+{
+    max-width: 7vw;
+    min-width: 5vw;
+}
 
 .gradewin{
     max-width: 5vw !important;
