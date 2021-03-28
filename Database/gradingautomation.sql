@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2021 at 10:09 AM
+-- Generation Time: Mar 28, 2021 at 05:47 PM
 -- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,8 +33,11 @@ CREATE TABLE `controlsheet` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `class_test_1` float NOT NULL,
   `class_test_2` float NOT NULL,
+  `class_test_3` float NOT NULL,
+  `class_test_4` float NOT NULL,
   `mid_term_1` float NOT NULL,
   `mid_term_2` float NOT NULL,
+  `total_assesment` float NOT NULL,
   `end_term` float NOT NULL,
   `total_marks` float NOT NULL,
   `grade` varchar(5) COLLATE utf8_unicode_ci NOT NULL
@@ -44,17 +47,17 @@ CREATE TABLE `controlsheet` (
 -- Dumping data for table `controlsheet`
 --
 
-INSERT INTO `controlsheet` (`course_code`, `roll_no`, `name`, `class_test_1`, `class_test_2`, `mid_term_1`, `mid_term_2`, `end_term`, `total_marks`, `grade`) VALUES
-('CSL-258', '', 'Maximim Marks', 10, 10, 20, 20, 40, 100, ''),
-('CSL-258', 'BT19CSE002', 'Anupam Panwar', 9, 9, 18, 20, 37, 0, ''),
-('CSL-258', 'BT19CSE003', 'Neha Dhyani', 9.5, 8.5, 18, 18.5, 38.5, 0, ''),
-('CSL-258', 'BT19CSE011', 'Purvi Goyal', 9, 8.5, 17.5, 19, 38, 0, ''),
-('CSL-258', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 8.5, 18, 19.5, 36.5, 0, ''),
-('CSL-253', '', 'Maximim Marks', 10, 10, 20, 20, 40, 100, ''),
-('CSL-253', 'BT19CSE002', 'Anupam Panwar', 9.5, 8, 18, 19, 38, 0, ''),
-('CSL-253', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 19, 18.5, 38, 0, ''),
-('CSL-253', 'BT19CSE011', 'Purvi Goyal', 9, 8, 18, 19.5, 38.5, 0, ''),
-('CSL-253', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 19, 18.5, 37, 0, '');
+INSERT INTO `controlsheet` (`course_code`, `roll_no`, `name`, `class_test_1`, `class_test_2`, `class_test_3`, `class_test_4`, `mid_term_1`, `mid_term_2`, `total_assesment`, `end_term`, `total_marks`, `grade`) VALUES
+('CSL-258', '', 'Maximim Marks', 10, 10, 0, 0, 20, 20, 0, 40, 100, ''),
+('CSL-258', 'BT19CSE002', 'Anupam Panwar', 9, 9, 0, 0, 18, 20, 0, 37, 0, ''),
+('CSL-258', 'BT19CSE003', 'Neha Dhyani', 9.5, 8.5, 0, 0, 18, 18.5, 0, 38.5, 0, ''),
+('CSL-258', 'BT19CSE011', 'Purvi Goyal', 9, 8.5, 0, 0, 17.5, 19, 0, 38, 0, ''),
+('CSL-258', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 8.5, 0, 0, 18, 19.5, 0, 36.5, 0, ''),
+('CSL-253', '', 'Maximim Marks', 10, 10, 0, 0, 20, 20, 0, 40, 100, ''),
+('CSL-253', 'BT19CSE002', 'Anupam Panwar', 9.5, 8, 0, 0, 18, 19, 0, 38, 0, ''),
+('CSL-253', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 0, 0, 19, 18.5, 0, 38, 0, ''),
+('CSL-253', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 19.5, 0, 38.5, 0, ''),
+('CSL-253', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 0, 0, 19, 18.5, 0, 37, 0, '');
 
 -- --------------------------------------------------------
 
@@ -66,6 +69,7 @@ CREATE TABLE `courses` (
   `id` int(11) NOT NULL,
   `course_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `course_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `semester` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `batch` varchar(20) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -73,12 +77,12 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `course_name`, `course_code`, `batch`) VALUES
-(3, 'Operating System', 'CSL-252', 'BT19'),
-(2, 'Object Oriented Design', 'CSL-253', 'BT20'),
-(1, 'Computer Networks', 'CSL-255', 'BT19'),
-(1, 'Data Communication', 'CSL-257', 'BT19'),
-(1, 'Computer Organistaion', 'CSL-258', 'BT20');
+INSERT INTO `courses` (`id`, `course_name`, `course_code`, `semester`, `batch`) VALUES
+(3, 'Operating System', 'CSL-252', 'Odd-2020', 'BT19'),
+(2, 'Object Oriented Design', 'CSL-253', 'Odd-2020', 'BT20'),
+(1, 'Computer Networks', 'CSL-255', 'Even-2021', 'BT19'),
+(1, 'Data Communication', 'CSL-257', 'Odd-2020', 'BT19'),
+(1, 'Computer Organistaion', 'CSL-258', 'Even-2021', 'BT20');
 
 -- --------------------------------------------------------
 
