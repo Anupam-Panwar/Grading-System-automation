@@ -27,8 +27,11 @@ if(isset($_SESSION['id']))
     <?php
     require_once __DIR__ . '\connection\connect.php';
     if (isset($_GET['course']))
+    {
         $cd = $_GET['course'];
-    else {
+    }
+    else
+    {
         header('Location: dashboard.php?error=ERROR OCCURRED');
         exit();
     }
@@ -100,18 +103,23 @@ if(isset($_SESSION['id']))
         <!-- Page Content Holder -->
         <div id="content">
 
+        <?php
+        $sql="SELECT course_name, semester FROM courses WHERE course_code='$cd'";
+        $result = $conn->query($sql);
+        $row=$result->fetch_assoc();
+        $cn=$row['course_name'];
+        ?>
 
             <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto" id="printableTable">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                    <h4 class="h4">Course: XXX-YYY ZZZZZZZZZ</h4>
+                    <h4 class="h4"><?php echo "Course: ".$cn ?></h4>
 
                     <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                        <a type="button" class="btn btn-outline-secondary" href="edit.php">Edit</a>
-                        <a type="button" class="btn btn-outline-secondary" href="print.php">Print</a>
+                        <a type="button" class="btn btn-outline-secondary" href="edit.php?course=<?php echo $cd ?>">Edit</a>
+                        <a type="button" class="btn btn-outline-secondary" href="print.php?course=<?php echo $cd ?>">Print</a>
                     </div>
                 </div>
-                <h5>Session: Odd Semester-2021</h5>
-                <br>
+                <h5>Session: <?php echo $row['semester']; ?></h5>
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
                         <thead>
@@ -133,45 +141,43 @@ if(isset($_SESSION['id']))
                             <tr>
                                 <th></th>
                                 <th></th>
-
+                                <?php
+                                $sql="SELECT * FROM controlsheet WHERE course_code='$cd'";
+                                $result = $conn->query($sql);
+                                $row=$result->fetch_assoc();
+                                ?>
                                 <th>Maximum Marks🠖</th>
-                                <th>5</th>
-                                <th>5</th>
-                                <th>5</th>
-                                <th>5</th>
-                                <th>20</th>
-                                <th>20</th>
-                                <th>60</th>
-                                <th>40</th>
-                                <th>100</th>
-                                <th>AA</th>
+                                <th><?php echo $row['class_test_1']; ?></th>
+                                <th><?php echo $row['class_test_2']; ?></th>
+                                <th><?php echo $row['class_test_3']; ?></th>
+                                <th><?php echo $row['class_test_4']; ?></th>
+                                <th><?php echo $row['mid_term_1']; ?></th>
+                                <th><?php echo $row['mid_term_2']; ?></th>
+                                <th><?php echo $row['total_assesment']; ?></th>
+                                <th><?php echo $row['end_term']; ?></th>
+                                <th><?php echo $row['total_marks']; ?></th>
+                                <th><?php echo $row['grade']; ?></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $sql = "SELECT name ,roll_no FROM controlsheet WHERE course_code='$cd'";
-                            $result = $conn->query($sql);
-                            $n = $result->num_rows;
-                            $a = $n - 1;
-                            while ($row = $result->fetch_assoc()) { ?>
-                                <tr>
-                                    <td><?php echo $n - $a; ?></td>
-                                    <td> <?php echo $row['name']; ?></td>
-                                    <td><?php echo $row['roll_no']; ?></td>
-                                    <td>placeholder</td>
-                                    <td>text</td>
-                                    <td>text</td>
-                                    <td>int</td>
-                                    <td>random</td>
-                                    <td>data</td>
-                                    <td>placeholder</td>
-                                    <td>text</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-
-                            <?php $a--;
-                            } ?>
+                        <?php
+                        $i=1;
+                        while($row=$result->fetch_assoc()){ ?>
+                        <tr>
+                        <td><?php echo $i++;?></td>
+                        <td><?php echo $row['roll_no'];?></td>
+                        <td><?php echo $row['name'];?></td>
+                        <td><?php echo $row['class_test_1']; ?></td>
+                        <td><?php echo $row['class_test_2']; ?></td>
+                        <td><?php echo $row['class_test_3']; ?></td>
+                        <td><?php echo $row['class_test_4']; ?></td>
+                        <td><?php echo $row['mid_term_1']; ?></td>
+                        <td><?php echo $row['mid_term_2']; ?></td>
+                        <td><?php echo $row['total_assesment']; ?></td>
+                        <td><?php echo $row['end_term']; ?></td>
+                        <td><?php echo $row['total_marks']; ?></td>
+                        </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -179,70 +185,71 @@ if(isset($_SESSION['id']))
                 <br>
                 <hr>
                 <br>
-                <div class="table-responsive grade">
-                    <table class="table table-bordered border-primary grades">
+                <div class="table-responsive grade" >
+                <div class="sameline grades">
+                <div class="text-start h5">Grade Point Cutoff</div>
+                    <a class="btn btn-outline-secondary mb-2">Generate Grades</a>
+                </div>
+                <table class="table table-bordered border-primary grades">
                         <thead>
-                            <tr>
-                                <strong>Grade Point Cutoff</strong>
-                            </tr>
+                        <tr>
+                            <td><strong>Grade</strong></td>
+                            <td>AA</td>
+                            <td>AB</td>
+                            <td>BB</td>
+                            <td>BC</td>
+                            <td>CC</td>
+                            <td>DD</td>
+                            <td>FF</td>
+                            <td>GG</td>
+                            <td>UU</td>
+                            <td>PP</td>
+                            <td>YY</td>
+                            <td>SS</td>
+                            <td>ZZ</td>
+                            <td>XX</td>
+                            <td>JJ</td>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><strong>Grade</strong></td>
-                                <td>AA</td>
-                                <td>AB</td>
-                                <td>BB</td>
-                                <td>BC</td>
-                                <td>CC</td>
-                                <td>DD</td>
-                                <td>FF</td>
-                                <td>GG</td>
-                                <td>UU</td>
-                                <td>PP</td>
-                                <td>YY</td>
-                                <td>SS</td>
-                                <td>ZZ</td>
-                                <td>XX</td>
-                                <td>JJ</td>
-                            </tr>
-                            <tr>
-                                <td scope="row"><strong>Cutoff</strong></td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                                <td scope="row">-</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Total Students</strong></td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
+                        <tr>
+                            <td scope="row"><strong>Cutoff</strong></td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>
+                            <td scope="row">-</td>                      
+                        </tr>
+                        <tr>
+                            <td><strong>Total Students</strong></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
                         </tbody>
-                    </table>
+                </table>
                 </div>
             </main>
         </div>
@@ -259,8 +266,8 @@ if(isset($_SESSION['id']))
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#sidebarCollapse').on('click', function() {
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');
             });
