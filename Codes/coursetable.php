@@ -110,6 +110,143 @@ if(isset($_SESSION['id']))
                         <a type="button" class="btn btn-outline-secondary" href="print.php">Print</a>
                     </div>
                 </div>
+              </div>
+        
+              <h5>Session: Odd Semester-2021</h5>
+              <br>
+              <div class="table-responsive" >
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>S. No.</th>
+                      <th>Roll No.</th>
+                      <th>Name ↓</th>
+                      <th>Class Test-1</th>
+                      <th>Class Test-2</th>
+                      <th>Class Test-3</th>
+                      <th>Class Test-4</th>
+                      <th>Mid Term Exam-I</th>
+                      <th>Mid Term Exam-II</th>
+                      <th>Total Assmt.</th>
+                      <th>End Term Exam</th>
+                      <th>Total</th>
+                      <th>Grade</th>
+                    </tr>
+                    <tr>
+                    <th></th>
+                      <th></th>
+                      
+                      <th>Maximum Marks🠖</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>5</th>
+                      <th>20</th>
+                      <th>20</th>
+                      <th>60</th>
+                      <th>40</th>
+                      <th>100</th>
+                      <th>AA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $sql="SELECT name ,roll_no FROM controlsheet WHERE course_code='$cd'";
+                    $result = $conn->query($sql);
+                    $n=$result->num_rows;
+                    $a=$n-1;
+                    while($row=$result->fetch_assoc()){?>
+                    <tr>
+                      <td><?php echo $n-$a;?></td>
+                      <td> <?php echo $row['name'];?></td>
+                      <td><?php echo $row['roll_no'];?></td>
+                      <td>placeholder</td>
+                      <td>text</td>
+                      <td>text</td>
+                      <td>int</td>
+                      <td>random</td>
+                      <td>data</td>
+                      <td>placeholder</td>
+                      <td>text</td>
+                    </tr>
+                    
+                    <?php $a--; }?>
+                  </tbody>
+                </table>
+              </div>
+            
+            <br>
+            <hr>
+            <br>
+            <div class="table-responsive grade" >
+            <div class="sameline grades">
+              <div class="text-start h5">Grade Point Cutoff</div>
+                <a class="btn btn-outline-secondary mb-2">Generate Grades</a>
+              </div>
+            <table class="table table-bordered border-primary grades">
+                    <thead>
+                      <tr>
+                        <td><strong>Grade</strong></td>
+                        <td>AA</td>
+                        <td>AB</td>
+                        <td>BB</td>
+                        <td>BC</td>
+                        <td>CC</td>
+                        <td>DD</td>
+                        <td>FF</td>
+                        <td>GG</td>
+                        <td>UU</td>
+                        <td>PP</td>
+                        <td>YY</td>
+                        <td>SS</td>
+                        <td>ZZ</td>
+                        <td>XX</td>
+                        <td>JJ</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td scope="row"><strong>Cutoff</strong></td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>
+                        <td scope="row">-</td>                      
+                      </tr>
+                      <tr>
+                        <td><strong>Total Students</strong></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                      </tr>
+                    </tbody>
+            </table>
+            </div>
+          </main>
+      </div>
+  </div>
 
                 <h5>Session: Odd Semester-2021</h5>
                 <br>
