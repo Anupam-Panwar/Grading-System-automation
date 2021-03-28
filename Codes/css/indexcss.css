@@ -74,9 +74,15 @@ body {
 /* The alert message box */
 .alert {
   padding: 20px;
-  background-color: #f44336; /* Red */
+  border-radius: 10px;
+  background-color: #f44336;
   color: white;
   margin-bottom: 15px;
+}
+
+.logout
+{
+    background-color: #1d5697;
 }
 
 .closebtn {
