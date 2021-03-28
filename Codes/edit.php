@@ -1,3 +1,8 @@
+<?php
+
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,6 +24,19 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
+    <?php
+    require_once __DIR__ .'\connection\connect.php';
+    if (isset($_GET['course']))
+    {
+        $cd = $_GET['course'];
+    }
+    else
+    {
+        header('Location: coursetable.php?error=ERROR OCCURRED');
+        exit();
+    }
+    ?>
+
 </head>
 
 <body>
@@ -28,7 +46,31 @@
   <nav class="navbar navbar-light bg-dark">
     <div class="container-fluid sameline">
       <div class="initials">
-        <span class="text-white text-center fs-3 initial">P</span>
+        <?php
+        $sql="SELECT id FROM courses WHERE course_code='$cd'";
+        $result=$conn->query($sql);
+        $id;
+        if($result->num_rows>0)
+        {
+          $row=$result->fetch_assoc();
+          $id=$row['id'];
+        }
+        else
+        {
+          header('Location: index.php');
+          exit();
+        }
+        $sql="SELECT username FROM users WHERE id=$id";
+        $result=$conn->query($sql);
+        $uname;
+        if($result->num_rows==1)
+        {
+          $row=$result->fetch_assoc();
+          $uname=$row['username'];
+        }
+        $user=substr($uname,0,1);
+        ?>
+        <span class="text-white text-center fs-3 initial"><?php echo $user; ?></span>
       </div>
       <span class="text-white h3">Control Sheet</span>
       
@@ -47,14 +89,21 @@
           
         <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <h4 class="h4">Course: XXX-YYY ZZZZZZZZZ</h4>
+                <?php
+                $sql="SELECT course_name, semester FROM courses WHERE course_code='$cd'";
+                $result = $conn->query($sql);
+                if($row=$result->fetch_assoc())
+                {        
+                 ?>
+                <h4 class="h4">Course: <?php echo $row['course_name']; ?></h4>
+                <?php $cn=$row['course_name']; ?>
 
                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                  <a type="button" class="btn btn-outline-secondary d-print-none" href="coursetable.php">Save</a>
+                  <a type="button" class="btn btn-outline-secondary d-print-none" href="coursetable.php?course=<?php echo $cd; ?>">Save</a>
                 </div>
               </div>
         
-              <h5>Session: Odd Semester-2021</h5>
+              <h5>Session: <?php echo $row['semester']; } ?> </h5>
               <br>
               <div class="table-responsive" >
                 <table class="table table-striped table-sm tablecustom">
@@ -91,11 +140,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php for($i=1; $i<=20; $i++){?>
+                    <?php 
+                    $sql="SELECT * FROM controlsheet WHERE course_code='$cd'";
+                    $result = $conn->query($sql);
+                    $row=$result->fetch_assoc();
+                    $i=1;
+                    while($row=$result->fetch_assoc()){?>
                     <tr>
-                      <td><?php echo "$i"?></td>
-                      <td>BTXXYYYZZZ</td>
-                      <td>Student Name</td>
+                      <td><?php echo $i++?></td>
+                      <td><?php echo $row['roll_no'];?></td>
+                      <td><?php echo $row['name'];?></td>
                       <td><input class="classtest"></input></td>
                       <td><input class="classtest"></input></td>
                       <td><input class="classtest"></input></td>
