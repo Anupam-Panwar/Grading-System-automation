@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2021 at 06:19 PM
+-- Generation Time: Mar 28, 2021 at 10:09 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -65,19 +65,20 @@ INSERT INTO `controlsheet` (`course_code`, `roll_no`, `name`, `class_test_1`, `c
 CREATE TABLE `courses` (
   `id` int(11) NOT NULL,
   `course_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `course_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `course_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` varchar(20) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `course_name`, `course_code`) VALUES
-(3, 'Operating System', 'CSL-252'),
-(2, 'Object Oriented Design', 'CSL-253'),
-(1, 'Computer Networks', 'CSL-255'),
-(1, 'Data Communication', 'CSL-257'),
-(1, 'Computer Organistaion', 'CSL-258');
+INSERT INTO `courses` (`id`, `course_name`, `course_code`, `batch`) VALUES
+(3, 'Operating System', 'CSL-252', 'BT19'),
+(2, 'Object Oriented Design', 'CSL-253', 'BT20'),
+(1, 'Computer Networks', 'CSL-255', 'BT19'),
+(1, 'Data Communication', 'CSL-257', 'BT19'),
+(1, 'Computer Organistaion', 'CSL-258', 'BT20');
 
 -- --------------------------------------------------------
 

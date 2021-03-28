@@ -1,115 +1,108 @@
 <?php
 session_start();
-if(isset($_SESSION['id']))
-{
-    require_once __DIR__ .'\connection\connect.php';
-    $id=$_SESSION['id'];
-    $name;
-    $sql="SELECT username FROM users WHERE id=$id";
-    $result = $conn->query($sql);
-    if ($result->num_rows==1) 
-    {
-        $row=$result->fetch_assoc();
-        $name=$row['username'];
-    }
-    ?>
-<!DOCTYPE html>
-<html>
+if (isset($_SESSION['id'])) {
+    require_once __DIR__ . '\connection\connect.php';
+    $id = $_SESSION['id'];
+    $name=$_SESSION['name'];
+?>
+    <!DOCTYPE html>
+    <html>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>dashboard</title>
+        <title>dashboard</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
 
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css" />
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/custom.css" />
 
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-</head>
+        <!-- Font Awesome JS -->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    </head>
 
-<body>
-
-    <?php
-    $name="Surendra Singh";
-    $x = 7;
-    $CN = array("Computer Network", "Computer Organization", "Design and Analysis of Algorithm", "Theory of Computation", "Software Engineering ","Sports", "Discrete Mathematics");
-    $CC = array("CSL 255", "CSL 256", "CSL 254", "CSl 259", "CSL 256", "SSP 151", "SCL-254");
-    ?>
-    <nav class="navbar navbar-light bg-dark">
-        <div class="container-fluid">
-            <button type="button" id="sidebarCollapse" class="navbar-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <span class="text-white h3">Courses</span>
-            <form class="d-flex">
-                <a href="logout.php">
-                <button class="btn btn-outline-success" type="button">Log Out</button>
-</a>
-            </form>
-        </div>
-    </nav>
-
-    <div class="wrapper">
-        <!-- Sidebar Holder -->
-        <nav id="sidebar">
-            <ul class="list-unstyled components">
-                <div class="sidebar-header">
-                    <h3><?php echo "$name"; ?></h3>
-                </div>
-                <p class="h4">Courses</p>
-                <?php
-                $sql="SELECT course_name FROM courses WHERE id=".$_SESSION['id'];
-                $result = $conn->query($sql);
-                while($row=$result->fetch_assoc())
-                {        
-                 ?>
-                    <li>
-                        <a href="#"><?php echo $row['course_name']; ?></a>
-                    </li>
-                <?php } ?>
-            </ul>
+    <body>
+  
+        <nav class="navbar navbar-light bg-dark">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <span class="text-white h3">Courses</span>
+                <form class="d-flex">
+                    <a href="logout.php">
+                        <button class="btn btn-outline-success" type="button">Log Out</button>
+                    </a>
+                </form>
+            </div>
         </nav>
-       
-        <!-- Page Content Holder -->
-        <div id="content">
-            <div class="row row-cols-1 row-cols-md-4 g-4">
-                <?php
-                 $sql="SELECT course_name,course_code,batch FROM courses WHERE id=$id ORDER BY batch DESC";
-                 $result = $conn->query($sql);
-                 while($row=$result->fetch_assoc())
-                 {       
-                ?>
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="images/nituk2.jpg" class="card-img-top" alt="img">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $row['course_name'] ?></h5>
-                                <p class="card-text"><?php echo $row['course_code'] ?><br><?php echo $row['batch'] ?></p>
+   
+
+        <?php
+       if(isset($_GET['error']))
+       {
+           ?>
+           <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin:20px;">
+  <strong>Error Occurred</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<?php } ?>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <ul class="list-unstyled components">
+                    <div class="sidebar-header">
+                        <h3><?php echo "$name"; ?></h3>
+                    </div>
+                    <p class="h4">Courses</p>
+                    <?php
+                    $sql = "SELECT course_name,course_code FROM courses WHERE id=" . $_SESSION['id'];
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                    ?>
+                        <li>
+                            <a href="coursetable.php?course=<?php echo $row['course_code'];?>"><?php echo $row['course_name']; ?></a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content">
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                    <?php
+                    $sql = "SELECT course_name,course_code,batch FROM courses WHERE id=$id ORDER BY batch DESC";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                    ?>
+                    <a href="coursetable.php?course=<?php echo $row['course_code'];?>">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="images/nituk2.jpg" class="card-img-top" alt="img">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $row['course_name'] ?></h5>
+                                    <p class="card-text"><?php echo $row['course_code'] ?><br><?php echo $row['batch'] ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php  } ?>
-
+                        </a>
+                    <?php  } ?>
+                </div>
             </div>
         </div>
-    </div>
-<?php
-}
-else
-{
-    header('Location: index.php?error=dashbord');
+    <?php
+} else {
+    header('Location: index.php?error=INVALID USER');
     exit();
 }
-?>
+    ?>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
@@ -125,6 +118,7 @@ else
             });
         });
     </script>
-</body>
+   
+    </body>
 
-</html>
+    </html>
