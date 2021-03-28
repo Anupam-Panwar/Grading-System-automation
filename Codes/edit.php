@@ -85,9 +85,20 @@
 
       <!-- Page Content Holder -->
       <div id="content">
-
           
         <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto">
+        <?php
+        if (isset($_GET['course']))
+        {
+          $cd = $_GET['course'];
+        }
+        else  
+        {
+          header('Location: dashboard.php?error=ERROR ');
+          exit();
+        }
+        ?>
+        <form action="insert.php?course=<?php echo $cd ?>" method="post">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <?php
                 $sql="SELECT course_name, semester FROM courses WHERE course_code='$cd'";
@@ -99,7 +110,7 @@
                 <?php $cn=$row['course_name']; ?>
 
                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                  <a type="button" class="btn btn-outline-secondary d-print-none" href="coursetable.php?course=<?php echo $cd; ?>">Save</a>
+                  <input type="submit" value="Save" class="btn btn-outline-secondary d-print-none" />
                 </div>
               </div>
         
@@ -148,16 +159,16 @@
                     while($row=$result->fetch_assoc()){?>
                     <tr>
                       <td><?php echo $i++?></td>
-                      <td><?php echo $row['roll_no'];?></td>
+                      <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no'];?>" readonly></input></td>
                       <td><?php echo $row['name'];?></td>
-                      <td><input class="classtest"></input></td>
-                      <td><input class="classtest"></input></td>
-                      <td><input class="classtest"></input></td>
-                      <td><input class="classtest"></input></td>
-                      <td><input class="marks"></input></td>
-                      <td><input class="marks"></input></td>
+                      <td><input class="classtest" name ="ct1[]" value="<?php echo $row['class_test_1'];?>"></input></td>
+                      <td><input class="classtest" name ="ct2[]" value="<?php echo $row['class_test_2'];?>"></input></td>
+                      <td><input class="classtest" name ="ct3[]" value="<?php echo $row['class_test_3'];?>"></input></td>
+                      <td><input class="classtest" name ="ct4[]" value="<?php echo $row['class_test_4'];?>"></input></td>
+                      <td><input class="marks" name ="mt1[]" value="<?php echo $row['mid_term_1'];?>"></input></td>
+                      <td><input class="marks" name ="mt2[]" value="<?php echo $row['mid_term_2'];?>"></input></td>
                       <td>MT1+MT2+CT</td>
-                      <td><input class="marks"></input></td>
+                      <td><input class="marks" name="endterm[]" value="<?php echo $row['end_term'];?>"></input></td>
                       <td>100</td>
                       <td>AA</td>
                     </tr>
@@ -233,6 +244,7 @@
                     </tbody>
             </table>
             </div>
+            </form>
           </main>
       </div>
   </div>
