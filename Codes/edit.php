@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    if(isset($_SESSION['id']))
+    {
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +57,9 @@
       <span class="text-white h3">Control Sheet</span>
       
       <form class="d-flex">
-        <button class="btn btn-outline-success" type="txt">Log Out</button>
+        <a href="logout.php">
+          <button class="btn btn-outline-success" type="button">Log Out</button>
+        </a>
       </form>
     </div>
   </nav>
@@ -158,31 +162,46 @@
                     <thead>
                       <tr>
                         <td><strong>Grade</strong></td>
-                          <?php
-                          $gw=0;
-                          $sql="SELECT grade FROM gradewindow WHERE course_code='$cd'";
-                          $result = $conn->query($sql);
-                          while($row=$result->fetch_assoc()) {
-                          ?>
-                          <td><?php  echo $row['grade']; $gw++; } ?></td>
+                        <?php
+                        $a=0;
+                        $g;
+                        $sql="SELECT grade FROM gradewindow WHERE course_code='$cd'";
+                        $result = $conn->query($sql);
+                        while($row=$result->fetch_assoc()) {
+                        ?>
+                        <td><?php echo $row['grade']; $g[$a++]=$row['grade']; } ?></td>
                       </tr>
                     </thead>
                     <tbody>
-                          <tr>
-                            <td><strong>Cutoff</strong></td>
-                            <?php while($gw--) { ?>
-                            <td><input class="gradewin"></input></td>
-                            <?php } ?>                     
-                          </tr>
-                          <tr>
-                            <td><strong>Total Students</strong></td>
-                            <?php
-                            $sql="SELECT no_of_students FROM gradewindow WHERE course_code='$cd'";
-                            $result = $conn->query($sql);
-                            while($row=$result->fetch_assoc()) {
-                            ?>
-                            <td><?php  echo $row['no_of_students']; } ?></td>
-                          </tr>
+                      <tr>
+                        <td><strong>Cutoff</strong></td>
+                        <?php
+                        $b=0;
+                        while($b < $a) {
+                        $sql="SELECT cut_off FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
+                        $result = $conn->query($sql);
+                        if($row=$result->fetch_assoc()) {
+                        ?>
+                        <td><input class="gradewin" value="<?php  echo $row['cut_off']; ?>"></input></td>
+                        <?php
+                        } else { ?>
+                        <td><input class="gradewin" value="<?php echo "-"; ?>"></input></td>
+                        <?php } $b++; } ?>
+                      </tr>
+                      <tr>
+                        <td><strong>Total Students</strong></td>
+                        <?php
+                        $b=0;
+                        while($b < $a) {
+                        $sql="SELECT no_of_students FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
+                        $result = $conn->query($sql);
+                        if($row=$result->fetch_assoc()) {
+                        ?>
+                        <td><?php  echo $row['no_of_students']; ?></td>
+                        <?php
+                        } else { ?>
+                        <td><?php echo "-"; } $b++; } ?></td>
+                      </tr>
                     </tbody>
             </table>
             </div>
@@ -208,6 +227,14 @@
 
       });
   </script>
+  <?php 
+  }
+  else
+  {
+      header('Location: index.php?error=INVALID REQUEST');
+      exit();
+  }
+  ?>
 </body>
 
 </html>
