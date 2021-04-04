@@ -2,16 +2,16 @@
 
 require_once __DIR__ . '\connection\connect.php';
 
-        // if (isset($_GET['course']))
-        // {
-        //   $cd = $_GET['course'];
-        // }
-        // else  
-        // {
+        if (isset($_GET['course']))
+        {
+          $cd = $_GET['course'];
+        }
+        else  
+        {
             
-        //   header('Location: dashboard.php?error=ERROR OCCURRED');
-        //   exit();
-        // }
+          header('Location: dashboard.php?error=ERROR OCCURRED');
+          exit();
+        }
 
 // if(is_post_request())
 {
@@ -23,20 +23,14 @@ require_once __DIR__ . '\connection\connect.php';
 
         $sql="UPDATE controlsheet SET class_test_1=".$_POST['ct1'][$i].", class_test_2=".$_POST['ct2'][$i].",
         class_test_3=".$_POST['ct3'][$i].",class_test_4=".$_POST['ct4'][$i].",mid_term_1=".$_POST['mt1'][$i].",
-        mid_term_2=".$_POST['mt2'][$i].",end_term=".$_POST['endterm'][$i]." WHERE course_code='CSL-258' AND roll_no='$r'";
+        mid_term_2=".$_POST['mt2'][$i].",end_term=".$_POST['endterm'][$i]." WHERE course_code='$cd' AND roll_no='$r'";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Record updated successfully";
+            continue;
           } else {
             echo "Error updating record: " . $conn->error;
           }
     }
-
-
-    // for($x=0;$x<$c;$x++)
-    // {
-    //     echo $_POST['roll'][$x]."<br>";
-    // }
 
     require_once __DIR__ . '\connection\disconnect.php';
 
