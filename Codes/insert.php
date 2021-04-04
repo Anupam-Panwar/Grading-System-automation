@@ -48,5 +48,4 @@
         header('Location: index.php?error=INVALID REQUEST');
         exit();
     }
-
 ?>
