@@ -23,7 +23,7 @@
                             <p class="text-muted"> Please enter your Email and Password !</p>
                         <?php if (isset($_GET["error"])) {
                        
-                             if(($_GET["error"])!='logged out')
+                             if(($_GET["error"])!='Logged out')
                              {
                                  ?>
                             <div class="alert">
