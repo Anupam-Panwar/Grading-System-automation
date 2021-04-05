@@ -52,7 +52,7 @@ Grade Window
 
 .grades
 {
-    width:75%;
+    width:70%;
 }
 
 
@@ -85,8 +85,8 @@ CONTENT STYLE
 }
 
 .gradewin{
-    max-width: 5vw !important;
-    min-width: 5vw;
+    max-width: 2.5vw !important;
+    min-width: 2.5vw;
 }
 
 .initials{
@@ -100,6 +100,16 @@ CONTENT STYLE
 }
 .initial{
     margin-left:12.5px;
+}
+
+@media (max-width:1250px){
+    .grades{
+        width:100%;
+    }
+    .gradewin{
+        max-width: 3vw !important;
+        min-width: 3vw;
+    }
 }
 
 @media (max-width:400px){
@@ -119,5 +129,10 @@ CONTENT STYLE
     }
     .initial{
         margin-left:11px;
+    }
+   
+    .gradewin{
+        max-width: 7vw !important;
+        min-width: 7vw;
     }
 }

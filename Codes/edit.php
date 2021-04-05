@@ -156,7 +156,7 @@
             <hr>
             <br>
 
-            <div class="table-responsive" >
+            <div class="table-responsive grades" >
             <div class="text-start h5">Grade Point Cutoff</div>
             <table class="table table-bordered border-primary">
                     <thead>
@@ -182,7 +182,11 @@
                         $result = $conn->query($sql);
                         if($row=$result->fetch_assoc()) {
                         ?>
-                        <td><input class="gradewin" value="<?php  echo $row['cut_off']; ?>"></input></td>
+                        <td>
+                          <input class="gradewin" value="<?php  echo $row['cut_off']; ?>"></input>
+                          -
+                          <input class="gradewin" value="<?php  echo $row['cut_off']; ?>"></input>
+                        </td>
                         <?php
                         } else { ?>
                         <td><input class="gradewin" value="<?php echo "-"; ?>"></input></td>

@@ -99,7 +99,7 @@ if(isset($_SESSION['id']))
 
                     <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
                         <a type="button" class="btn btn-outline-secondary" href="edit.php?course=<?php echo $cd ?>">Edit</a>
-                        <a type="button" class="btn btn-outline-secondary" href="print.php?course=<?php echo $cd ?>">Print</a>
+                        <a type="button" class="btn btn-outline-secondary" target="_blank" href="print.php?course=<?php echo $cd ?>">Print</a>
                     </div>
                 </div>
                 <h5>Session: <?php echo $row['semester']; ?></h5>
@@ -161,6 +161,7 @@ if(isset($_SESSION['id']))
                         <td><?php echo $row['total_assesment']; ?></td>
                         <td><?php echo $row['end_term']; ?></td>
                         <td><?php echo $row['total_marks']; ?></td>
+                        <td></td>
                         </tr>
                         <?php } ?>
                         </tbody>
