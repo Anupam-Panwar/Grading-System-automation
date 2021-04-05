@@ -64,31 +64,14 @@ if(isset($_SESSION['id']))
             <ul class="list-unstyled components">
                 <div class="sidebar-header">
                     <?php
-                    $sql = "SELECT id FROM courses WHERE course_code='$cd'";
-                    $result = $conn->query($sql);
-                    $id;
-                    if ($result->num_rows > 0) {
-                        $row = $result->fetch_assoc();
-                        $id = $row['id'];
-                    } else {
-                        header('Location: index.php');
-                        exit();
-                    }
-                    $sql = "SELECT username FROM users WHERE id=$id";
-                    $result = $conn->query($sql);
-                    $uname;
-                    if ($result->num_rows == 1) {
-                        $row = $result->fetch_assoc();
-                        $uname = $row['username'];
-                    }
-
-
+                    $id=$_SESSION['id'];
+                    $uname=$_SESSION['name'];
                     ?>
                     <h3><?php echo $uname; ?></h3>
                 </div>
                 <p class="h4">Courses</p>
                 <?php
-                $sql = "SELECT course_name,course_code FROM courses WHERE id=$id";
+                $sql = "SELECT course_name, course_code FROM courses WHERE id=$id";
                 $result = $conn->query($sql);
                 while ($row = $result->fetch_assoc()) {
                 ?>
@@ -120,6 +103,7 @@ if(isset($_SESSION['id']))
                     </div>
                 </div>
                 <h5>Session: <?php echo $row['semester']; ?></h5>
+                <br>
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
                         <thead>
@@ -144,7 +128,7 @@ if(isset($_SESSION['id']))
                                 <?php
                                 $sql="SELECT * FROM controlsheet WHERE course_code='$cd'";
                                 $result = $conn->query($sql);
-                                $row=$result->fetch_assoc();
+                                if($row=$result->fetch_assoc()) {
                                 ?>
                                 <th>Maximum Marks🠖</th>
                                 <th><?php echo $row['class_test_1']; ?></th>
@@ -157,6 +141,7 @@ if(isset($_SESSION['id']))
                                 <th><?php echo $row['end_term']; ?></th>
                                 <th><?php echo $row['total_marks']; ?></th>
                                 <th><?php echo $row['grade']; ?></th>
+                                <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -194,59 +179,44 @@ if(isset($_SESSION['id']))
                         <thead>
                         <tr>
                             <td><strong>Grade</strong></td>
-                            <td>AA</td>
-                            <td>AB</td>
-                            <td>BB</td>
-                            <td>BC</td>
-                            <td>CC</td>
-                            <td>DD</td>
-                            <td>FF</td>
-                            <td>GG</td>
-                            <td>UU</td>
-                            <td>PP</td>
-                            <td>YY</td>
-                            <td>SS</td>
-                            <td>ZZ</td>
-                            <td>XX</td>
-                            <td>JJ</td>
+                            <?php
+                            $a=0;
+                            $g;
+                            $sql="SELECT grade FROM gradewindow WHERE course_code='$cd'";
+                            $result = $conn->query($sql);
+                            while($row=$result->fetch_assoc()) {
+                            ?>
+                            <td><?php echo $row['grade']; $g[$a++]=$row['grade']; } ?></td>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td scope="row"><strong>Cutoff</strong></td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>
-                            <td scope="row">-</td>                      
+                            <?php
+                            $b=0;
+                            while($b < $a) {
+                            $sql="SELECT cut_off FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
+                            $result = $conn->query($sql);
+                            if($row=$result->fetch_assoc()) {
+                            ?>
+                            <td scope="row"><?php  echo $row['cut_off']; ?></td>
+                            <?php
+                            } else { ?>
+                            <td scope="row"><?php echo "-"; } $b++; } ?></td>
                         </tr>
                         <tr>
                             <td><strong>Total Students</strong></td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <?php
+                            $b=0;
+                            while($b < $a) {
+                            $sql="SELECT no_of_students FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
+                            $result = $conn->query($sql);
+                            if($row=$result->fetch_assoc()) {
+                            ?>
+                            <td scope="row"><?php  echo $row['no_of_students']; ?></td>
+                            <?php
+                            } else { ?>
+                            <td scope="row"><?php echo "-"; } $b++; } ?></td>
                         </tr>
                         </tbody>
                 </table>

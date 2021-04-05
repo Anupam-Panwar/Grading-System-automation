@@ -79,12 +79,13 @@ if (isset($_SESSION['id'])) {
                     <?php
                     $sql = "SELECT course_name,course_code,batch FROM courses WHERE id=$id ORDER BY batch DESC";
                     $result = $conn->query($sql);
+                    $i=1;
                     while ($row = $result->fetch_assoc()) {
                     ?>
                         <a href="coursetable.php?course=<?php echo $row['course_code']; ?>">
                             <div class="col">
                                 <div class="card h-100">
-                                    <img src="images/nituk2.jpg" class="card-img-top" alt="img">
+                                    <img src="images/img<?php echo $i ?>.jpg" class="card-img-top" alt="img">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $row['course_name'] ?></h5>
                                         <p class="card-text"><?php echo $row['course_code'] ?><br><?php echo $row['batch'] ?></p>
@@ -92,7 +93,11 @@ if (isset($_SESSION['id'])) {
                                 </div>
                             </div>
                         </a>
-                    <?php  } ?>
+                    <?php
+                    if($i==11)
+                    {
+                        $i=0;
+                    } $i++; } ?>
                 </div>
             </div>
         </div>
