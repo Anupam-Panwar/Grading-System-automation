@@ -71,7 +71,7 @@
       <div id="content">
           
         <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto">
-        <form action="insert.php?course=<?php echo $cd ?>" method="post">
+        <form action="insert.php?course=<?php echo $cd; ?>" method="post">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <?php
                 $sql="SELECT course_name, semester FROM courses WHERE course_code='$cd'";
@@ -115,14 +115,14 @@
                       $sql="SELECT * FROM controlsheet WHERE course_code='$cd'";
                       $result = $conn->query($sql);
                       if($row=$result->fetch_assoc()) { ?>
-                      <th><input placeholder="M.M." class="classtest"></input></th>
-                      <th><input placeholder="M.M." class="classtest"></input></th>
-                      <th><input placeholder="M.M." class="classtest"></input></th>
-                      <th><input placeholder="M.M." class="classtest"></input></th>
-                      <th><input placeholder="M.M." class="marks"></input></th>
-                      <th><input placeholder="M.M." class="marks"></input></th>
+                      <th><input class="classtest" name="mct1" value="<?php echo $row['class_test_1'];?>"></input></th>
+                      <th><input class="classtest" name="mct2" value="<?php echo $row['class_test_2'];?>"></input></th>
+                      <th><input class="classtest" name="mct3" value="<?php echo $row['class_test_3'];?>"></input></th>
+                      <th><input class="classtest" name="mct4" value="<?php echo $row['class_test_4'];?>"></input></th>
+                      <th><input class="marks" name="mmt1" value="<?php echo $row['mid_term_1'];?>"></input></th>
+                      <th><input class="marks" name="mmt2" value="<?php echo $row['mid_term_2'];?>"></input></th>
                       <th><?php echo $row['total_assesment']; ?></th>
-                      <th><input placeholder="M.M." class="marks"></input></th>
+                      <th><input class="marks" name="met" value="<?php echo $row['end_term'];?>"></input></th>
                       <th><?php echo $row['total_marks']; ?></th>
                       <th><?php echo $row['grade']; ?></th>
                     </tr>
@@ -133,7 +133,7 @@
                     $i=1;
                     while($row=$result->fetch_assoc()) { ?>
                     <tr>
-                      <td><?php echo $i++?></td>
+                      <td><?php echo $i++; ?></td>
                       <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no'];?>" readonly></input></td>
                       <td><?php echo $row['name'];?></td>
                       <td><input class="classtest" name ="ct1[]" value="<?php echo $row['class_test_1'];?>"></input></td>
