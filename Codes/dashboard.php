@@ -51,7 +51,9 @@ if (isset($_SESSION['id'])) {
                     <div class="sidebar-header">
                         <h3><?php echo "$name"; ?></h3>
                     </div>
-                    <p class="h4">Courses</p>
+                    <a href="dashboard.php">
+                        <p class="h4">Courses</p>
+                    </a>
                     <?php
                     $sql = "SELECT course_name,course_code FROM courses WHERE id=" . $_SESSION['id'];
                     $result = $conn->query($sql);
@@ -71,7 +73,7 @@ if (isset($_SESSION['id'])) {
                 if (isset($_GET['error'])) {
                 ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Error Occurred</strong>
+                        <strong><?php echo $_GET['error']; ?></strong>
                         <span class="btn-close closebtn" onclick="this.parentElement.style.display='none';" aria-label="Close"></span>
                     </div>
                 <?php } ?>
@@ -79,7 +81,7 @@ if (isset($_SESSION['id'])) {
                     <?php
                     $sql = "SELECT course_name,course_code,batch FROM courses WHERE id=$id ORDER BY batch DESC";
                     $result = $conn->query($sql);
-                    $i=1;
+                    $i = 1;
                     while ($row = $result->fetch_assoc()) {
                     ?>
                         <a href="coursetable.php?course=<?php echo $row['course_code']; ?>">
@@ -94,10 +96,11 @@ if (isset($_SESSION['id'])) {
                             </div>
                         </a>
                     <?php
-                    if($i==11)
-                    {
-                        $i=0;
-                    } $i++; } ?>
+                        if ($i == 11) {
+                            $i = 0;
+                        }
+                        $i++;
+                    } ?>
                 </div>
             </div>
         </div>
