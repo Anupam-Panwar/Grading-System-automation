@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2021 at 01:13 PM
+-- Generation Time: Apr 08, 2021 at 07:49 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+CREATE DATABASE gradingautomation;
 --
 -- Table structure for table `controlsheet`
 --
@@ -141,7 +141,8 @@ INSERT INTO `courses` (`id`, `course_name`, `course_code`, `semester`, `batch`) 
 CREATE TABLE `gradewindow` (
   `course_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `grade` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-  `cut_off` decimal(7,0) NOT NULL,
+  `lower_cutoff` float(7,0) NOT NULL,
+  `upper_cutoff` float NOT NULL,
   `no_of_students` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -149,21 +150,70 @@ CREATE TABLE `gradewindow` (
 -- Dumping data for table `gradewindow`
 --
 
-INSERT INTO `gradewindow` (`course_code`, `grade`, `cut_off`, `no_of_students`) VALUES
-('CSL-258', 'AA', '86', 0),
-('CSL-258', 'AB', '75', 0),
-('CSL-258', 'BB', '66', 0),
-('CSL-258', 'BC', '56', 0),
-('CSL-258', 'CC', '46', 0),
-('CSL-258', 'DD', '36', 0),
-('CSL-258', 'FF', '0', 0),
-('CSL-253', 'AA', '92', 0),
-('CSL-253', 'AB', '85', 0),
-('CSL-253', 'BB', '78', 0),
-('CSL-253', 'BC', '65', 0),
-('CSL-253', 'CC', '52', 0),
-('CSL-253', 'DD', '39', 0),
-('CSL-253', 'FF', '0', 0);
+INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff`, `no_of_students`) VALUES
+('CSL-258', 'AA', 86, 0, 0),
+('CSL-258', 'AB', 75, 0, 0),
+('CSL-258', 'BB', 66, 0, 0),
+('CSL-258', 'BC', 56, 0, 0),
+('CSL-258', 'CC', 46, 0, 0),
+('CSL-258', 'DD', 36, 0, 0),
+('CSL-258', 'FF', 0, 0, 0),
+('CSL-253', 'AA', 92, 0, 0),
+('CSL-253', 'AB', 85, 0, 0),
+('CSL-253', 'BB', 78, 0, 0),
+('CSL-253', 'BC', 65, 0, 0),
+('CSL-253', 'CC', 52, 0, 0),
+('CSL-253', 'DD', 39, 0, 0),
+('CSL-253', 'FF', 0, 0, 0),
+('CSL-255', 'AA', 86, 0, 0),
+('CSL-255', 'AB', 75, 0, 0),
+('CSL-255', 'BB', 66, 0, 0),
+('CSL-255', 'BC', 56, 0, 0),
+('CSL-255', 'CC', 46, 0, 0),
+('CSL-255', 'DD', 36, 0, 0),
+('CSL-257', 'FF', 0, 0, 0),
+('CSL-257', 'AA', 92, 0, 0),
+('CSL-257', 'AB', 85, 0, 0),
+('CSL-257', 'BB', 78, 0, 0),
+('CSL-257', 'BC', 65, 0, 0),
+('CSL-257', 'CC', 52, 0, 0),
+('CSL-257', 'DD', 39, 0, 0),
+('CSL-257', 'FF', 0, 0, 0),
+('CSL-252', 'AA', 0, 0, 0),
+('CSL-252', 'AB', 0, 0, 0),
+('CSL-252', 'BB', 0, 0, 0),
+('CSL-252', 'BC', 0, 0, 0),
+('CSL-252', 'CC', 0, 0, 0),
+('CSL-252', 'DD', 0, 0, 0),
+('CSL-252', 'FF', 0, 0, 0),
+('CSP-253', 'AA', 0, 0, 0),
+('CSP-253', 'AB', 0, 0, 0),
+('CSP-253', 'BB', 0, 0, 0),
+('CSP-253', 'BC', 0, 0, 0),
+('CSP-253', 'CC', 0, 0, 0),
+('CSP-253', 'DD', 0, 0, 0),
+('CSP-253', 'FF', 0, 0, 0),
+('CSL-251', 'AA', 0, 0, 0),
+('CSL-251', 'AB', 0, 0, 0),
+('CSL-251', 'BB', 0, 0, 0),
+('CSL-251', 'BC', 0, 0, 0),
+('CSL-251', 'CC', 0, 0, 0),
+('CSL-251', 'DD', 0, 0, 0),
+('CSL-251', 'FF', 0, 0, 0),
+('MEL-151', 'AA', 0, 0, 0),
+('MEL-151', 'AB', 0, 0, 0),
+('MEL-151', 'BB', 0, 0, 0),
+('MEL-151', 'BC', 0, 0, 0),
+('MEL-151', 'CC', 0, 0, 0),
+('MEL-151', 'DD', 0, 0, 0),
+('MEL-151', 'FF', 0, 0, 0),
+('MEP-151', 'AA', 0, 0, 0),
+('MEP-151', 'AB', 0, 0, 0),
+('MEP-151', 'BB', 0, 0, 0),
+('MEP-151', 'BC', 0, 0, 0),
+('MEP-151', 'CC', 0, 0, 0),
+('MEP-151', 'DD', 0, 0, 0),
+('MEP-151', 'FF', 0, 0, 0);
 
 -- --------------------------------------------------------
 
