@@ -193,13 +193,15 @@ ul.CTAs a {
 }
 
 
+
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 @media (max-width: 10000px) {
     #sidebar {
         margin-left: -250px;
-        transform: rotateY(90deg);
+        transform: rotateY(180deg);
     }
     #sidebar.active {
         margin-left: 0;

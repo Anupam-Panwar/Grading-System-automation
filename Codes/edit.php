@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    if(isset($_SESSION['id']))
+    {
 ?>
 
 <!DOCTYPE html>
@@ -47,35 +49,17 @@
     <div class="container-fluid sameline">
       <div class="initials">
         <?php
-        $sql="SELECT id FROM courses WHERE course_code='$cd'";
-        $result=$conn->query($sql);
-        $id;
-        if($result->num_rows>0)
-        {
-          $row=$result->fetch_assoc();
-          $id=$row['id'];
-        }
-        else
-        {
-          header('Location: index.php');
-          exit();
-        }
-        $sql="SELECT username FROM users WHERE id=$id";
-        $result=$conn->query($sql);
-        $uname;
-        if($result->num_rows==1)
-        {
-          $row=$result->fetch_assoc();
-          $uname=$row['username'];
-        }
-        $user=substr($uname,0,1);
+        $id=$_SESSION['id'];
+        $uname=$_SESSION['name'];
         ?>
-        <span class="text-white text-center fs-3 initial"><?php echo $user; ?></span>
+        <span class="text-white text-center fs-3 initial"><?php echo substr($uname,0,1); ?></span>
       </div>
       <span class="text-white h3">Control Sheet</span>
       
       <form class="d-flex">
-        <button class="btn btn-outline-success" type="txt">Log Out</button>
+        <a href="logout.php">
+          <button class="btn btn-outline-success" type="button">Log Out</button>
+        </a>
       </form>
     </div>
   </nav>
@@ -87,18 +71,7 @@
       <div id="content">
           
         <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto">
-        <?php
-        if (isset($_GET['course']))
-        {
-          $cd = $_GET['course'];
-        }
-        else  
-        {
-          header('Location: dashboard.php?error=ERROR ');
-          exit();
-        }
-        ?>
-        <form action="insert.php?course=<?php echo $cd ?>" method="post">
+        <form action="insert.php?course=<?php echo $cd; ?>" method="post">
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <?php
                 $sql="SELECT course_name, semester FROM courses WHERE course_code='$cd'";
@@ -138,27 +111,29 @@
                       <th>S. No.</th>
                       <th>Roll No.</th>
                       <th>Maximum Marks 🠖</th>
-                      <th><input placeholder="M.M." class="classtest"></input></th>
-                      <th><input placeholder="M.M." class="classtest"></input></th>
-                      <th><input placeholder="M.M." class="classtest"></input></th>
-                      <th><input placeholder="M.M." class="classtest"></input></th>
-                      <th><input placeholder="M.M." class="marks"></input></th>
-                      <th><input placeholder="M.M." class="marks"></input></th>
-                      <th>MM</th>
-                      <th><input placeholder="M.M." class="marks"></input></th>
-                      <th>100</th>
-                      <th>AA</th>
+                      <?php
+                      $sql="SELECT * FROM controlsheet WHERE course_code='$cd'";
+                      $result = $conn->query($sql);
+                      if($row=$result->fetch_assoc()) { ?>
+                      <th><input class="classtest" name="mct1" value="<?php echo $row['class_test_1'];?>"></input></th>
+                      <th><input class="classtest" name="mct2" value="<?php echo $row['class_test_2'];?>"></input></th>
+                      <th><input class="classtest" name="mct3" value="<?php echo $row['class_test_3'];?>"></input></th>
+                      <th><input class="classtest" name="mct4" value="<?php echo $row['class_test_4'];?>"></input></th>
+                      <th><input class="marks" name="mmt1" value="<?php echo $row['mid_term_1'];?>"></input></th>
+                      <th><input class="marks" name="mmt2" value="<?php echo $row['mid_term_2'];?>"></input></th>
+                      <th><?php echo $row['total_assesment']; ?></th>
+                      <th><input class="marks" name="met" value="<?php echo $row['end_term'];?>"></input></th>
+                      <th><?php echo $row['total_marks']; ?></th>
+                      <th><?php echo $row['grade']; ?></th>
                     </tr>
+                    <?php } ?>
                   </thead>
                   <tbody>
-                    <?php 
-                    $sql="SELECT * FROM controlsheet WHERE course_code='$cd'";
-                    $result = $conn->query($sql);
-                    $row=$result->fetch_assoc();
+                    <?php
                     $i=1;
-                    while($row=$result->fetch_assoc()){?>
+                    while($row=$result->fetch_assoc()) { ?>
                     <tr>
-                      <td><?php echo $i++?></td>
+                      <td><?php echo $i++; ?></td>
                       <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no'];?>" readonly></input></td>
                       <td><?php echo $row['name'];?></td>
                       <td><input class="classtest" name ="ct1[]" value="<?php echo $row['class_test_1'];?>"></input></td>
@@ -167,10 +142,10 @@
                       <td><input class="classtest" name ="ct4[]" value="<?php echo $row['class_test_4'];?>"></input></td>
                       <td><input class="marks" name ="mt1[]" value="<?php echo $row['mid_term_1'];?>"></input></td>
                       <td><input class="marks" name ="mt2[]" value="<?php echo $row['mid_term_2'];?>"></input></td>
-                      <td>MT1+MT2+CT</td>
+                      <td><?php echo $row['total_assesment']; ?></td>
                       <td><input class="marks" name="endterm[]" value="<?php echo $row['end_term'];?>"></input></td>
-                      <td>100</td>
-                      <td>AA</td>
+                      <td><?php echo $row['total_marks']; ?></td>
+                      <td><?php echo $row['grade']; ?></td>
                     </tr>
                     <?php }?>
                   </tbody>
@@ -181,66 +156,56 @@
             <hr>
             <br>
 
-            <div class="table-responsive" >
+            <div class="table-responsive grades" >
             <div class="text-start h5">Grade Point Cutoff</div>
             <table class="table table-bordered border-primary">
                     <thead>
                       <tr>
-                          <td><strong>Grade</strong></td>
-                          <td>AA</td>
-                          <td>AB</td>
-                          <td>BB</td>
-                          <td>BC</td>
-                          <td>CC</td>
-                          <td>DD</td>
-                          <td>FF</td>
-                          <td>GG</td>
-                          <td>UU</td>
-                          <td>PP</td>
-                          <td>YY</td>
-                          <td>SS</td>
-                          <td>ZZ</td>
-                          <td>XX</td>
-                          <td>JJ</td>
-                        </tr>
+                        <td><strong>Grade</strong></td>
+                        <?php
+                        $a=0;
+                        $g;
+                        $sql="SELECT grade FROM gradewindow WHERE course_code='$cd'";
+                        $result = $conn->query($sql);
+                        while($row=$result->fetch_assoc()) {
+                        ?>
+                        <td><?php echo $row['grade']; $g[$a++]=$row['grade']; } ?></td>
+                      </tr>
                     </thead>
                     <tbody>
-                          <tr>
-                            <td><strong>Cutoff</strong></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>
-                            <td><input class="gradewin"></input></td>                       
-                          </tr>
-                          <tr>
-                            <td><strong>Total Students</strong></td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                          </tr>
+                      <tr>
+                        <td><strong>Cutoff</strong></td>
+                        <?php
+                        $b=0;
+                        while($b < $a) {
+                        $sql="SELECT cut_off FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
+                        $result = $conn->query($sql);
+                        if($row=$result->fetch_assoc()) {
+                        ?>
+                        <td>
+                          <input class="gradewin" value="<?php  echo $row['cut_off']; ?>"></input>
+                          -
+                          <input class="gradewin" value="<?php  echo $row['cut_off']; ?>"></input>
+                        </td>
+                        <?php
+                        } else { ?>
+                        <td><input class="gradewin" value="<?php echo "-"; ?>"></input></td>
+                        <?php } $b++; } ?>
+                      </tr>
+                      <tr>
+                        <td><strong>Total Students</strong></td>
+                        <?php
+                        $b=0;
+                        while($b < $a) {
+                        $sql="SELECT no_of_students FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
+                        $result = $conn->query($sql);
+                        if($row=$result->fetch_assoc()) {
+                        ?>
+                        <td><?php  echo $row['no_of_students']; ?></td>
+                        <?php
+                        } else { ?>
+                        <td><?php echo "-"; } $b++; } ?></td>
+                      </tr>
                     </tbody>
             </table>
             </div>
@@ -266,6 +231,14 @@
 
       });
   </script>
+  <?php 
+  }
+  else
+  {
+      header('Location: index.php?error=INVALID REQUEST');
+      exit();
+  }
+  ?>
 </body>
 
 </html>
