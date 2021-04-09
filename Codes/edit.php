@@ -45,7 +45,9 @@ if (isset($_SESSION['id'])) {
                     $id = $_SESSION['id'];
                     $uname = $_SESSION['name'];
                     ?>
+                    <a href="dashboard.php">
                     <span class="text-white text-center fs-3 initial"><?php echo substr($uname, 0, 1); ?></span>
+                    </a>
                 </div>
                 <span class="text-white h3">Control Sheet</span>
 

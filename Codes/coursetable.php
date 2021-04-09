@@ -164,7 +164,7 @@ if (isset($_SESSION['id'])) {
                                         <td><?php echo $row['total_assesment']; ?></td>
                                         <td><?php echo $row['end_term']; ?></td>
                                         <td><?php echo $row['total_marks']; ?></td>
-                                        <td></td>
+                                        <td><?php echo $row['grade']; ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
