@@ -10,7 +10,7 @@
         }
         else  
         {
-            header('Location: edit.php?error=ERROR OCCURRED');
+            header('Location: edit.php?error=ERROR OCCURRED : Not a valid course code ');
             exit();
         }
 
@@ -32,7 +32,7 @@
             else
             {
                 //Total assessment marks >100 OR endterm marks + total assessment marks != 100!!
-                header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED');
+                header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : End term marks + total assessment marks exceed 100');
                 exit();
             }
 
@@ -58,9 +58,24 @@
                 else
                 {
                     //Marks exceeding maximum marks!!
-                    header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED');
+                    header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Marks exceed Maximum Marks');
                     exit();
                 }
+            }
+
+            //Updating grade window
+            $c=count($_POST['grade']);
+            $i=1;
+            for($i=0;$i<$c;$i++)
+            {
+                $r=$_POST['grade'][$i];
+                $sql="UPDATE gradewindow SET lower_cutoff=".$_POST['lb'][$i].", upper_cutoff=".$_POST['ub'][$i]." WHERE course_code='$cd' AND grade='$r'";
+
+                    if ($conn->query($sql) !== TRUE)
+                    {
+                        header('Location: edit.php?course='.$cd.'&error=ERROR UPDATING GRADE CUT OFF');
+                        exit();
+                    }
             }
             require_once __DIR__ . '\connection\disconnect.php';
 

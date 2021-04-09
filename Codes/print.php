@@ -13,9 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Print</title>
-
-  
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -38,7 +35,7 @@
         exit();
     }
     ?>
-
+    <title>Print : <?php echo $cd; ?></title>
 </head>
 
 <body>
@@ -204,11 +201,11 @@
                         <?php
                         $b=0;
                         while($b < $a) {
-                        $sql="SELECT cut_off FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
+                        $sql="SELECT lower_cutoff,upper_cutoff FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
                         $result = $conn->query($sql);
                         if($row=$result->fetch_assoc()) {
                         ?>
-                        <td scope="row"><?php  echo $row['cut_off']; ?></td>
+                        <td scope="row"><?php echo $row['upper_cutoff']; ?> - <?php echo $row['lower_cutoff']; ?></td>
                         <?php
                         } else { ?>
                         <td scope="row"><?php echo "-"; } $b++; } ?></td>
@@ -229,12 +226,6 @@
                       </tr>
                     </tbody>
             </table>
-              <?php
-              $sql="SELECT cut_off FROM gradewindow WHERE course_code='$cd' AND grade='FF'";
-              $result = $conn->query($sql);
-              if($row=$result->fetch_assoc()) {
-              ?>
-                <div class="text-end grades h5">FF Cutoff: <?php  echo $row['cut_off']; } ?></div>
             </div>
           </main>
           <br>
