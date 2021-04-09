@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2021 at 07:49 PM
+-- Generation Time: Apr 09, 2021 at 07:27 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -171,7 +171,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-255', 'BC', 56, 0, 0),
 ('CSL-255', 'CC', 46, 0, 0),
 ('CSL-255', 'DD', 36, 0, 0),
-('CSL-257', 'FF', 0, 0, 0),
+('CSL-255', 'FF', 0, 0, 0),
 ('CSL-257', 'AA', 92, 0, 0),
 ('CSL-257', 'AB', 85, 0, 0),
 ('CSL-257', 'BB', 78, 0, 0),
@@ -257,12 +257,6 @@ ALTER TABLE `courses`
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `gradewindow`
---
-ALTER TABLE `gradewindow`
-  ADD KEY `Course Code` (`course_code`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -293,12 +287,6 @@ ALTER TABLE `controlsheet`
 --
 ALTER TABLE `courses`
   ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `gradewindow`
---
-ALTER TABLE `gradewindow`
-  ADD CONSTRAINT `gradewindow_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `courses` (`course_code`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
