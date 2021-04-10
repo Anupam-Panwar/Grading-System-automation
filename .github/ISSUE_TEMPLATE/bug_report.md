@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: 'BUG : feature is not working as expected'
+title: 'BUG : Name'
 labels: bug
 assignees: ''
 
