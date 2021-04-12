@@ -116,6 +116,38 @@ CONTENT STYLE
     }
 }
 
+@media (max-width:700px){
+   
+    .classtest{
+        max-width: 10vw;
+        min-width: 6vw;
+    }
+    .initials{
+        background-color: purple;
+        border:0.5px red;    
+        height:35px;
+        width: 35px;
+        border-radius:50%;
+        -moz-border-radius:0%;
+        -webkit-border-radius:50%;
+    }
+    .initial{
+        margin-left:11px;
+    }
+    
+    .rollno{
+        max-width: 16vw;
+        min-width: 16vw;
+    }
+    .gradewin{
+        max-width: 5vw !important;
+        min-width: 5vw;
+    }
+    .gradebutton{
+        max-width: 5vw !important;
+        min-width: 5vw;
+    }
+}
 @media (max-width:400px){
    
     .classtest{
@@ -134,9 +166,17 @@ CONTENT STYLE
     .initial{
         margin-left:11px;
     }
-   
+    
+    .rollno{
+        max-width: 28vw;
+        min-width: 28vw;
+    }
     .gradewin{
-        max-width: 7vw !important;
-        min-width: 7vw;
+        max-width: 7.5vw !important;
+        min-width: 7.5vw;
+    }
+    .gradebutton{
+        max-width: 7.5vw !important;
+        min-width: 7.5vw;
     }
 }

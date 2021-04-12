@@ -8,7 +8,7 @@ body {
   color: gray;
 }
 .box {
-  width: 500px;
+  max-width: 500px;
   padding: 40px;
   position: relative;
   margin-right: auto;
@@ -98,4 +98,26 @@ body {
 
 .closebtn:hover {
   color: black;
+}
+
+@media(max-width:650px){
+  .box {
+    max-width: 400px;
+    padding: 20px;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    background: #222222;
+    text-align: center;
+    transition: 0.25s;
+    margin-top: 100px;
+    border-radius: 5%;
+  }
+  .alert {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 15px;
+  }
 }
