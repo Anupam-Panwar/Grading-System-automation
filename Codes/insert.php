@@ -65,28 +65,10 @@
 
             //Updating grade window
             $c=count($_POST['grade']);
-            $i=0;
-            $r=$_POST['grade'][$i];
-            if($i<$c && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['ub'][$i]==100)
-            {
-                $sql="UPDATE gradewindow SET lower_cutoff=".$_POST['lb'][$i].", upper_cutoff=".$_POST['ub'][$i]." WHERE course_code='$cd' AND grade='$r'";
-
-                if ($conn->query($sql) !== TRUE)
-                {
-                    header('Location: edit.php?course='.$cd.'&error=ERROR UPDATING GRADE CUT OFF');
-                    exit();
-                }
-            }
-            else if($i<$c)
-            {
-                //First cutoff upper bound != 100 or upperbound smaller than lower bound!!
-                header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Invalid cutoff range');
-                exit();
-            }
-            for($i=1;$i<$c-1;$i++)
+            for($i=0;$i<$c;$i++)
             {
                 $r=$_POST['grade'][$i];
-                if(($_POST['lb'][$i]<=$_POST['ub'][$i]) && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1 )
+                if(($i==0 && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['ub'][$i]==100) || ($i==$c-1 && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['lb'][$i]==0 && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1) || ($i!=0 && $i!=$c-1 && ($_POST['lb'][$i]<=$_POST['ub'][$i]) && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1))
                 {
                     $sql="UPDATE gradewindow SET lower_cutoff=".$_POST['lb'][$i].", upper_cutoff=".$_POST['ub'][$i]." WHERE course_code='$cd' AND grade='$r'";
 
@@ -98,27 +80,10 @@
                 }
                 else
                 {
-                    //lowerbound(previous cutoff)-upperbound(this cutoff)!=1 or upperbound smaller than lower bound!!
+                    //First cutoff upper bound != 100 or lowerbound(previous cutoff)-upperbound(this cutoff)!=1 or upperbound smaller than lower bound or last cutoff lower bound != 0!!
                     header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Invalid cutoff range');
                     exit();
                 }
-            }
-            $r=$_POST['grade'][$i];
-            if($i<$c && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['lb'][$i]==0 && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1)
-            {
-                $sql="UPDATE gradewindow SET lower_cutoff=".$_POST['lb'][$i].", upper_cutoff=".$_POST['ub'][$i]." WHERE course_code='$cd' AND grade='$r'";
-
-                if ($conn->query($sql) !== TRUE)
-                {
-                    header('Location: edit.php?course='.$cd.'&error=ERROR UPDATING GRADE CUT OFF');
-                    exit();
-                }
-            }
-            else if($i<$c)
-            {
-                //Last cutoff lower bound != 0 or lowerbound(previous cutoff)-upperbound(this cutoff)!=1 or upperbound smaller than lower bound!!
-                header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Invalid cutoff range');
-                exit();
             }
             require_once __DIR__ . '\connection\disconnect.php';
 
