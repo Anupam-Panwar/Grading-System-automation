@@ -9,9 +9,9 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <?php
+    require 'head_info.php';
+  ?>
 
 
     <!-- Bootstrap CSS CDN -->
@@ -57,7 +57,7 @@
               <?php
               $id=$_SESSION['id'];
               $uname=$_SESSION['name'];
-              $sql="SELECT course_name, semester FROM courses WHERE course_code='$cd'";
+              $sql="SELECT course_name, semester, batch FROM courses WHERE course_code='$cd'";
               $result = $conn->query($sql);
               if($row=$result->fetch_assoc())
               {        
@@ -70,7 +70,7 @@
               </div>
 
               <div class="fs-5 sameline">
-                <span class="text-start">Session: <?php echo $row['semester']; } ?></span>
+                <span class="text-start">Session: <?php echo $row['semester']; } ?></span>   
                 <span class="text-end">Faculty: <?php echo $uname; ?></span>
               </div>
               <br>
@@ -186,43 +186,34 @@
                     <tr>
                         <td><strong>Grade</strong></td>
                         <?php
-                        $a=0;
-                        $g;
-                        $sql="SELECT grade FROM gradewindow WHERE course_code='$cd'";
+                        $sql = "SELECT grade FROM gradewindow WHERE course_code='$cd' ORDER BY grade";
                         $result = $conn->query($sql);
-                        while($row=$result->fetch_assoc()) {
+                        while ($row = $result->fetch_assoc()) {
                         ?>
-                        <td><?php echo $row['grade']; $g[$a++]=$row['grade']; } ?></td>
+                          <td><?php echo $row['grade'];
+                          } ?></td>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td><strong>Cutoff</strong></td>
                         <?php
-                        $b=0;
-                        while($b < $a) {
-                        $sql="SELECT lower_cutoff,upper_cutoff FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
+                        $sql = "SELECT grade,lower_cutoff,upper_cutoff FROM gradewindow WHERE course_code='$cd' ORDER BY grade";
                         $result = $conn->query($sql);
-                        if($row=$result->fetch_assoc()) {
+                        while ($row = $result->fetch_assoc()) {
                         ?>
-                        <td scope="row"><?php echo $row['upper_cutoff']; ?> - <?php echo $row['lower_cutoff']; ?></td>
-                        <?php
-                        } else { ?>
-                        <td scope="row"><?php echo "-"; } $b++; } ?></td>
+                          <td scope="row"><?php echo $row['upper_cutoff']; ?> - <?php echo $row['lower_cutoff']; ?></td>
+                          <?php } ?>
                       </tr>
                       <tr>
                         <td><strong>Total Students</strong></td>
                         <?php
-                        $b=0;
-                        while($b < $a) {
-                        $sql="SELECT no_of_students FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
+                        $sql = "SELECT grade,no_of_students FROM gradewindow WHERE course_code='$cd' ORDER BY grade";
                         $result = $conn->query($sql);
-                        if($row=$result->fetch_assoc()) {
+                        while ($row = $result->fetch_assoc()) {
                         ?>
-                        <td><?php  echo $row['no_of_students']; ?></td>
-                        <?php
-                        } else { ?>
-                        <td><?php echo "-"; } $b++; } ?></td>
+                          <td scope="row"><?php echo $row['no_of_students']; ?></td>
+                          <?php } ?>
                       </tr>
                     </tbody>
             </table>
@@ -239,16 +230,9 @@
       </div>
   </div>
 
-  
-
-
-
-  <!-- jQuery CDN - Slim version (=without AJAX) -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <!-- Popper.JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <?php
+    require 'foot_info.php';
+  ?>
   <?php 
   }
   else
