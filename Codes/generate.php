@@ -33,6 +33,7 @@
                 continue;
                 $rn=$row['roll_no'];
                 $marks=$row['total_marks'];
+                $marks=round($marks);
                 $gra=NULL;
                 $t=count($gr);
                 $t--;
