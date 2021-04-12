@@ -8,9 +8,9 @@ if (isset($_SESSION['id'])) {
     <html>
 
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <?php
+        require 'head_info.php';
+        ?>
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -76,7 +76,7 @@ if (isset($_SESSION['id'])) {
                     <form action="insert.php?course=<?php echo $cd; ?>" method="post">
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <?php
-                            $sql = "SELECT course_name, semester FROM courses WHERE course_code='$cd'";
+                            $sql = "SELECT course_name, semester, batch FROM courses WHERE course_code='$cd'";
                             $result = $conn->query($sql);
                             if ($row = $result->fetch_assoc()) {
                             ?>
@@ -85,8 +85,12 @@ if (isset($_SESSION['id'])) {
 
                                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
                                     <input type="submit" value="Save" class="btn btn-outline-secondary d-print-none" />
+                                    <a href="coursetable.php?course=<?php echo $cd; ?>"><input type="button" value="Cancel" class="btn btn-outline-secondary d-print-none" /></a>
                                 </div>
                         </div>
+
+                        <h5>Batch: <?php echo $row['batch'];
+                                 ?> </h5>
 
                         <h5>Session: <?php echo $row['semester'];
                                     } ?> </h5>
@@ -209,12 +213,9 @@ if (isset($_SESSION['id'])) {
         </div>
 
 
-        <!-- jQuery CDN - Slim version (=without AJAX) -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <?php
+        require 'foot_info.php';
+        ?>
 
         <script type="text/javascript">
             $(document).ready(function() {

@@ -255,3 +255,14 @@ ul.CTAs a {
   {
       border-radius: 10px;
   }
+
+/* ---------------------------------------------------
+    Hover Effect over Tiles in dashboard
+----------------------------------------------------- */
+  .card {
+    transition: all 0.5s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.03);
+  }
