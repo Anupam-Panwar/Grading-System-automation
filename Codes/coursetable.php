@@ -185,51 +185,35 @@ if (isset($_SESSION['id'])) {
                                 <tr>
                                     <td><strong>Grade</strong></td>
                                     <?php
-                                    $a = 0;
-                                    $g;
-                                    $sql = "SELECT grade FROM gradewindow WHERE course_code='$cd'";
+                                    $sql = "SELECT grade FROM gradewindow WHERE course_code='$cd' ORDER BY grade";
                                     $result = $conn->query($sql);
                                     while ($row = $result->fetch_assoc()) {
                                     ?>
-                                        <td><strong><?php echo $row['grade'];
-                                            $g[$a++] = $row['grade'];
-                                        } ?></strong></td>
+
+                                        <td><?php echo $row['grade'];
+                                        } ?></td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td scope="row"><strong>Cutoff</strong></td>
                                     <?php
-                                    $b = 0;
-                                    while ($b < $a) {
-                                        $sql = "SELECT lower_cutoff,upper_cutoff FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
-                                        $result = $conn->query($sql);
-                                        if ($row = $result->fetch_assoc()) {
+                                    $sql = "SELECT grade,lower_cutoff,upper_cutoff FROM gradewindow WHERE course_code='$cd' ORDER BY grade";
+                                    $result = $conn->query($sql);
+                                    while ($row = $result->fetch_assoc()) {
                                     ?>
-                                            <td scope="row"><?php echo $row['upper_cutoff']; ?> - <?php echo $row['lower_cutoff']; ?></td>
-                                        <?php
-                                        } else { ?>
-                                            <td scope="row"><?php echo "-";
-                                                        }
-                                                        $b++;
-                                                    } ?></td>
+                                        <td scope="row"><?php echo $row['upper_cutoff']; ?> - <?php echo $row['lower_cutoff']; ?></td>
+                                        <?php } ?>
                                 </tr>
                                 <tr>
                                     <td><strong>Total Students</strong></td>
                                     <?php
-                                    $b = 0;
-                                    while ($b < $a) {
-                                        $sql = "SELECT no_of_students FROM gradewindow WHERE course_code='$cd' AND grade='$g[$b]'";
-                                        $result = $conn->query($sql);
-                                        if ($row = $result->fetch_assoc()) {
+                                    $sql = "SELECT grade,no_of_students FROM gradewindow WHERE course_code='$cd' ORDER BY grade";
+                                    $result = $conn->query($sql);
+                                    while ($row = $result->fetch_assoc()) {
                                     ?>
-                                            <td scope="row"><?php echo $row['no_of_students']; ?></td>
-                                        <?php
-                                        } else { ?>
-                                            <td scope="row"><?php echo "-";
-                                                        }
-                                                        $b++;
-                                                    } ?></td>
+                                        <td scope="row"><?php echo $row['no_of_students']; ?></td>
+                                        <?php } ?>
                                 </tr>
                             </tbody>
                         </table>
