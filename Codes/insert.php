@@ -22,7 +22,7 @@
             if($mta<=100 && $met==$_POST['met'])
             {
                 $sql="UPDATE controlsheet SET class_test_1=".$_POST['mct1'].", class_test_2=".$_POST['mct2'].", class_test_3=".$_POST['mct3'].", class_test_4=".$_POST['mct4'].", 
-                mid_term_1=".$_POST['mmt1'].", mid_term_2=".$_POST['mmt2'].", total_assesment=".$mta.", end_term=".$met." WHERE course_code='$cd' AND name='Maximim Marks'";
+                mid_term_1=".$_POST['mmt1'].", mid_term_2=".$_POST['mmt2'].", total_assessment=".$mta.", end_term=".$met." WHERE course_code='$cd' AND name='Maximum Marks'";
                 if($conn->query($sql) !== TRUE)
                 {
                     header('Location: edit.php?course='.$cd.'&error=ERROR UPDATING RECORD');
@@ -47,7 +47,7 @@
                 if($_POST['ct1'][$i]<=$_POST['mct1'] && $_POST['ct2'][$i]<=$_POST['mct2'] && $_POST['ct3'][$i]<=$_POST['mct3'] && $_POST['ct4'][$i]<=$_POST['mct4'] && $_POST['mt1'][$i]<=$_POST['mmt1']  && $_POST['mt2'][$i]<=$_POST['mmt2'] && $_POST['endterm'][$i]<=$met)
                 {
                     $sql="UPDATE controlsheet SET class_test_1=".$_POST['ct1'][$i].", class_test_2=".$_POST['ct2'][$i].", class_test_3=".$_POST['ct3'][$i].", class_test_4=".$_POST['ct4'][$i].", mid_term_1=".$_POST['mt1'][$i].", 
-                    mid_term_2=".$_POST['mt2'][$i].", total_assesment=".$ta.", end_term=".$_POST['endterm'][$i].", total_marks=".$tm." WHERE course_code='$cd' AND roll_no='$r'";
+                    mid_term_2=".$_POST['mt2'][$i].", total_assessment=".$ta.", end_term=".$_POST['endterm'][$i].", total_marks=".$tm." WHERE course_code='$cd' AND roll_no='$r'";
 
                     if ($conn->query($sql) !== TRUE)
                     {
