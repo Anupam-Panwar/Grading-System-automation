@@ -139,9 +139,9 @@ if (isset($_SESSION['id'])) {
                                     $i = 1;
                                     while ($row = $result->fetch_assoc()) { ?>
                                         <tr>
-                                            <td><?php echo $i++; ?></td>
-                                            <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no']; ?>" readonly></input></td>
-                                            <td><?php echo $row['name']; ?></td>
+                                            <td><strong><?php echo $i++; ?></strong></td>
+                                            <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no']; ?>" style="font-weight:bold" readonly></input></td>
+                                            <td><strong><?php echo $row['name']; ?></strong></td>
                                             <td><input class="classtest" name="ct1[]" value="<?php echo $row['class_test_1']; ?>"></input></td>
                                             <td><input class="classtest" name="ct2[]" value="<?php echo $row['class_test_2']; ?>"></input></td>
                                             <td><input class="classtest" name="ct3[]" value="<?php echo $row['class_test_3']; ?>"></input></td>
@@ -173,7 +173,7 @@ if (isset($_SESSION['id'])) {
                                         $result = $conn->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                         ?>
-                                            <td><input  class="gradebutton" name="grade[]" value="<?php echo $row['grade']; ?>" readonly></input>
+                                            <td><input  class="gradebutton" name="grade[]" value="<?php echo $row['grade']; ?>" style="font-weight:bold" readonly></input>
                                            <?php } ?></td>
                                     </tr>
                                 </thead>
