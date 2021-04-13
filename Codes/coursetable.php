@@ -190,8 +190,8 @@ if (isset($_SESSION['id'])) {
                                     while ($row = $result->fetch_assoc()) {
                                     ?>
 
-                                        <td><?php echo $row['grade'];
-                                        } ?></td>
+                                        <td><strong><?php echo $row['grade'];
+                                        } ?></strong></td>
                                 </tr>
                             </thead>
                             <tbody>
