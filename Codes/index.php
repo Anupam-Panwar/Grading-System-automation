@@ -17,7 +17,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <form class="box" action="validate.php" method="POST">
-                        <img src="images/logo0.png" class="img-fluid" style="width:35%; height:35%;" alt="...">
+                        <img src="images/logo0.png" class="img-fluid" style="width:35%; height:35%;" alt="NIT UK Logo">
                         
                             <p class="text-muted"> Please enter your Email and Password !</p>
                         <?php if (isset($_GET["error"])) {

@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ .'\connection\connect.php';
+    require_once __DIR__ .'/connection/connect.php';
     session_start();
     if(isset($_POST['email'])&&isset($_POST['password']))
     {
@@ -57,5 +57,5 @@
        
         header('Location:index.php?error=Enter data');
     }
-    require_once __DIR__.'\connection\disconnect.php';
+    require_once __DIR__.'/connection/disconnect.php';
 ?>
