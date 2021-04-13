@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['id']))
     {
-        require_once __DIR__ . '\connection\connect.php';
+        require_once __DIR__ . '/connection/connect.php';
 
         if (isset($_GET['course']))
         {
@@ -10,15 +10,24 @@
         }
         else  
         {
-            header('Location: edit.php?error=ERROR OCCURRED : Not a valid course code ');
+            header('Location: dashboard?error=ERROR OCCURRED : Not a valid course code ');
             exit();
         }
-
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
+            if (!(is_numeric($_POST['mct1'])&&is_numeric($_POST['mct2'])&&is_numeric($_POST['mct3'])&&is_numeric($_POST['mct4'])&&is_numeric($_POST['mmt1'])&&is_numeric($_POST['mmt2'])))
+            {
+                header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Enter valid information in Maximum mark field ');
+                exit();
+            }
             //Updating maximum marks
             $mta=($_POST['mct1']+$_POST['mct2']+$_POST['mct3']+$_POST['mct4']+$_POST['mmt1']+$_POST['mmt2']);
             $met=100-$mta;
+            if (!(is_numeric($_POST['met'])))
+            {
+                header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Enter valid information in Maximum mark field ');
+                exit();
+            }
             if($mta<=100 && $met==$_POST['met'])
             {
                 $sql="UPDATE controlsheet SET class_test_1=".$_POST['mct1'].", class_test_2=".$_POST['mct2'].", class_test_3=".$_POST['mct3'].", class_test_4=".$_POST['mct4'].", 
@@ -42,6 +51,11 @@
             for($i=0;$i<$c;$i++)
             {
                 $r=$_POST['roll'][$i];
+                if (!(is_numeric($_POST['ct1'][$i])&&is_numeric($_POST['ct2'][$i])&&is_numeric($_POST['ct3'][$i])&&is_numeric($_POST['ct4'][$i])&&is_numeric($_POST['mt1'][$i])&&is_numeric($_POST['mt2'][$i])&&is_numeric($_POST['endterm'][$i])))
+                {
+                    header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Enter valid information in marks field ');
+                    exit();
+                }
                 $ta=($_POST['ct1'][$i]+$_POST['ct2'][$i]+$_POST['ct3'][$i]+$_POST['ct4'][$i]+$_POST['mt1'][$i]+$_POST['mt2'][$i]);
                 $tm=$ta+$_POST['endterm'][$i];
                 if($_POST['ct1'][$i]<=$_POST['mct1'] && $_POST['ct2'][$i]<=$_POST['mct2'] && $_POST['ct3'][$i]<=$_POST['mct3'] && $_POST['ct4'][$i]<=$_POST['mct4'] && $_POST['mt1'][$i]<=$_POST['mmt1']  && $_POST['mt2'][$i]<=$_POST['mmt2'] && $_POST['endterm'][$i]<=$met)
@@ -68,6 +82,11 @@
             for($i=0;$i<$c;$i++)
             {
                 $r=$_POST['grade'][$i];
+                if (!(is_numeric($_POST['lb'][$i])&&is_numeric($_POST['ub'][$i])))
+                {
+                    header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Enter valid information in Grade Window field ');
+                    exit();
+                }
                 if(($i==0 && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['ub'][$i]==100) || ($i==$c-1 && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['lb'][$i]==0 && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1) || ($i!=0 && $i!=$c-1 && ($_POST['lb'][$i]<=$_POST['ub'][$i]) && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1))
                 {
                     $sql="UPDATE gradewindow SET lower_cutoff=".$_POST['lb'][$i].", upper_cutoff=".$_POST['ub'][$i]." WHERE course_code='$cd' AND grade='$r'";
@@ -85,7 +104,6 @@
                     exit();
                 }
             }
-            require_once __DIR__ . '\connection\disconnect.php';
 
             header('Location: coursetable.php?course='.$cd);
             exit();
@@ -95,6 +113,7 @@
             header('Location: coursetable.php?error=ERROR OCCURRED');
             exit();
         }
+        require_once __DIR__ . '/connection/disconnect.php';
     }
     else
     {
