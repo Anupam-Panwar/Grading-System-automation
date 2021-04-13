@@ -20,7 +20,7 @@ if (isset($_SESSION['id'])) {
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
         <?php
-        require_once __DIR__ . '\connection\connect.php';
+        require_once __DIR__ . '/connection/connect.php';
         if (isset($_GET['course'])) {
             $cd = $_GET['course'];
         } else {
@@ -190,8 +190,8 @@ if (isset($_SESSION['id'])) {
                                     while ($row = $result->fetch_assoc()) {
                                     ?>
 
-                                        <td><?php echo $row['grade'];
-                                        } ?></td>
+                                        <td><strong><?php echo $row['grade'];
+                                        } ?></strong></td>
                                 </tr>
                             </thead>
                             <tbody>

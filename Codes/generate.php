@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['id']))
     {
-        require_once __DIR__ . '\connection\connect.php';
+        require_once __DIR__ . '/connection/connect.php';
         if (isset($_GET['course']))
         {
             $cd = $_GET['course'];
@@ -82,7 +82,7 @@
                 } 
                 $t--;
             }
-            require_once __DIR__ . '\connection\disconnect.php';
+            require_once __DIR__ . '/connection/disconnect.php';
             header('Location: coursetable.php?course='.$cd);
             exit();
         }

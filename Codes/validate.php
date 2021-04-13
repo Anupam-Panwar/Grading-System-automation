@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ .'\connection\connect.php';
+    require_once __DIR__ .'/connection/connect.php';
     session_start();
     if(isset($_POST['email'])&&isset($_POST['password']))
     {
@@ -15,17 +15,17 @@
 
         if(empty($mail))
         {
-            header('Location: index.php ?error=Email required');
+            header('Location: index.php?error=Email required');
             exit();
         }
         else if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) 
         {
-            header('Location: index.php ?error=Invalid Email');
+            header('Location: index.php?error=Invalid Email');
             exit();
         }
         else if(empty($pass))
         {
-            header('Location: index.php ?error=Password required');
+            header('Location: index.php?error=Password required');
             exit();
         }
         else
@@ -47,7 +47,7 @@
             }
             else
             {
-                header('Location: index.php ?error=Incorrect Email or Password');
+                header('Location: index.php?error=Incorrect Email or Password');
                 exit();
             }
         }
@@ -57,5 +57,5 @@
        
         header('Location:index.php?error=Enter data');
     }
-    require_once __DIR__.'\connection\disconnect.php';
+    require_once __DIR__.'/connection/disconnect.php';
 ?>
