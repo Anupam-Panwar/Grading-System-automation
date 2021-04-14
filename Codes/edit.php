@@ -127,7 +127,7 @@ if (isset($_SESSION['id'])) {
                                             <th><input class="classtest" name="mct4" value="<?php echo $row['class_test_4']; ?>"></input></th>
                                             <th><input class="marks" name="mmt1" value="<?php echo $row['mid_term_1']; ?>"></input></th>
                                             <th><input class="marks" name="mmt2" value="<?php echo $row['mid_term_2']; ?>"></input></th>
-                                            <th><?php echo $row['total_assesment']; ?></th>
+                                            <th><?php echo $row['total_assessment']; ?></th>
                                             <th><input class="marks" name="met" value="<?php echo $row['end_term']; ?>"></input></th>
                                             <th><?php echo $row['total_marks']; ?></th>
                                             <th><?php echo $row['grade']; ?></th>
@@ -148,7 +148,7 @@ if (isset($_SESSION['id'])) {
                                             <td><input class="classtest" name="ct4[]" value="<?php echo $row['class_test_4']; ?>"></input></td>
                                             <td><input class="marks" name="mt1[]" value="<?php echo $row['mid_term_1']; ?>"></input></td>
                                             <td><input class="marks" name="mt2[]" value="<?php echo $row['mid_term_2']; ?>"></input></td>
-                                            <td><?php echo $row['total_assesment']; ?></td>
+                                            <td><?php echo $row['total_assessment']; ?></td>
                                             <td><input class="marks" name="endterm[]" value="<?php echo $row['end_term']; ?>"></input></td>
                                             <td><?php echo $row['total_marks']; ?></td>
                                             <td><?php echo $row['grade']; ?></td>
@@ -214,6 +214,7 @@ if (isset($_SESSION['id'])) {
 
 
         <?php
+        require_once __DIR__ . '/connection/disconnect.php';
         require 'foot_info.php';
         ?>
 
