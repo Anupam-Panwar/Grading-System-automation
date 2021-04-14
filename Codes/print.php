@@ -104,7 +104,7 @@ if (isset($_SESSION['id'])) {
                                             <th><?php echo $row['class_test_4']; ?></th>
                                             <th><?php echo $row['mid_term_1']; ?></th>
                                             <th><?php echo $row['mid_term_2']; ?></th>
-                                            <th><?php echo $row['total_assesment']; ?></th>
+                                            <th><?php echo $row['total_assessment']; ?></th>
                                             <th><?php echo $row['end_term']; ?></th>
                                             <th><?php echo $row['total_marks']; ?></th>
                                             <th><?php echo $row['grade']; ?></th>
@@ -140,8 +140,8 @@ if (isset($_SESSION['id'])) {
                                                 $tmt1 += $row['mid_term_1']; ?></td>
                                             <td><?php echo $row['mid_term_2'];
                                                 $tmt2 += $row['mid_term_2']; ?></td>
-                                            <td><?php echo $row['total_assesment'];
-                                                $tass += $row['total_assesment']; ?></td>
+                                            <td><?php echo $row['total_assessment'];
+                                                $tass += $row['total_assessment']; ?></td>
                                             <td><?php echo $row['end_term'];
                                                 $tet += $row['end_term']; ?></td>
                                             <td><?php echo $row['total_marks'];
