@@ -46,12 +46,6 @@
                     }
                     $t--;
                 }
-                
-                //for the time being so that error do not occur
-                if($gra==NULL&&$t<0)
-                {
-                    header('Location: coursetable.php?course='.$cd.'error=GADBAD HO GAYA');
-                }
                 $sql="UPDATE controlsheet SET grade='$gra' WHERE course_code='$cd' AND roll_no='$rn'";
                 if ($conn->query($sql) !== TRUE)
                 {

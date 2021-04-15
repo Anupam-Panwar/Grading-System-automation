@@ -1,6 +1,11 @@
 <?php
     require_once __DIR__ .'/connection/connect.php';
     session_start();
+    if(isset($_SESSION['id']))
+    {
+        header('Location: index.php?error=Multiple Login is not allowed');
+        exit();
+    }
     if(isset($_POST['email'])&&isset($_POST['password']))
     {
         function validate($data)

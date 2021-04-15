@@ -2,7 +2,7 @@
 <html>
 <head>
     <?php
-    require 'head_info.php';
+    require __DIR__ .'/utility/head_info.php';
     ?>
     <!-- Our Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/indexcss.css">

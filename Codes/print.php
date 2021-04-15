@@ -9,7 +9,7 @@ if (isset($_SESSION['id'])) {
 
     <head>
         <?php
-        require 'head_info.php';
+        require __DIR__ .'/utility/head_info.php';
         ?>
 
 
@@ -228,7 +228,7 @@ if (isset($_SESSION['id'])) {
 
         <?php
         require_once __DIR__ . '/connection/disconnect.php';
-        require 'foot_info.php';
+        require __DIR__ .'/utility/foot_info.php';
         ?>
     <?php
 } else {
