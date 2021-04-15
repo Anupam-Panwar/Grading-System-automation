@@ -129,7 +129,7 @@ body {
   text-align: center;
   border: 2px solid #3498db;
   padding: 10px 10px;
-  width: 30vw;
+  width: 45vw;
   outline: none;
   color: white;
   border-radius: 24px;
@@ -138,7 +138,7 @@ body {
 
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
-  width: 35vw;
+  width: 50vw;
   border-color: #2ecc71;
 }
 }
