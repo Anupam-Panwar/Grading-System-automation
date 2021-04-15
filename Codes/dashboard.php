@@ -83,8 +83,8 @@ if (isset($_SESSION['id'])) {
                     $i = 1;
                     while ($row = $result->fetch_assoc()) {
                     ?>
-                        <a href="coursetable.php?course=<?php echo $row['course_code']; ?>">
-                            <div class="col">
+                        <div class="col">
+                            <a href="coursetable.php?course=<?php echo $row['course_code']; ?>">
                                 <div class="card h-100">
                                     <img src="images/img<?php echo $i ?>.jpg" class="card-img-top" alt="Course Image">
                                     <div class="card-body">
@@ -92,8 +92,8 @@ if (isset($_SESSION['id'])) {
                                         <p class="card-text"><?php echo $row['course_code'] ?><br><?php echo $row['batch'] ?></p>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     <?php
                         if ($i == 11) {
                             $i = 0;
@@ -109,10 +109,10 @@ if (isset($_SESSION['id'])) {
     exit();
 }
     ?>
-        <?php
-            require_once __DIR__ . '/connection/disconnect.php';
-            require 'foot_info.php';
-        ?>
+    <?php
+    require_once __DIR__ . '/connection/disconnect.php';
+    require 'foot_info.php';
+    ?>
 
     <script type="text/javascript">
         $(document).ready(function() {
