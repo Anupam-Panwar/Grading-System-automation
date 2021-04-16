@@ -23,8 +23,26 @@ if (isset($_SESSION['id'])) {
 
         <?php
         require_once __DIR__ . '/connection/connect.php';
+        $id = $_SESSION['id'];
+        $uname = $_SESSION['name'];
         if (isset($_GET['course'])) {
             $cd = $_GET['course'];
+            $sql = "SELECT id FROM courses WHERE course_code='$cd'";
+            $result = $conn->query($sql);
+            if ($result->num_rows==1) 
+            {
+                $row=$result->fetch_assoc();
+                if($_SESSION['id']!=$row['id'])
+                {
+                    header('Location: dashboard.php?error=COURSE NOT FOUND');
+                    exit();
+                }
+            }
+            else
+            {
+                header('Location: dashboard.php?error=COURSE NOT FOUND');
+                exit();
+            }
         } else {
             header('Location: coursetable.php?error=ERROR OCCURRED');
             exit();
@@ -41,10 +59,6 @@ if (isset($_SESSION['id'])) {
         <nav class="navbar navbar-light bg-dark">
             <div class="container-fluid sameline">
                 <div class="initials">
-                    <?php
-                    $id = $_SESSION['id'];
-                    $uname = $_SESSION['name'];
-                    ?>
                     <a href="dashboard.php">
                     <span class="text-white text-center fs-3 initial"><?php echo substr($uname, 0, 1); ?></span>
                     </a>
