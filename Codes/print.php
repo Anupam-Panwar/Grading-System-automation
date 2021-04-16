@@ -24,8 +24,25 @@ if (isset($_SESSION['id'])) {
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
         <?php
         require_once __DIR__ . '/connection/connect.php';
+        $id = $_SESSION['id'];
+        $uname = $_SESSION['name'];
         if (isset($_GET['course'])) {
             $cd = $_GET['course'];
+            $sql = "SELECT id FROM courses WHERE course_code='$cd'";
+            $result = $conn->query($sql);
+            if($row = $result->fetch_assoc())
+            {
+                if($_SESSION['id']!=$row['id'])
+                {
+                    header('Location: dashboard.php?error=COURSE NOT FOUND');
+                    exit();
+                }
+            }
+            else
+            {
+                header('Location: dashboard.php?error=COURSE NOT FOUND');
+                exit();
+            }
         } else {
             header('Location: coursetable.php?error=ERROR OCCURRED');
             exit();
@@ -51,8 +68,6 @@ if (isset($_SESSION['id'])) {
                     <div class="h3 text-center" id="nit">National Institute of Technology, Uttarakhand</div>
 
                     <?php
-                    $id = $_SESSION['id'];
-                    $uname = $_SESSION['name'];
                     $sql = "SELECT course_name, semester, batch FROM courses WHERE course_code='$cd'";
                     $result = $conn->query($sql);
                     if ($row = $result->fetch_assoc()) {

@@ -7,6 +7,21 @@
         if (isset($_GET['course']))
         {
             $cd = $_GET['course'];
+            $sql = "SELECT id FROM courses WHERE course_code='$cd'";
+            $result = $conn->query($sql);
+            if($row = $result->fetch_assoc())
+            {
+                if($_SESSION['id']!=$row['id'])
+                {
+                    header('Location: dashboard.php?error=COURSE NOT FOUND');
+                    exit();
+                }
+            }
+            else
+            {
+                header('Location: dashboard.php?error=COURSE NOT FOUND');
+                exit();
+            }
         }
         else  
         {
