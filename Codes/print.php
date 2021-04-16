@@ -30,8 +30,9 @@ if (isset($_SESSION['id'])) {
             $cd = $_GET['course'];
             $sql = "SELECT id FROM courses WHERE course_code='$cd'";
             $result = $conn->query($sql);
-            if($row = $result->fetch_assoc())
+            if ($result->num_rows==1) 
             {
+                $row=$result->fetch_assoc();
                 if($_SESSION['id']!=$row['id'])
                 {
                     header('Location: dashboard.php?error=COURSE NOT FOUND');
