@@ -49,6 +49,11 @@
                     header('Location: dashboard.php');
                     
                 }
+                else
+                {
+                    header('Location: index.php?error=Incorrect Email or Password');
+                    exit();
+                }
             }
             else
             {
