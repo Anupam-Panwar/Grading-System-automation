@@ -47,7 +47,7 @@
                     $_SESSION['id']=$row['id'];
                     $_SESSION['name']=$row['username'];
                     header('Location: dashboard.php');
-                    
+                    exit();
                 }
                 else
                 {
