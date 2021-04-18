@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2021 at 09:31 PM
+-- Generation Time: Apr 15, 2021 at 08:50 PM
 -- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,10 +54,10 @@ INSERT INTO `controlsheet` (`course_code`, `roll_no`, `name`, `class_test_1`, `c
 ('CSL-258', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, 'BB'),
 ('CSL-258', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, 'AB'),
 ('CSL-253', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
-('CSL-253', 'BT19CSE002', 'Anupam Panwar', 9.5, 8, 0, 0, 18, 19, 54.5, 38, 92.5, ''),
-('CSL-253', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 0, 0, 19, 18.5, 56.5, 38, 94.5, ''),
-('CSL-253', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 19.5, 54.5, 38.5, 93, ''),
-('CSL-253', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 0, 0, 19, 18.5, 57, 37, 94, ''),
+('CSL-253', 'BT19CSE002', 'Anupam Panwar', 9.5, 8, 0, 0, 18, 19, 54.5, 38, 92.5, 'AA'),
+('CSL-253', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 0, 0, 19, 18.5, 56.5, 38, 94.5, 'AA'),
+('CSL-253', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 19.5, 54.5, 38.5, 93, 'AA'),
+('CSL-253', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 0, 0, 19, 18.5, 57, 37, 94, 'AA'),
 ('CSL-255', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-255', 'BT19CSE002', 'Anupam Panwar', 9, 9, 0, 0, 18, 20, 56, 37, 93, 'AA'),
 ('CSL-255', 'BT19CSE003', 'Neha Dhyani', 9.5, 8.5, 0, 0, 18, 18.5, 54.5, 38.5, 93, 'AA'),
@@ -73,11 +73,11 @@ INSERT INTO `controlsheet` (`course_code`, `roll_no`, `name`, `class_test_1`, `c
 ('CSL-251', 'BT19CSE003', 'Neha Dhyani', 9.5, 8.5, 0, 0, 18, 18.5, 0, 38.5, 0, ''),
 ('CSL-251', 'BT19CSE011', 'Purvi Goyal', 9, 8.5, 0, 0, 17.5, 19, 0, 38, 0, ''),
 ('CSL-251', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 8.5, 0, 0, 18, 19.5, 0, 36.5, 0, ''),
-('CSL-252', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 0, 40, 100, ''),
-('CSL-252', 'BT19CSE002', 'Anupam Panwar', 9.5, 8, 0, 0, 18, 19, 0, 38, 0, 'FF'),
-('CSL-252', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 0, 0, 19, 18.5, 0, 38, 0, 'FF'),
-('CSL-252', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 19.5, 0, 38.5, 0, 'FF'),
-('CSL-252', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 0, 0, 19, 18.5, 0, 37, 0, 'FF'),
+('CSL-252', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
+('CSL-252', 'BT19CSE002', 'Anupam Panwar', 9.5, 8, 0, 0, 18, 19, 54.5, 38, 92.5, 'AA'),
+('CSL-252', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 0, 0, 19, 18.5, 56.5, 38, 94.5, 'AA'),
+('CSL-252', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 19.5, 54.5, 38.5, 93, 'AA'),
+('CSL-252', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 0, 0, 19, 18.5, 57, 37, 94, 'AA'),
 ('CSL-257', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-257', 'BT19CSE002', 'Anupam Panwar', 9, 9, 0, 0, 18, 20, 56, 37, 93, ''),
 ('CSL-257', 'BT19CSE003', 'Neha Dhyani', 9.5, 8.5, 0, 0, 18, 18.5, 54.5, 38.5, 93, ''),
@@ -157,14 +157,12 @@ CREATE TABLE `gradewindow` (
 --
 
 INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff`, `no_of_students`) VALUES
-('CSL-258', 'AA', 86, 100, 2),
 ('CSL-258', 'AB', 75, 85, 1),
 ('CSL-258', 'BB', 66, 74, 1),
 ('CSL-258', 'BC', 56, 65, 0),
 ('CSL-258', 'CC', 46, 55, 0),
 ('CSL-258', 'DD', 36, 45, 0),
 ('CSL-258', 'FF', 0, 35, 0),
-('CSL-258', 'AA', 86, 100, 2),
 ('CSL-255', 'AA', 86, 100, 2),
 ('CSL-255', 'AB', 75, 85, 1),
 ('CSL-255', 'BB', 66, 74, 1),
@@ -179,13 +177,13 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-257', 'CC', 46, 55, 0),
 ('CSL-257', 'DD', 36, 45, 0),
 ('CSL-257', 'FF', 0, 35, 0),
-('CSL-252', 'AA', 86, 100, 0),
+('CSL-252', 'AA', 86, 100, 4),
 ('CSL-252', 'AB', 75, 85, 0),
 ('CSL-252', 'BB', 66, 74, 0),
 ('CSL-252', 'BC', 56, 65, 0),
 ('CSL-252', 'CC', 46, 55, 0),
 ('CSL-252', 'DD', 36, 45, 0),
-('CSL-252', 'FF', 0, 35, 4),
+('CSL-252', 'FF', 0, 35, 0),
 ('CSL-251', 'AA', 86, 100, 2),
 ('CSL-251', 'AB', 75, 85, 1),
 ('CSL-251', 'BB', 66, 74, 1),
@@ -214,9 +212,9 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-307', 'CC', 46, 55, 0),
 ('CSL-307', 'DD', 36, 45, 0),
 ('CSL-307', 'FF', 0, 35, 0),
-('CSL-253', 'AA', 86, 100, 2),
-('CSL-253', 'AB', 75, 85, 1),
-('CSL-253', 'BB', 66, 74, 1),
+('CSL-253', 'AA', 86, 100, 4),
+('CSL-253', 'AB', 75, 85, 0),
+('CSL-253', 'BB', 66, 74, 0),
 ('CSL-253', 'BC', 56, 65, 0),
 ('CSL-253', 'CC', 46, 55, 0),
 ('CSL-253', 'DD', 36, 45, 0),
@@ -227,7 +225,8 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSP-253', 'BC', 56, 65, 0),
 ('CSP-253', 'CC', 46, 55, 0),
 ('CSP-253', 'DD', 36, 45, 0),
-('CSP-253', 'FF', 0, 35, 0);
+('CSP-253', 'FF', 0, 35, 0),
+('CSL-258', 'AA', 86, 100, 2);
 
 -- --------------------------------------------------------
 
@@ -248,7 +247,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (1, 'Surendra Singh', 'surendra@nituk.ac.in', 'surendra'),
-(2, 'Sneha Chauhan', 'sneha@nituk.ac.in', 'sneha'),
+(2, 'Guest', 'guest@nituk.ac.in', 'guest'),
 (3, 'Krishanveer Gangwar', 'kg@nituk.ac.in', 'krish'),
 (4, 'Dungali Shreehari', 'dungali@nituk.ac.in', 'dungali'),
 (5, 'Maheep Singh', 'maheep@nituk.ac.in', 'maheep');

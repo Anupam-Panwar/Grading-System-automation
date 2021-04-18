@@ -29,7 +29,7 @@ body {
   text-align: center;
   border: 2px solid #3498db;
   padding: 10px 10px;
-  width: 250px;
+  width: 20em;
   outline: none;
   color: white;
   border-radius: 24px;
@@ -44,7 +44,7 @@ body {
 
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
-  width: 300px;
+  width: 25em;
   border-color: #2ecc71;
 }
 
@@ -120,4 +120,25 @@ body {
     color: white;
     margin-bottom: 15px;
   }
+  .box input[type="text"],
+  .box input[type="password"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 10px 10px;
+  width: 45vw;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+  width: 50vw;
+  border-color: #2ecc71;
+}
 }

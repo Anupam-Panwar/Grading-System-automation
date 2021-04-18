@@ -6,6 +6,22 @@
         if (isset($_GET['course']))
         {
             $cd = $_GET['course'];
+            $sql = "SELECT id FROM courses WHERE course_code='$cd'";
+            $result = $conn->query($sql);
+            if ($result->num_rows==1) 
+            {
+                $row=$result->fetch_assoc();
+                if($_SESSION['id']!=$row['id'])
+                {
+                    header('Location: dashboard.php?error=COURSE NOT FOUND');
+                    exit();
+                }
+            }
+            else
+            {
+                header('Location: dashboard.php?error=COURSE NOT FOUND');
+                exit();
+            }
             class g
             {
                 public $gn;
@@ -45,12 +61,6 @@
                         break;
                     }
                     $t--;
-                }
-                
-                //for the time being so that error do not occur
-                if($gra==NULL&&$t<0)
-                {
-                    header('Location: coursetable.php?course='.$cd.'error=GADBAD HO GAYA');
                 }
                 $sql="UPDATE controlsheet SET grade='$gra' WHERE course_code='$cd' AND roll_no='$rn'";
                 if ($conn->query($sql) !== TRUE)
