@@ -209,7 +209,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-258', 'CC', 46, 55, 0),
 ('CSL-258', 'DD', 36, 45, 0),
 ('CSL-258', 'FF', 0, 35, 0),
-('CSL-258', 'AA', 86, 100, 2),
+
 ('CSL-255', 'AA', 86, 100, 2),
 ('CSL-255', 'AB', 75, 85, 1),
 ('CSL-255', 'BB', 66, 74, 1),
@@ -217,6 +217,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-255', 'CC', 46, 55, 0),
 ('CSL-255', 'DD', 36, 45, 0),
 ('CSL-255', 'FF', 0, 35, 0),
+
 ('CSL-257', 'AA', 86, 100, 2),
 ('CSL-257', 'AB', 75, 85, 1),
 ('CSL-257', 'BB', 66, 74, 1),
@@ -224,6 +225,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-257', 'CC', 46, 55, 0),
 ('CSL-257', 'DD', 36, 45, 0),
 ('CSL-257', 'FF', 0, 35, 0),
+
 ('CSL-252', 'AA', 86, 100, 0),
 ('CSL-252', 'AB', 75, 85, 0),
 ('CSL-252', 'BB', 66, 74, 0),
@@ -231,6 +233,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-252', 'CC', 46, 55, 0),
 ('CSL-252', 'DD', 36, 45, 0),
 ('CSL-252', 'FF', 0, 35, 4),
+
 ('CSL-251', 'AA', 86, 100, 2),
 ('CSL-251', 'AB', 75, 85, 1),
 ('CSL-251', 'BB', 66, 74, 1),
@@ -238,6 +241,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-251', 'CC', 46, 55, 0),
 ('CSL-251', 'DD', 36, 45, 0),
 ('CSL-251', 'FF', 0, 35, 0),
+
 ('MEL-151', 'AA', 86, 100, 2),
 ('MEL-151', 'AB', 75, 85, 1),
 ('MEL-151', 'BB', 66, 74, 1),
@@ -245,6 +249,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('MEL-151', 'CC', 46, 55, 0),
 ('MEL-151', 'DD', 36, 45, 0),
 ('MEL-151', 'FF', 0, 35, 0),
+
 ('MEP-151', 'AA', 86, 100, 2),
 ('MEP-151', 'AB', 75, 85, 1),
 ('MEP-151', 'BB', 66, 74, 1),
@@ -252,6 +257,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('MEP-151', 'CC', 46, 55, 0),
 ('MEP-151', 'DD', 36, 45, 0),
 ('MEP-151', 'FF', 0, 35, 0),
+
 ('CSL-307', 'AA', 86, 100, 2),
 ('CSL-307', 'AB', 75, 85, 1),
 ('CSL-307', 'BB', 66, 74, 1),
@@ -259,6 +265,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-307', 'CC', 46, 55, 0),
 ('CSL-307', 'DD', 36, 45, 0),
 ('CSL-307', 'FF', 0, 35, 0),
+
 ('CSL-253', 'AA', 86, 100, 2),
 ('CSL-253', 'AB', 75, 85, 1),
 ('CSL-253', 'BB', 66, 74, 1),
@@ -266,6 +273,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-253', 'CC', 46, 55, 0),
 ('CSL-253', 'DD', 36, 45, 0),
 ('CSL-253', 'FF', 0, 35, 0),
+
 ('CSP-253', 'AA', 86, 100, 4),
 ('CSP-253', 'AB', 75, 85, 0),
 ('CSP-253', 'BB', 66, 74, 0),
@@ -273,6 +281,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSP-253', 'CC', 46, 55, 0),
 ('CSP-253', 'DD', 36, 45, 0),
 ('CSP-253', 'FF', 0, 35, 0),
+
 ('CSL-X1', 'AA', 86, 100, 2),
 ('CSL-X1', 'AB', 75, 85, 1),
 ('CSL-X1', 'BB', 66, 74, 1),
@@ -280,6 +289,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-X1', 'CC', 46, 55, 0),
 ('CSL-X1', 'DD', 36, 45, 0),
 ('CSL-X1', 'FF', 0, 35, 0),
+
 ('CSL-X2', 'AA', 86, 100, 2),
 ('CSL-X2', 'AB', 75, 85, 1),
 ('CSL-X2', 'BB', 66, 74, 1),
@@ -287,6 +297,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-X2', 'CC', 46, 55, 0),
 ('CSL-X2', 'DD', 36, 45, 0),
 ('CSL-X2', 'FF', 0, 35, 0),
+
 ('CSL-X3', 'AA', 86, 100, 2),
 ('CSL-X3', 'AB', 75, 85, 1),
 ('CSL-X3', 'BB', 66, 74, 1),
@@ -294,6 +305,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-X3', 'CC', 46, 55, 0),
 ('CSL-X3', 'DD', 36, 45, 0),
 ('CSL-X3', 'FF', 0, 35, 0),
+
 ('CSL-X4', 'AA', 86, 100, 2),
 ('CSL-X4', 'AB', 75, 85, 1),
 ('CSL-X4', 'BB', 66, 74, 1),
@@ -301,6 +313,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-X4', 'CC', 46, 55, 0),
 ('CSL-X4', 'DD', 36, 45, 0),
 ('CSL-X4', 'FF', 0, 35, 0),
+
 ('CSL-X5', 'AA', 86, 100, 2),
 ('CSL-X5', 'AB', 75, 85, 1),
 ('CSL-X5', 'BB', 66, 74, 1),
@@ -308,6 +321,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-X5', 'CC', 46, 55, 0),
 ('CSL-X5', 'DD', 36, 45, 0),
 ('CSL-X5', 'FF', 0, 35, 0),
+
 ('CSL-X6', 'AA', 86, 100, 2),
 ('CSL-X6', 'AB', 75, 85, 1),
 ('CSL-X6', 'BB', 66, 74, 1),
@@ -315,6 +329,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-X6', 'CC', 46, 55, 0),
 ('CSL-X6', 'DD', 36, 45, 0),
 ('CSL-X6', 'FF', 0, 35, 0),
+
 ('CSL-X7', 'AA', 86, 100, 2),
 ('CSL-X7', 'AB', 75, 85, 1),
 ('CSL-X7', 'BB', 66, 74, 1),
@@ -322,6 +337,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-X7', 'CC', 46, 55, 0),
 ('CSL-X7', 'DD', 36, 45, 0),
 ('CSL-X7', 'FF', 0, 35, 0),
+
 ('CSL-X8', 'AA', 86, 100, 2),
 ('CSL-X8', 'AB', 75, 85, 1),
 ('CSL-X8', 'BB', 66, 74, 1),
@@ -329,6 +345,7 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-X8', 'CC', 46, 55, 0),
 ('CSL-X8', 'DD', 36, 45, 0),
 ('CSL-X8', 'FF', 0, 35, 0),
+
 ('CSL-X9', 'AA', 86, 100, 2),
 ('CSL-X9', 'AB', 75, 85, 1),
 ('CSL-X9', 'BB', 66, 74, 1),
