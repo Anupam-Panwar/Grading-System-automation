@@ -99,11 +99,6 @@ CONTENT STYLE
     height:40px;
     width: 40px;
     border-radius:50%;
-    -moz-border-radius:50%;
-    -webkit-border-radius:50%;
-}
-.initial{
-    margin-left:12.5px;
 }
 
 @media (max-width:1250px){

@@ -58,9 +58,9 @@ if (isset($_SESSION['id'])) {
         <!-- navbar -->
         <nav class="navbar navbar-light bg-dark">
             <div class="container-fluid sameline">
-                <div class="initials">
+                <div class="">
                     <a href="dashboard.php">
-                    <span class="text-white text-center fs-3 initial"><?php echo substr($uname, 0, 1); ?></span>
+                    <div class="initials text-white text-center fs-3"><?php echo substr($uname, 0, 1); ?></div>
                     </a>
                 </div>
                 <span class="text-white h3">Control Sheet</span>
