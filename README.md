@@ -14,7 +14,7 @@ Email: guest@nituk.ac.in
 Password: guest
 
 ## Team member
-1.Anupam Panwar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BT19CSE002<br>
-2.Neha Dhyani&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BT19CSE003<br>
-3.Purvi Goyal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BT19CSE011<br>
-4.Priyanshu Upadhyay&nbsp;  BT19CSE020<br>
+* [Anupam Panwar](https://www.linkedin.com/in/anupam-panwar/)
+* [Neha Dhyani](https://www.linkedin.com/in/neha-dhyani-124226211)
+* [Purvi Goyal](https://www.linkedin.com/in/purvi-goyal-56b2811a7)
+* [Priyanshu Upadhyay](https://www.linkedin.com/in/priyanshu-upadhyay-3705431a8)
