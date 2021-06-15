@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(isset($_SESSION['id']))
+    {
+        header('Location: dashboard.php?error=Multiple login is not allowed !! One user is  already logged in');
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>

@@ -192,7 +192,10 @@ if (isset($_SESSION['id'])) {
                     <div class="table-responsive grade">
                         <div class="sameline grades">
                             <div class="text-start h5">Grade Point Cutoff</div>
-                            <a class="btn btn-outline-secondary mb-2" href="generate.php?course=<?php echo $cd ?>">Generate Grades</a>
+                            <div>
+                                <a class="btn btn-outline-secondary mb-2" style="padding-right: 1.63rem; padding-left:1.63rem" href="clear.php?course=<?php echo $cd ?>">Clear Grades</a>
+                                <a class="btn btn-outline-secondary mb-2" href="generate.php?course=<?php echo $cd ?>">Generate Grades</a>
+                            </div>
                         </div>
                         <table class="table table-bordered border-primary grades">
                             <thead>
