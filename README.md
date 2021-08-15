@@ -8,6 +8,7 @@ The purpose of this project is to automate the existing system of grading which 
 ## Result
 Result of this project is successfully deployed [here](https://slpappn.infinityfreeapp.com/)
 <br>
+You may also have a video walk around of this project by clicking [here](https://youtu.be/sdnF1G92LDQ)
 #### Demo Login credentials
 Email: guest@nituk.ac.in
 <br>
