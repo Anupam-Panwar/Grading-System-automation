@@ -28,6 +28,12 @@
                 header('Location: coursetable.php?course='.$cd.'&error='.$conn->error);
                 exit();
             } 
+            $sql="UPDATE gradewindow SET no_of_students=0 WHERE course_code='$cd'";
+            if ($conn->query($sql) !== TRUE)
+            {
+                header('Location: coursetable.php?course='.$cd.'&error='.$conn->error);
+                exit();
+            } 
             require_once __DIR__ . '/connection/disconnect.php';
             header('Location: coursetable.php?course='.$cd);
             exit();
