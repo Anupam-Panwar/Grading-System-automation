@@ -57,6 +57,10 @@ if (isset($_SESSION['id'])) {
                     $sql = "SELECT id,username FROM users";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
+                        if($row['username'] == "Admin")
+                        {
+                            continue;
+                        }
                     ?>
                         <li>
                         <a class="dropdown-btn"><?php echo $row['username']; ?></a>
@@ -95,6 +99,10 @@ if (isset($_SESSION['id'])) {
                     $result = $conn->query($sql);
                     $i = 1;
                     while ($row = $result->fetch_assoc()) {
+                        if($row['username'] == "Admin")
+                        {
+                            continue;
+                        }
                     ?>
                         <div class="col">
                             <a href="dashboard.php?id=<?php echo $row['id']; ?>">
