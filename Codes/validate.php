@@ -46,8 +46,16 @@
                     
                     $_SESSION['id']=$row['id'];
                     $_SESSION['name']=$row['username'];
-                    header('Location: dashboard.php');
-                    exit();
+                    if($_SESSION['name'] == "Admin")
+                    {
+                        header('Location: dashboard_admin.php');
+                        exit();
+                    }
+                    else
+                    {
+                        header('Location: dashboard.php');
+                        exit();
+                    }
                 }
                 else
                 {

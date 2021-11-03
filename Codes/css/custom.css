@@ -93,6 +93,7 @@ a, a:hover, a:focus {
     font-size: 1.1em;
     display: block;
 }
+
 #sidebar ul li a:hover {
     color: #7386D5;
     background: #fff;
@@ -103,6 +104,19 @@ a, a:hover, a:focus {
     background: #6d7fcc;
 }
 
+#sidebar ul ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar .dropdown-btn:hover {
+    cursor: pointer;
+}
+
+.dropdown-container {
+    display: none;
+}
 
 a[data-toggle="collapse"] {
     position:sticky;
@@ -119,7 +133,6 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
 }
 
 ul.CTAs {
