@@ -52,7 +52,7 @@
                         <div class="sidebar-header">
                             <h3><?php echo "Admin"; ?></h3>
                         </div>
-                        <a href="dashboard.php">
+                        <a href="dashboard_admin.php">
                             <p class="h4">Teachers</p>
                         </a>
                         <?php
@@ -108,7 +108,7 @@
                             }
                         ?>
                             <div class="col">
-                                <a href="dashboard.php?id=<?php echo $row['id']; ?>">
+                                <a href="teacher_courses_admin.php?id=<?php echo $row['id']; ?>">
                                     <div class="card h-100">
                                         <img src="images/img<?php echo $i ?>.jpg" class="card-img-top" alt="Course Image">
                                         <div class="card-body">
