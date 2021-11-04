@@ -178,7 +178,7 @@ if (isset($_SESSION['id'])) {
                                     <?php } ?>
                                 </tbody>
                             </table>
-                            <div class="text-center"><span class="btn btn-sm btn-success btn_row_add_below_end"> Clone Last Row And Add At The End</span></div>
+                            <div class="text-center"><span class="btn btn-sm btn-success btn_row_add_below_end"> Add A Blank Row At The End</span></div>
                         </div>
 
                         <br>
@@ -255,43 +255,14 @@ if (isset($_SESSION['id'])) {
         <script>
             $(document).ready(function($)
             {
-              //--->add row at the end > start
+              //--->add blank row at the end 
               $(document).on('click',".btn_row_add_below_end", function(e)
               {
-                var tableBody = $(document).find('.tbl_code_with_mark').find("tbody");
-                var trLast = tableBody.find("tr:last");
-                var trNew = trLast.clone();
-                trLast.after(trNew)
-                
+                $(".tbl_code_with_mark tbody").append('<tr><td class="sno" style="font-weight:bold">1</td><td><input class="rollno" name="roll[]" value="" style="font-weight:bold"></input></td><td><input class="name" name="name[]" value=""></input></td><!-- <td><strong>""</strong></td> --><td><input class="classtest" name="ct1[]" value=""></input></td><td><input class="classtest" name="ct2[]" value=""></input></td><td><input class="classtest" name="ct3[]" value=""></input></td><td><input class="classtest" name="ct4[]" value=""></input></td><td><input class="marks" name="mt1[]" value=""></input></td><td><input class="marks" name="mt2[]" value=""></input></td><td></td><td><input class="marks" name="endterm[]" value=""></input></td><td></td><td></td><td style="display:flex; flex-direction: row;   "><span style="width:2rem;"class="btn btn-sm btn-danger btn_row_delete"><i class="fas fa-trash"></i></span></td></tr>');
+                var rowCount = $('.tbl_code_with_mark tbody tr').length;
+                $(".tbl_code_with_mark tbody tr:last td:first").text(rowCount)   
+
               });
-              //--->add row at the end > end
-          
-          
-              //--->current row > new > start
-            //   $(document).on('click',".btn_row_below_new", function(e)
-            //   {
-            //     var r = $(this).closest('tr').clone();
-                
-            //     $.each(r.find('td'), function(i1,v1)
-            //     {
-            //       //clear all data/value in td/cell
-            //       $(this).html('');
-            //     });
-            
-            //     $(this).closest('tr').after(r);
-            //   });
-              //--->current row > new > end
-          
-          
-              //--->current row > clone > start
-            //   $(document).on('click',".btn_row_below_clone", function(e)
-            //   {
-            //     var r = $(this).closest('tr').clone();
-            //     $(this).closest('tr').after(r);
-            //   });
-              //--->current row > clone > end
-          
-              //--->current row > delete > start
               $(document).on('click',".btn_row_delete", function(e)
               {
                 var r = $(this).closest('tr').remove();
