@@ -30,7 +30,7 @@ if (isset($_SESSION['id'])) {
             if ($result->num_rows==1) 
             {
                 $row=$result->fetch_assoc();
-                if($_SESSION['id']!=$row['id'])
+                if($_SESSION['id']!=$row['id'] && $_SESSION['name'] != 'Admin')
                 {
                     header('Location: dashboard.php?error=COURSE NOT FOUND');
                     exit();
@@ -72,26 +72,69 @@ if (isset($_SESSION['id'])) {
 
         <div class="wrapper">
             <!-- Sidebar Holder -->
-            <nav id="sidebar">
-                <ul class="list-unstyled components">
-                    <div class="sidebar-header">
-                        <h3><?php echo $uname; ?></h3>
-                    </div>
-                    <a href="dashboard.php">
-                        <p class="h4">Courses</p>
-                    </a>
-                    <?php
-                    $sql = "SELECT course_name, course_code FROM courses WHERE id=$id";
-                    $result = $conn->query($sql);
-                    while ($row = $result->fetch_assoc()) {
-                    ?>
-                        <li>
-                            <a href="coursetable.php?course=<?php echo $row['course_code']; ?>"><?php echo $row['course_name']; ?></a>
-                        </li>
-                    <?php } ?>
+            <?php if($_SESSION['name']!='Admin')
+            { ?>
+                <nav id="sidebar">
+                    <ul class="list-unstyled components">
+                        <div class="sidebar-header">
+                            <h3><?php echo $uname; ?></h3>
+                        </div>
+                        <a href="dashboard.php">
+                            <p class="h4">Courses</p>
+                        </a>
+                        <?php
+                        $sql = "SELECT course_name, course_code FROM courses WHERE id=$id";
+                        $result = $conn->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                        ?>
+                            <li>
+                                <a href="coursetable.php?course=<?php echo $row['course_code']; ?>"><?php echo $row['course_name']; ?></a>
+                            </li>
+                        <?php } ?>
 
-                </ul>
-            </nav>
+                    </ul>
+                </nav>
+            <?php } else{?>
+                <nav id="sidebar">
+                    <ul class="list-unstyled components">
+                        <div class="sidebar-header">
+                            <h3><?php echo "Admin"; ?></h3>
+                        </div>
+                        <a href="dashboard_admin.php">
+                            <p class="h4">Teachers</p>
+                        </a>
+                        <?php
+                        $sql = "SELECT id,username FROM users";
+                        $result = $conn->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                            if ($row['username'] == "Admin") {
+                                continue;
+                            }
+                        ?>
+                            <li>
+                                <a class="dropdown-btn"><?php echo $row['username']; ?>
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
+                                <ul class="dropdown-container">
+                                    <?php
+                                    $sql1 = "SELECT course_name, course_code FROM courses WHERE id=" . $row['id'];
+                                    $result1 = $conn->query($sql1);
+                                    while ($row1 = $result1->fetch_assoc()) {
+                                    ?>
+                                        <li>
+                                            <a href="coursetable.php?course=<?php echo $row1['course_code']; ?>">
+                                                <?php echo $row1['course_name']; ?>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </nav>
+            <?php } ?>
+
+
 
             <!-- Page Content Holder -->
             <div id="content">
@@ -115,7 +158,14 @@ if (isset($_SESSION['id'])) {
                         <h4 class="h4"><?php echo "Course: " . $cn ?></h4>
 
                         <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                            <a type="button" class="btn btn-outline-secondary" href="edit.php?course=<?php echo $cd ?>">Edit</a>
+                            <a type="button" class="btn btn-outline-secondary" href=<?php
+                            if ($_SESSION['name'] == 'Admin') {
+                                echo "edit_admin.php?course=".$cd;
+                            }
+                            else{
+                                echo "edit.php?course=".$cd;
+                            } ?>
+                            >Edit</a>
                             <a type="button" class="btn btn-outline-secondary" target="_blank" href="print.php?course=<?php echo $cd ?>">Print</a>
                         </div>
                     </div>
@@ -245,21 +295,36 @@ if (isset($_SESSION['id'])) {
         require __DIR__ .'/utility/foot_info.php';
         ?>
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#sidebarCollapse').on('click', function() {
-                    $('#sidebar').toggleClass('active');
-                    $(this).toggleClass('active');
-                });
-
-            });
-        </script>
+        
     <?php
 } else {
     header('Location: index.php?error=INVALID REQUEST');
     exit();
 }
     ?>
+
+    <!-- Sidebar script -->
+    <script type="text/javascript">
+            $(document).ready(function() {
+                $("#sidebarCollapse").on("click", function() {
+                    $("#sidebar").toggleClass("active");
+                    $(this).toggleClass("active");
+                });
+            });
+            var dropdown = document.getElementsByClassName("dropdown-btn");
+            var i;
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        </script>
     </body>
 
     </html>
