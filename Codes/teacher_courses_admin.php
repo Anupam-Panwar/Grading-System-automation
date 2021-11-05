@@ -62,7 +62,9 @@ if (isset($_SESSION['id'])) {
                             }
                         ?>
                             <li>
-                                <a class="dropdown-btn"><?php echo $row['username']; ?></a>
+                                <a class="dropdown-btn"><?php echo $row['username']; ?>
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
                                 <ul class="dropdown-container">
                                     <?php
                                     $sql1 = "SELECT course_name, course_code FROM courses WHERE id=" . $row['id'];
@@ -103,7 +105,7 @@ if (isset($_SESSION['id'])) {
                     while ($row = $result->fetch_assoc()) {
                     ?>
                         <div class="col">
-                                <div class="card h-100">
+                                <div class="card h-100 d-flex">
                                     <a href="coursetable.php?course=<?php echo $row['course_code']; ?>">
                                         <img src="images/img<?php echo $i ?>.jpg" class="card-img-top" alt="Course Image">
                                         <div class="card-body">
@@ -111,7 +113,7 @@ if (isset($_SESSION['id'])) {
                                             <p class="card-text"><?php echo $row['course_code'] ?><?php echo " | ".$row['batch'] ?></p>
                                         </div>
                                     </a>
-                                    <div class="button mt-2 d-flex flex-row align-items-center p-2"> 
+                                    <div class="button mt-2 d-flex flex-row align-items-center p-2 card-bottom"> 
                                         <button class="btn btn-sm btn-outline-primary w-100">Edit</button> 
                                         <button class="btn btn-sm btn-primary w-100 ml-2" type="button" data-bs-toggle="modal" data-bs-target="#delete">Delete</button> 
                                     </div>
@@ -188,14 +190,29 @@ if (isset($_SESSION['id'])) {
     require __DIR__ .'/utility/foot_info.php';
     ?>
 
+
+    <!-- Sidebar script -->
     <script type="text/javascript">
-        $(document).ready(function() {
-            $("#sidebarCollapse").on("click", function() {
-                $("#sidebar").toggleClass("active");
-                $(this).toggleClass("active");
+            $(document).ready(function() {
+                $("#sidebarCollapse").on("click", function() {
+                    $("#sidebar").toggleClass("active");
+                    $(this).toggleClass("active");
+                });
             });
-        });
-    </script>
+            var dropdown = document.getElementsByClassName("dropdown-btn");
+            var i;
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        </script>
 
     </body>
 

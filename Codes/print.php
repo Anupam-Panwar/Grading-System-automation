@@ -33,7 +33,7 @@ if (isset($_SESSION['id'])) {
             if ($result->num_rows==1) 
             {
                 $row=$result->fetch_assoc();
-                if($_SESSION['id']!=$row['id'])
+                if($_SESSION['id']!=$row['id'] && $_SESSION['name'] != 'Admin')
                 {
                     header('Location: dashboard.php?error=COURSE NOT FOUND');
                     exit();
@@ -52,7 +52,7 @@ if (isset($_SESSION['id'])) {
         <title>Print : <?php echo $cd; ?></title>
     </head>
 
-    <body>
+    <body onload=window.print()>
 
 
         <!-- navbar -->

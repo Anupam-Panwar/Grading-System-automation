@@ -116,13 +116,13 @@
                                 <a href="teacher_courses_admin.php?id=<?php echo $row['id']; ?>">
                                     <div class="container mt-4 d-flex justify-content-center card h-100 ps-3">
                                         <div class="d-flex align-items-center">
-                                            <img src="images/generic_image.png" class="rounded" width="150" alt="Teacher Image">
+                                            <img src="images/generic_image.png" class="rounded" width="35%"alt="Teacher Image">
                                             <div class="ms-3 w-auto">
                                                 <h4 class="mb-0 mt-0 text-break"><?php echo $row['username']?></h4> <span><?php echo $row['email'] ?></span><br>
                                                 <span>Courses: <?php echo $course_count ?></span>
                                                 <div class="button mt-2 d-flex flex-row align-items-center">
-                                                    <button class="btn btn-sm btn-outline-primary w-auto px-3">Edit</button>
-                                                    <button class="btn btn-sm btn-primary ms-1 w-auto px-3">Delete</button>
+                                                    <button class="btn btn-sm btn-outline-primary w-auto px-3" onclick="location.href='www.google.com';" style="z-index:2">Edit</button>
+                                                    <button class="btn btn-sm btn-primary ms-1 w-auto px-3" onclick="location.href='www.google.com';" style="z-index:2">Delete</button>
                                                 </div>
                                             </div>
                                         </div>
