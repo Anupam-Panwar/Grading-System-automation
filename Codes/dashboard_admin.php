@@ -64,7 +64,9 @@
                             }
                         ?>
                             <li>
-                                <a class="dropdown-btn"><?php echo $row['username']; ?></a>
+                                <a class="dropdown-btn"><?php echo $row['username']; ?>
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
                                 <ul class="dropdown-container">
                                     <?php
                                     $sql1 = "SELECT course_name, course_code FROM courses WHERE id=" . $row['id'];
@@ -97,38 +99,37 @@
                             <span class="btn-close closebtn" onclick="this.parentElement.style.display='none';" aria-label="Close"></span>
                         </div>
                     <?php } ?>
-                    <div class="row row-cols-1 row-cols-md-5 g-4">
+                    <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4">
                         <?php
-                        $sql = "SELECT id,username FROM users";
+                        $sql = "SELECT id, username, email FROM users";
                         $result = $conn->query($sql);
                         $i = 1;
                         while ($row = $result->fetch_assoc()) {
                             if ($row['username'] == "Admin") {
                                 continue;
                             }
+                            $sql1 = "SELECT course_code FROM courses WHERE id=" . $row['id'];
+                            $result1 = $conn->query($sql1);
+                            $course_count = $result1->num_rows;
                         ?>
                             <div class="col">
                                 <a href="teacher_courses_admin.php?id=<?php echo $row['id']; ?>">
-                                    <div class="card h-100">
-                                        <img src="images/img<?php echo $i ?>.jpg" class="card-img-top" alt="Course Image">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?php echo $row['username'] ?></h5>
-                                            <?php
-                                            $sql1 = "SELECT course_code FROM courses WHERE id=" . $row['id'];
-                                            $result1 = $conn->query($sql1);
-                                            $courseno = $result1->num_rows;
-                                            ?>
-                                            <p class="card-text">Courses: <?php echo $courseno ?></p>
+                                    <div class="container mt-4 d-flex justify-content-center card h-100 ps-3">
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/generic_image.png" class="rounded" width="150" alt="Teacher Image">
+                                            <div class="ms-3 w-auto">
+                                                <h4 class="mb-0 mt-0 text-break"><?php echo $row['username']?></h4> <span><?php echo $row['email'] ?></span><br>
+                                                <span>Courses: <?php echo $course_count ?></span>
+                                                <div class="button mt-2 d-flex flex-row align-items-center">
+                                                    <button class="btn btn-sm btn-outline-primary w-auto px-3">Edit</button>
+                                                    <button class="btn btn-sm btn-primary ms-1 w-auto px-3">Delete</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                        <?php
-                            if ($i == 11) {
-                                $i = 0;
-                            }
-                            $i++;
-                        } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

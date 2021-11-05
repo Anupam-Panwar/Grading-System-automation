@@ -148,6 +148,11 @@ ul.CTAs a {
   margin-bottom: 5px;
 }
 
+.fa-caret-down {
+  float: right;
+  margin-top: 5px;
+}
+
 /* ---------------------------------------------------
     Grade Window
 ----------------------------------------------------- */
