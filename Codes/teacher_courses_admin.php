@@ -113,7 +113,7 @@ if (isset($_SESSION['id'])) {
                                             <p class="card-text"><?php echo $row['course_code'] ?><?php echo " | ".$row['batch'] ?></p>
                                         </div>
                                     </a>
-                                    <div class="button mt-2 d-flex flex-row align-items-center p-2 card-bottom"> 
+                                    <div class="button mt-2 d-flex flex-row align-items-center p-2"> 
                                         <button class="btn btn-sm btn-outline-primary w-100">Edit</button> 
                                         <button class="btn btn-sm btn-primary w-100 ml-2" type="button" data-bs-toggle="modal" data-bs-target="#delete">Delete</button> 
                                     </div>
