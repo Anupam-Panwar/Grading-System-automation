@@ -113,21 +113,22 @@
                             $course_count = $result1->num_rows;
                         ?>
                             <div class="col">
-                                <a href="teacher_courses_admin.php?id=<?php echo $row['id']; ?>">
+                                <span>
                                     <div class="container mt-4 d-flex justify-content-center card h-100 ps-3">
                                         <div class="d-flex align-items-center">
-                                            <img src="images/generic_image.png" class="rounded" width="35%"alt="Teacher Image">
+                                            <img src="images/generic_image.png" class="rounded" width="35%"alt="Teacher Image" onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">
                                             <div class="ms-3 w-auto">
-                                                <h4 class="mb-0 mt-0 text-break"><?php echo $row['username']?></h4> <span><?php echo $row['email'] ?></span><br>
-                                                <span>Courses: <?php echo $course_count ?></span>
+                                                <h4 class="mb-0 mt-0 text-break" onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['username']?></h4> <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['email'] ?></span><br>
+                                                <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">Courses: <?php echo $course_count ?></span>
+                                                </span>
                                                 <div class="button mt-2 d-flex flex-row align-items-center">
-                                                    <button class="btn btn-sm btn-outline-primary w-auto px-3" onclick="location.href='www.google.com';" style="z-index:2">Edit</button>
-                                                    <button class="btn btn-sm btn-primary ms-1 w-auto px-3" onclick="location.href='www.google.com';" style="z-index:2">Delete</button>
+                                                    <a class="btn btn-sm btn-outline-primary w-auto px-3" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
+                                                    <a class="btn btn-sm btn-primary ms-1 w-auto px-3"  data-bs-toggle="modal" data-bs-target="#delete">Delete</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                
                             </div>
                         <?php } ?>
                     </div>
@@ -166,6 +167,43 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal for delete -->
+            <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
+            <!-- Modal for Edit -->
+            <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
         <?php
     } else {
         header('Location: index.php?error=INVALID USER');
@@ -182,7 +220,7 @@
                 $("#sidebarCollapse").on("click", function() {
                     $("#sidebar").toggleClass("active");
                     $(this).toggleClass("active");
-                });
+                });                
             });
             var dropdown = document.getElementsByClassName("dropdown-btn");
             var i;
@@ -197,8 +235,11 @@
                     }
                 });
             }
+        
         </script>
 
+            
+        
         </body>
 
         </html>

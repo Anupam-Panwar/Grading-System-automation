@@ -272,15 +272,14 @@ ul.CTAs a {
 ----------------------------------------------------- */
 .card {
   transition: all 0.5s ease;
+  justify-content: space-between;
 }
 
 .card:hover {
   transform: scale(1.03);
 }
 
-.card-bottom{
-  
-}
+
 
 /* ---------------------------------------------------
     Plus icon in Admin dashboard 
