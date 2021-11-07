@@ -11,7 +11,7 @@
             if ($result->num_rows==1) 
             {
                 $row=$result->fetch_assoc();
-                if($_SESSION['id']!=$row['id'])
+                if($_SESSION['id']!=$row['id']  && $_SESSION['name']!='Admin')
                 {
                     header('Location: dashboard.php?error=COURSE NOT FOUND');
                     exit();
