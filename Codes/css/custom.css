@@ -6,6 +6,8 @@
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
+  max-height: 100vh !important;
+  overflow-y: scroll;
 }
 
 p {
@@ -59,8 +61,8 @@ a:focus {
 
 #sidebar {
   font-size: medium;
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 300px;
+  max-width: 300px; 
   background: #212529;
   color: #fff;
   transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
@@ -70,6 +72,8 @@ a:focus {
 #sidebar.active {
   margin-left: -250px;
   transform: rotateY(100deg);
+  height:100vh;
+  overflow-y: scroll;
 }
 
 #sidebar .sidebar-header {
@@ -171,8 +175,8 @@ ul.CTAs a {
 ----------------------------------------------------- */
 #content {
   width: 100%;
+  min-height: 93vh;
   padding: 20px;
-  min-height: 100vh;
   transition: all 0.3s;
 }
 
@@ -285,25 +289,22 @@ ul.CTAs a {
     Plus icon in Admin dashboard 
 ----------------------------------------------------- */
 #addIcon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	position: fixed;
-	width:10vh;
-	height:10vh;
-    right: 3vw;
-    bottom: 7vh;
-    z-index: 10;
+	position: fixed !important; 
+	width:8vh;
+	height:8vh;
+  right: 3vw;
+  bottom: 7vh;
+  z-index: 10;
 	background-color:black;
-    border: 2px solid #917472;
+  border: 2px solid #917472;
 	color:#FFF;
 	border-radius:50%;
 	box-shadow: 2px 2px 3px #999;
 }
 
 #addIcon:hover{
-    background-color:#FFF;
-    color:black;
-    transform: scale(1.03);
-    cursor: pointer;
+  background-color:#FFF;
+  color:black;
+  transform: scale(1.03);
+  cursor: pointer;
 }

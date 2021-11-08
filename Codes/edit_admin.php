@@ -259,13 +259,17 @@ if (isset($_SESSION['id'])) {
               $(document).on('click',".btn_row_add_below_end", function(e)
               {
                 $(".tbl_code_with_mark tbody").append('<tr><td class="sno" style="font-weight:bold">1</td><td><input class="rollno" name="roll[]" value="" style="font-weight:bold"></input></td><td><input class="name" name="name[]" value=""></input></td><!-- <td><strong>""</strong></td> --><td><input class="classtest" name="ct1[]" value=""></input></td><td><input class="classtest" name="ct2[]" value=""></input></td><td><input class="classtest" name="ct3[]" value=""></input></td><td><input class="classtest" name="ct4[]" value=""></input></td><td><input class="marks" name="mt1[]" value=""></input></td><td><input class="marks" name="mt2[]" value=""></input></td><td></td><td><input class="marks" name="endterm[]" value=""></input></td><td></td><td></td><td style="display:flex; flex-direction: row;   "><span style="width:2rem;"class="btn btn-sm btn-danger btn_row_delete"><i class="fas fa-trash"></i></span></td></tr>');
-                var rowCount = $('.tbl_code_with_mark tbody tr').length;
+                let rowCount = $('.tbl_code_with_mark tbody tr').length;
                 $(".tbl_code_with_mark tbody tr:last td:first").text(rowCount)   
 
               });
               $(document).on('click',".btn_row_delete", function(e)
-              {
+              { 
+                let rowCount = $('.tbl_code_with_mark tbody tr').length;
                 var r = $(this).closest('tr').remove();
+                for(var i=1; i<=rowCount; i++){
+                    $(".tbl_code_with_mark tbody tr:nth-child("+i+") td:first").text(i)   
+                }
               });
               //--->current row > delete > end
               

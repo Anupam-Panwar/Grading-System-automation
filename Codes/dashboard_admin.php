@@ -88,9 +88,6 @@
                 <!-- Page Content Holder -->
 
                 <div id="content">
-                    <button type="button" id="addIcon" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fa fa-plus"></i>
-                    </button>
                     <?php
                     if (isset($_GET['error'])) {
                     ?>
@@ -204,6 +201,9 @@
                 </div>
             </div>
             </div>
+            <button type="button" id="addIcon" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fa fa-plus"></i>
+            </button>
         <?php
     } else {
         header('Location: index.php?error=INVALID USER');
