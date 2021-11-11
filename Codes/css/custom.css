@@ -73,7 +73,6 @@ a:focus {
 
 #sidebar.active {
   margin-left: -300px;
-  transform: rotateY(180deg);
   height:100vh;
   overflow-y: scroll;
 }
@@ -221,7 +220,6 @@ ul.CTAs a {
 @media (max-width: 10000px) {
   #sidebar {
     margin-left: -300px;
-    transform: rotateY(180deg);
   }
   #sidebar.active {
     margin-left: 0;

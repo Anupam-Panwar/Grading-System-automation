@@ -27,8 +27,6 @@
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-            <!-- jQuery -->
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         </head>
 
         <body>
@@ -138,7 +136,7 @@
         <div class="modal fade" id="new_user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form>
+                    <form action="insert_user.php" method="post">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Add New teacher</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -146,15 +144,15 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required>
+                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email id</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" required>
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="checkbox">
@@ -177,16 +175,16 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <h5 class="modal-title" id="modalTitleDelete"></h5>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-danger">Yes</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteUser()">Yes</button>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Modal for Edit -->
         <div class="modal fade" id="edit_user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -199,25 +197,25 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required>
+                                <input type="text" class="form-control" id="editName" name="name" aria-describedby="emailHelp" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email id</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" id="editEmail" name="email" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" required>
+                                <input type="password" class="form-control" id="editPassword" name="password" required>
                             </div>
                             <div class="mb-3 form-check">
-                                <input  type="checkbox" class="form-check-input" id="checkbox">
+                                <input type="checkbox" class="form-check-input" id="checkbox">
                                 <label class="form-check-label" for="exampleCheck1">Show Password</label>
                             </div>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary" onclick="updateUser()">Update</button>
                         </div>
                     </form>
                 </div>
@@ -245,52 +243,101 @@
                 $("#sidebar").toggleClass("active");
                 $(this).toggleClass("active");
             });
-        
-        var dropdown = document.getElementsByClassName("dropdown-btn");
-        var i;
-        for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent.style.display === "block") {
-                    dropdownContent.style.display = "none";
-                } else {
-                    dropdownContent.style.display = "block";
-                }
+
+            var dropdown = document.getElementsByClassName("dropdown-btn");
+            var i;
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+            $("#edit_user #checkbox").change(function() {
+                $(this).prop("checked") ? $("#edit_user #editPassword").prop("type", "text") : $("#edit_user #editPassword").prop("type", "password");
             });
-        }
-        $("#edit_user #checkbox").change(function(){
-            $(this).prop("checked") ?  $("#edit_user #password").prop("type", "text") : $("#edit_user #password").prop("type", "password");    
+            $("#new_user #checkbox").change(function() {
+                $(this).prop("checked") ? $("#new_user #password").prop("type", "text") : $("#new_user #password").prop("type", "password");
+            });
+            var delete_user = document.getElementById('delete')
+            delete_user.addEventListener('show.bs.modal', function(event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                var recipient = button.getAttribute('data-bs-whatever')
+                $.ajax({
+                    type: 'post',
+                    url: 'ajax.php',
+                    data: {
+                        ajax: 1,
+                        id: recipient
+                    },
+                    success: (response) => {
+                        let result = JSON.parse(response);
+                        $('#modalTitleDelete').text('Do you really want to delete User : ' + result["name"]);
+                    }
+                });
+                deleteUser = () => {
+                    $.ajax({
+                        type: 'post',
+                        url: 'ajax.php',
+                        data: {
+                            ajax: 2,
+                            id: recipient
+                        },
+                        success: (response) => {
+                            window.location.href = "dashboard_admin.php?error=Successfully Deleted User";
+                        }
+                    });
+                }
+
+            })
+
+            var edit_user = document.getElementById('edit_user')
+            edit_user.addEventListener('show.bs.modal', function(event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                var recipient = button.getAttribute('data-bs-whatever')
+                $.ajax({
+                    type: 'post',
+                    url: 'ajax.php',
+                    data: {
+                        ajax: 3,
+                        id: recipient
+                    },
+                    success: (response) => {
+                        let result = JSON.parse(response);
+                        $('#edit_user #editName').val(result["name"]);
+                        $('#edit_user #editEmail').val(result["email"]);
+                        $('#edit_user #editPassword').val(result["password"]);
+                    }
+                });
+                updateUser = () => {
+                    let name = $('#edit_user #editName').val();
+                    let email = $('#edit_user #editEmail').val();
+                    let password = $('#edit_user #editPassword').val();
+                    $.ajax({
+                        type: 'post',
+                        url: 'ajax.php',
+                        data: {
+                            ajax: 4,
+                            id: recipient,
+                            name: name,
+                            email: email,
+                            password: password
+                        },
+                        success: (response) => {
+                            window.location.href = "dashboard_admin.php?error=Successfully Updated User";
+                        }
+                    });
+                }
+            })
         });
-
-        var delete_user = document.getElementById('delete')
-        delete_user.addEventListener('show.bs.modal', function(event) {
-            // Button that triggered the modal
-            var button = event.relatedTarget
-            // Extract info from data-bs-* attributes
-            var recipient = button.getAttribute('data-bs-whatever')
-            // If necessary, you could initiate an AJAX request here
-            // and then do the updating in a callback.
-            //
-            // Update the modal's content.
-            var modalTitle = delete_user.querySelector('.modal-title')
-            modalTitle.textContent = 'Do you really want to delete ' + recipient
-        })
-
-        var edit_user = document.getElementById('edit_user')
-        edit_user.addEventListener('show.bs.modal', function(event) {
-            // Button that triggered the modal
-            var button = event.relatedTarget
-            // Extract info from data-bs-* attributes
-            var recipient = button.getAttribute('data-bs-whatever')
-            // If necessary, you could initiate an AJAX request here
-            // and then do the updating in a callback.
-            //
-            // Update the modal's content.
-            var modalBodyInput = edit_user.querySelector('.modal-body input')
-            modalBodyInput.value = recipient
-        })
-    });
     </script>
 
 
