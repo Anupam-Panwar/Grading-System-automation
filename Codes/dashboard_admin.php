@@ -26,6 +26,9 @@
             <!-- Font Awesome JS -->
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+            <!-- jQuery -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         </head>
 
         <body>
@@ -119,8 +122,8 @@
                                                 <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">Courses: <?php echo $course_count ?></span>
                                 </span>
                                 <div class="button mt-2 d-flex flex-row align-items-center">
-                                    <a class="btn btn-sm btn-outline-primary w-auto px-3" data-bs-toggle="modal" data-bs-target="#edit_user" data-bs-whatever="<?php echo $row['username'] ?>">Edit</a>
-                                    <a class="btn btn-sm btn-primary ms-1 w-auto px-3" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="<?php echo $row['username'] ?>">Delete</a>
+                                    <a class="btn btn-sm btn-outline-primary w-auto px-3" data-bs-toggle="modal" data-bs-target="#edit_user" data-bs-whatever="<?php echo $row['id'] ?>">Edit</a>
+                                    <a class="btn btn-sm btn-primary ms-1 w-auto px-3" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="<?php echo $row['id'] ?>">Delete</a>
                                 </div>
                             </div>
                     </div>
@@ -155,7 +158,7 @@
                             </div>
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="checkbox">
-                                <label class="form-check-label" for="exampleCheck1">Show Password</label>
+                                <label class="form-check-label" for="checkbox">Show Password</label>
                             </div>
                         </div>
 
@@ -207,7 +210,7 @@
                                 <input type="password" class="form-control" id="password" required>
                             </div>
                             <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="checkbox">
+                                <input  type="checkbox" class="form-check-input" id="checkbox">
                                 <label class="form-check-label" for="exampleCheck1">Show Password</label>
                             </div>
                         </div>
@@ -242,7 +245,7 @@
                 $("#sidebar").toggleClass("active");
                 $(this).toggleClass("active");
             });
-        });
+        
         var dropdown = document.getElementsByClassName("dropdown-btn");
         var i;
         for (i = 0; i < dropdown.length; i++) {
@@ -256,6 +259,9 @@
                 }
             });
         }
+        $("#edit_user #checkbox").change(function(){
+            $(this).prop("checked") ?  $("#edit_user #password").prop("type", "text") : $("#edit_user #password").prop("type", "password");    
+        });
 
         var delete_user = document.getElementById('delete')
         delete_user.addEventListener('show.bs.modal', function(event) {
@@ -284,6 +290,7 @@
             var modalBodyInput = edit_user.querySelector('.modal-body input')
             modalBodyInput.value = recipient
         })
+    });
     </script>
 
 
