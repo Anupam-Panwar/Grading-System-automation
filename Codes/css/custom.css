@@ -57,6 +57,8 @@ a:focus {
   width: 100%;
   align-items: stretch;
   perspective: 1500px;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 #sidebar {
@@ -65,13 +67,13 @@ a:focus {
   max-width: 300px; 
   background: #212529;
   color: #fff;
-  transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  transition: all 0.6s ease-in-out;
   transform-origin: bottom left;
 }
 
 #sidebar.active {
-  margin-left: -250px;
-  transform: rotateY(100deg);
+  margin-left: -300px;
+  transform: rotateY(180deg);
   height:100vh;
   overflow-y: scroll;
 }
@@ -218,7 +220,7 @@ ul.CTAs a {
 ----------------------------------------------------- */
 @media (max-width: 10000px) {
   #sidebar {
-    margin-left: -250px;
+    margin-left: -300px;
     transform: rotateY(180deg);
   }
   #sidebar.active {
