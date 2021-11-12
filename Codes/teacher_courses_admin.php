@@ -115,7 +115,7 @@ if (isset($_SESSION['id'])) {
                                 </a>
                                 <div class="button mt-2 d-flex flex-row align-items-center p-2">
                                     <button class="btn btn-sm btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#edit_course" data-bs-whatever="<?php echo $row['course_code'] ?>">Edit</button>
-                                    <button class="btn btn-sm btn-primary w-100 ml-2" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="<?php echo $row['course_name'] ?>">Delete</button>
+                                    <button class="btn btn-sm btn-primary w-100 ml-2" data-bs-toggle="modal" data-bs-target="#delete_course" data-bs-whatever="<?php echo $row['course_code'] ?>">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -132,23 +132,27 @@ if (isset($_SESSION['id'])) {
         <div class="modal fade" id="new_course" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form>
+                    <form action="insert_course.php?id=<?php echo $id?>" id="add_form" method="post">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add New Course</h5>
+                            <h5 class="modal-title" id="modalTitleAdd">Add New Course</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Course Name</label>
-                                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required>
+                                <input type="text" class="form-control" id="name" name="course_name" aria-describedby="emailHelp" required>
                             </div>
                             <div class="mb-3">
                                 <label for="code" class="form-label">Course Code</label>
-                                <input type="text" class="form-control" id="code" required>
+                                <input type="text" class="form-control" id="code" name="code" required>
                             </div>
                             <div class="mb-3">
                                 <label for="year" class="form-label">Year</label>
-                                <input type="number" class="form-control" id="year" required>
+                                <input type="number" class="form-control" id="year" name="year" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="semester" class="form-label">Semester</label>
+                                <input type="text" class="form-control" id="semester" name="semester" required>
                             </div>
                         </div>
 
@@ -163,15 +167,15 @@ if (isset($_SESSION['id'])) {
         </div>
 
         <!-- Modal for delete -->
-        <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="delete_course" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <h5 class="modal-title" id="modalTitleDelete"></h5>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-danger">Yes</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteCourse()">Yes</button>
                     </div>
                 </div>
             </div>
@@ -181,7 +185,7 @@ if (isset($_SESSION['id'])) {
         <div class="modal fade" id="edit_course" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                <form>
+                <form onsubmit="return false">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Update Course</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -189,21 +193,25 @@ if (isset($_SESSION['id'])) {
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Course Name</label>
-                                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required>
+                                <input type="text" class="form-control" id="editCourseName" required>
                             </div>
                             <div class="mb-3">
                                 <label for="code" class="form-label">Course Code</label>
-                                <input type="text" class="form-control" id="code" required>
+                                <input type="text" class="form-control" id="editCode" required>
                             </div>
                             <div class="mb-3">
                                 <label for="year" class="form-label">Year</label>
-                                <input type="number" class="form-control" id="year" required>
+                                <input type="number" class="form-control" id="editYear" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="semester" class="form-label">Semester</label>
+                                <input type="text" class="form-control" id="editSemester" required>
                             </div>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary" onclick="updateCourse()">Update</button>
                         </div>
                     </form>
                 </div>
@@ -229,7 +237,6 @@ if (isset($_SESSION['id'])) {
                 $("#sidebar").toggleClass("active");
                 $(this).toggleClass("active");
             });
-        });
         var dropdown = document.getElementsByClassName("dropdown-btn");
         var i;
         for (i = 0; i < dropdown.length; i++) {
@@ -243,19 +250,47 @@ if (isset($_SESSION['id'])) {
                 }
             });
         }
-
-        var delete_course = document.getElementById('delete')
+        
+        
+        
+        var delete_course = document.getElementById('delete_course')
         delete_course.addEventListener('show.bs.modal', function(event) {
             // Button that triggered the modal
             var button = event.relatedTarget
             // Extract info from data-bs-* attributes
             var recipient = button.getAttribute('data-bs-whatever')
+
+            var url = window.location.href; 
+            var captured = /id=([^&]+)/.exec(url)[1]; 
+            var param = captured ? captured : None;
             // If necessary, you could initiate an AJAX request here
             // and then do the updating in a callback.
-            //
-            // Update the modal's content.
-            var modalTitle = delete_course.querySelector('.modal-title')
-            modalTitle.textContent = 'Do you really want to delete ' + recipient
+            $.ajax({
+                    type: 'post',
+                    url: 'ajax.php',
+                    data: {
+                        ajax: 5,
+                        id: recipient
+                    },
+                    success: (response) => {
+                        let result = JSON.parse(response);
+                        $('#modalTitleDelete').text('Do you really want to delete User : ' + result["course_name"]);
+                    }
+                });
+            deleteCourse = () => {
+                $.ajax({
+                    type: 'post',
+                    url: 'ajax.php',
+                    data: {
+                        ajax: 6,
+                        id: recipient
+                    },
+                    success: (response) => {
+                        window.location.href = "teacher_courses_admin.php?error=Successfully Deleted Course&id="+param;
+                    }
+                });
+            }
+            
         })
 
         var edit_course = document.getElementById('edit_course')
@@ -264,13 +299,50 @@ if (isset($_SESSION['id'])) {
             var button = event.relatedTarget
             // Extract info from data-bs-* attributes
             var recipient = button.getAttribute('data-bs-whatever')
-            // If necessary, you could initiate an AJAX request here
-            // and then do the updating in a callback.
-            //
-            // Update the modal's content.
-            var modalBodyInput = edit_course.querySelector('#code')
-            modalBodyInput.value = recipient
+
+            var url = window.location.href; 
+            var captured = /id=([^&]+)/.exec(url)[1]; 
+            var param = captured ? captured : None;
+
+            $.ajax({
+                    type: 'POST',
+                    url: 'ajax.php',
+                    data: {
+                        ajax: 7,
+                        id: recipient
+                    },
+                    success: (response) => {
+                        var result = JSON.parse(response);
+                        $('#edit_course #editCourseName').val(result["course_name"]);
+                        $('#edit_course #editCode').val(result["course_code"]);
+                        $('#edit_course #editYear').val(result["year"]);
+                        $('#edit_course #editSemester').val(result["semester"]);
+                    }
+            });
+            updateCourse = () => {
+                let course_name = $('#edit_course #editCourseName').val();
+                let course_code = $('#edit_course #editCode').val();
+                let year = $('#edit_course #editYear').val();
+                let semester = $('#edit_course #editSemester').val();
+                $.ajax({
+                    type: 'POST',
+                    url: 'ajax.php',
+                    data: {
+                        ajax: 8,
+                        id: recipient,
+                        course_code: course_code,
+                        course_name: course_name,
+                        year: year,
+                        semester: semester
+                    },
+                    success: (response) => {
+                        console.log(response);
+                        window.location.href = "teacher_courses_admin.php?error=Successfully Updated Course&id="+param;
+                    }
+                });
+            }
         })
+    });
     </script>
 
     </body>
