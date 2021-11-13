@@ -194,26 +194,28 @@ if (isset($_SESSION['id'])) {
                                     <th></th>
                                     <th></th>
                                     <?php
-                                    $sql = "SELECT * FROM controlsheet WHERE course_code='$cd'";
+                                    $sql = "SELECT * FROM courses WHERE course_code='$cd'";
                                     $result = $conn->query($sql);
                                     if ($row = $result->fetch_assoc()) {
                                     ?>
                                         <th>Maximum Marks🠖</th>
-                                        <th><?php echo $row['class_test_1']; ?></th>
-                                        <th><?php echo $row['class_test_2']; ?></th>
-                                        <th><?php echo $row['class_test_3']; ?></th>
-                                        <th><?php echo $row['class_test_4']; ?></th>
-                                        <th><?php echo $row['mid_term_1']; ?></th>
-                                        <th><?php echo $row['mid_term_2']; ?></th>
-                                        <th><?php echo $row['total_assessment']; ?></th>
-                                        <th><?php echo $row['end_term']; ?></th>
-                                        <th><?php echo $row['total_marks']; ?></th>
-                                        <th><?php echo $row['grade']; ?></th>
+                                        <th><?php echo $row['mct1']; ?></th>
+                                        <th><?php echo $row['mct2']; ?></th>
+                                        <th><?php echo $row['mct3']; ?></th>
+                                        <th><?php echo $row['mct4']; ?></th>
+                                        <th><?php echo $row['mmt1']; ?></th>
+                                        <th><?php echo $row['mmt2']; ?></th>
+                                        <th><?php echo $row['mta']; ?></th>
+                                        <th><?php echo $row['met']; ?></th>
+                                        <th><?php echo $row['mt']; ?></th>
+                                        <th></th>
                                     <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                $sql = "SELECT * FROM controlsheet WHERE course_code='$cd'";
+                                $result = $conn->query($sql);
                                 $i = 1;
                                 while ($row = $result->fetch_assoc()) { ?>
                                     <tr>

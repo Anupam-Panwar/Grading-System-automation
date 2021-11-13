@@ -117,5 +117,28 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
             exit();
         }
     }
+    else if($_POST['ajax'] == '9')
+    {
+        $rn = $_POST['id'];
+        $cd = $_POST['cd'];
+        if($rn)
+        {
+            $sql1 = "DELETE FROM controlsheet WHERE course_code='$cd' AND roll_no='$rn'";
+            if ($conn->query($sql1) !== TRUE)
+            {
+                echo $conn->error;
+                exit();
+            }
+            else
+            { 
+                echo "ho gaya guys";
+                exit();
+            }
+        }
+        else
+        {
+            echo "done";
+        }
+    }
 }
 require_once __DIR__ . '/connection/disconnect.php';

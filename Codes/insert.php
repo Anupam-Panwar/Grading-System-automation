@@ -46,8 +46,8 @@
             }
             if($mta<=100 && $met==$_POST['met'])
             {
-                $sql="UPDATE controlsheet SET class_test_1=".$_POST['mct1'].", class_test_2=".$_POST['mct2'].", class_test_3=".$_POST['mct3'].", class_test_4=".$_POST['mct4'].", 
-                mid_term_1=".$_POST['mmt1'].", mid_term_2=".$_POST['mmt2'].", total_assessment=".$mta.", end_term=".$met." WHERE course_code='$cd' AND name='Maximum Marks'";
+                $sql="UPDATE courses SET mct1=".$_POST['mct1'].", mct2=".$_POST['mct2'].", mct3=".$_POST['mct3'].", mct4=".$_POST['mct4'].", 
+                mmt1=".$_POST['mmt1'].", mmt2=".$_POST['mmt2'].", mta=".$mta.", met=".$met." WHERE course_code='$cd'";
                 if($conn->query($sql) !== TRUE)
                 {
                     header('Location: edit.php?course='.$cd.'&error=ERROR UPDATING RECORD');
@@ -57,7 +57,7 @@
             else
             {
                 //Total assessment marks >100 OR endterm marks + total assessment marks != 100!!
-                header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : End term marks + total assessment marks exceed 100');
+                header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : End term marks + total assessment marks not equal to 100');
                 exit();
             }
 

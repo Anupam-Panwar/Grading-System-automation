@@ -132,24 +132,26 @@ if (isset($_SESSION['id'])) {
                                         <th>Roll No.</th>
                                         <th>Maximum Marks 🠖</th>
                                         <?php
-                                        $sql = "SELECT * FROM controlsheet WHERE course_code='$cd'";
+                                        $sql = "SELECT * FROM courses WHERE course_code='$cd'";
                                         $result = $conn->query($sql);
                                         if ($row = $result->fetch_assoc()) { ?>
-                                            <th><input class="classtest" name="mct1" value="<?php echo $row['class_test_1']; ?>"></input></th>
-                                            <th><input class="classtest" name="mct2" value="<?php echo $row['class_test_2']; ?>"></input></th>
-                                            <th><input class="classtest" name="mct3" value="<?php echo $row['class_test_3']; ?>"></input></th>
-                                            <th><input class="classtest" name="mct4" value="<?php echo $row['class_test_4']; ?>"></input></th>
-                                            <th><input class="marks" name="mmt1" value="<?php echo $row['mid_term_1']; ?>"></input></th>
-                                            <th><input class="marks" name="mmt2" value="<?php echo $row['mid_term_2']; ?>"></input></th>
-                                            <th><?php echo $row['total_assessment']; ?></th>
-                                            <th><input class="marks" name="met" value="<?php echo $row['end_term']; ?>"></input></th>
-                                            <th><?php echo $row['total_marks']; ?></th>
-                                            <th><?php echo $row['grade']; ?></th>
+                                            <th><input class="classtest" name="mct1" value="<?php echo $row['mct1']; ?>"></input></th>
+                                            <th><input class="classtest" name="mct2" value="<?php echo $row['mct2']; ?>"></input></th>
+                                            <th><input class="classtest" name="mct3" value="<?php echo $row['mct3']; ?>"></input></th>
+                                            <th><input class="classtest" name="mct4" value="<?php echo $row['mct4']; ?>"></input></th>
+                                            <th><input class="marks" name="mmt1" value="<?php echo $row['mmt1']; ?>"></input></th>
+                                            <th><input class="marks" name="mmt2" value="<?php echo $row['mmt2']; ?>"></input></th>
+                                            <th><?php echo $row['mta']; ?></th>
+                                            <th><input class="marks" name="met" value="<?php echo $row['met']; ?>"></input></th>
+                                            <th><?php echo $row['mt']; ?></th>
+                                            <th></th>
                                     </tr>
                                 <?php } ?>
                                 </thead>
                                 <tbody>
                                     <?php
+                                    $sql = "SELECT * FROM controlsheet WHERE course_code='$cd'";
+                                    $result = $conn->query($sql);
                                     $i = 1;
                                     while ($row = $result->fetch_assoc()) { ?>
                                         <tr>

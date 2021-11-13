@@ -86,7 +86,7 @@ if (isset($_SESSION['id'])) {
                     </div>
                 <?php } ?>
                 <main class="col-md-auto ms-sm-3 col-lg-auto px-md-auto">
-                    <form action="insert.php?course=<?php echo $cd; ?>" method="post">
+                    <form action="insert_student.php?course=<?php echo $cd; ?>" method="post">
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <?php
                             $sql = "SELECT course_name, semester, batch FROM courses WHERE course_code='$cd'";
@@ -131,29 +131,31 @@ if (isset($_SESSION['id'])) {
                                         <th>Roll No.</th>
                                         <th>Maximum Marks 🠖</th>
                                         <?php
-                                        $sql = "SELECT * FROM controlsheet WHERE course_code='$cd'";
+                                        $sql = "SELECT * FROM courses WHERE course_code='$cd'";
                                         $result = $conn->query($sql);
                                         if ($row = $result->fetch_assoc()) { ?>
-                                            <th><?php echo $row['class_test_1']; ?></th>
-                                            <th><?php echo $row['class_test_2']; ?></th>
-                                            <th><?php echo $row['class_test_3']; ?></th>
-                                            <th><?php echo $row['class_test_4']; ?></th>
-                                            <th><?php echo $row['mid_term_1']; ?></th>
-                                            <th><?php echo $row['mid_term_2']; ?></th>
-                                            <th><?php echo $row['total_assessment']; ?></th>
-                                            <th><?php echo $row['end_term']; ?></th>
-                                            <th><?php echo $row['total_marks']; ?></th>
-                                            <th><?php echo $row['grade']; ?></th>
+                                            <th><?php echo $row['mct1']; ?></th>
+                                            <th><?php echo $row['mct2']; ?></th>
+                                            <th><?php echo $row['mct3']; ?></th>
+                                            <th><?php echo $row['mct4']; ?></th>
+                                            <th><?php echo $row['mmt1']; ?></th>
+                                            <th><?php echo $row['mmt2']; ?></th>
+                                            <th><?php echo $row['mta']; ?></th>
+                                            <th><?php echo $row['met']; ?></th>
+                                            <th><?php echo $row['mt']; ?></th>
+                                            <th></th>
                                     </tr>
                                 <?php } ?>
                                 </thead>
                                 <tbody>
                                     <?php
+                                    $sql = "SELECT * FROM controlsheet WHERE course_code='$cd'";
+                                    $result = $conn->query($sql);
                                     $i = 1;
                                     while ($row = $result->fetch_assoc()) { ?>
                                         <tr>
                                             <td class='sno' style="font-weight:bold"><?php echo $i++; ?></td>
-                                            <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no']; ?>" style="font-weight:bold"></input></td>
+                                            <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no']; ?>" style="font-weight:bold" readonly></input></td>
                                             <td><input class="name" name="name[]" value="<?php echo $row['name']; ?>"></input></td>
                                             <td><?php echo $row['class_test_1']; ?></td>
                                             <td><?php echo $row['class_test_2']; ?></td>
@@ -167,7 +169,7 @@ if (isset($_SESSION['id'])) {
                                             <td><?php echo $row['grade']; ?></td>
                                             <td style="display:flex; flex-direction: row;   ">
                                                 <!-- new addition <span style="width:8rem;"class="btn btn-sm btn-success btn_row_below_new">Add-New</span> | -->
-                                                <span style="width:2rem;" class="btn btn-sm btn-danger btn_row_delete"><i class="fas fa-trash"></i></span>
+                                                <span style="width:2rem;" class="btn btn-sm btn-danger btn_row_delete" id="<?php echo $row['roll_no']; ?>"><i class="fas fa-trash"></i></span>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -251,7 +253,7 @@ if (isset($_SESSION['id'])) {
             $(document).ready(function($) {
                 //--->add blank row at the end 
                 $(document).on('click', ".btn_row_add_below_end", function(e) {
-                    $(".tbl_code_with_mark tbody").append('<tr><td class="sno" style="font-weight:bold">1</td><td><input class="rollno" name="roll[]" value="" style="font-weight:bold"></input></td><td><input class="name" name="name[]" value=""></input></td><!-- <td><strong>""</strong></td> --><td><input class="classtest" name="ct1[]" value=""></input></td><td><input class="classtest" name="ct2[]" value=""></input></td><td><input class="classtest" name="ct3[]" value=""></input></td><td><input class="classtest" name="ct4[]" value=""></input></td><td><input class="marks" name="mt1[]" value=""></input></td><td><input class="marks" name="mt2[]" value=""></input></td><td></td><td><input class="marks" name="endterm[]" value=""></input></td><td></td><td></td><td style="display:flex; flex-direction: row;   "><span style="width:2rem;"class="btn btn-sm btn-danger btn_row_delete"><i class="fas fa-trash"></i></span></td></tr>');
+                    $(".tbl_code_with_mark tbody").append('<tr><td class="sno" style="font-weight:bold">1</td><td><input class="rollno" name="roll[]" value="" style="font-weight:bold"></input></td><td><input class="name" name="name[]" value=""></input></td><!-- <td><strong>""</strong></td> --><td><input class="classtest" name="ct1[]" value="0"></input></td><td><input class="classtest" name="ct2[]" value="0"></input></td><td><input class="classtest" name="ct3[]" value="0"></input></td><td><input class="classtest" name="ct4[]" value="0"></input></td><td><input class="marks" name="mt1[]" value="0"></input></td><td><input class="marks" name="mt2[]" value="0"></input></td><td></td><td><input class="marks" name="endterm[]" value="0"></input></td><td></td><td></td><td style="display:flex; flex-direction: row;   "><span style="width:2rem;"class="btn btn-sm btn-danger btn_row_delete"><i class="fas fa-trash"></i></span></td></tr>');
                     let rowCount = $('.tbl_code_with_mark tbody tr').length;
                     $(".tbl_code_with_mark tbody tr:last td:first").text(rowCount)
 
@@ -262,6 +264,19 @@ if (isset($_SESSION['id'])) {
                     for (var i = 1; i <= rowCount; i++) {
                         $(".tbl_code_with_mark tbody tr:nth-child(" + i + ") td:first").text(i)
                     }
+                    var rno = this.id;
+                    $.ajax({
+                        type: 'post',
+                        url: 'ajax.php',
+                        data: {
+                            ajax: 9,
+                            id: rno,
+                            cd: "<?php echo $cd ?>"
+                        },
+                        success: (response) => {
+                            console.log(response);
+                        }
+                    });
                 });
                 //--->current row > delete > end
 

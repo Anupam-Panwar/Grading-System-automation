@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2021 at 08:24 PM
+-- Generation Time: Nov 12, 2021 at 08:30 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -48,101 +48,89 @@ CREATE TABLE `controlsheet` (
 --
 
 INSERT INTO `controlsheet` (`course_code`, `roll_no`, `name`, `class_test_1`, `class_test_2`, `class_test_3`, `class_test_4`, `mid_term_1`, `mid_term_2`, `total_assessment`, `end_term`, `total_marks`, `grade`) VALUES
-('CSL-258', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-258', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, 'AA'),
 ('CSL-258', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, 'AA'),
 ('CSL-258', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, 'BB'),
 ('CSL-258', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, 'AB'),
-('CSL-253', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-253', 'BT19CSE002', 'Anupam Panwar', 6, 8, 0, 0, 18, 19, 51, 38, 89, ''),
 ('CSL-253', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 0, 0, 19, 18.5, 56.5, 38, 94.5, ''),
 ('CSL-253', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 19.5, 54.5, 38.5, 93, ''),
 ('CSL-253', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 0, 0, 19, 18.5, 57, 37, 94, ''),
-('CSL-255', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-255', 'BT19CSE002', 'Anupam Panwar', 9, 9, 0, 0, 18, 20, 56, 37, 93, 'AA'),
 ('CSL-255', 'BT19CSE003', 'Neha Dhyani', 9.5, 8.5, 0, 0, 18, 18.5, 54.5, 38.5, 93, 'AA'),
 ('CSL-255', 'BT19CSE011', 'Purvi Goyal', 9, 8.5, 0, 0, 17.5, 19, 54, 38, 92, 'AA'),
 ('CSL-255', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 8.5, 0, 0, 18, 19.5, 56, 36.5, 92.5, 'AA'),
-('CSP-253', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSP-253', 'BT19CSE002', 'Anupam Panwar', 9.5, 8, 0, 0, 18, 19, 54.5, 38, 92.5, 'AA'),
 ('CSP-253', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 0, 0, 19, 18.5, 56.5, 38, 94.5, 'AA'),
 ('CSP-253', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 19.5, 54.5, 38.5, 93, 'AA'),
 ('CSP-253', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 0, 0, 19, 18.5, 57, 37, 94, 'AA'),
-('CSL-251', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 0, 40, 100, ''),
 ('CSL-251', 'BT19CSE002', 'Anupam Panwar', 9, 9, 0, 0, 18, 20, 0, 37, 0, ''),
 ('CSL-251', 'BT19CSE003', 'Neha Dhyani', 9.5, 8.5, 0, 0, 18, 18.5, 0, 38.5, 0, ''),
 ('CSL-251', 'BT19CSE011', 'Purvi Goyal', 9, 8.5, 0, 0, 17.5, 19, 0, 38, 0, ''),
 ('CSL-251', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 8.5, 0, 0, 18, 19.5, 0, 36.5, 0, ''),
-('CSL-252', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 0, 40, 100, ''),
 ('CSL-252', 'BT19CSE002', 'Anupam Panwar', 9.5, 8, 0, 0, 18, 19, 0, 38, 0, 'FF'),
 ('CSL-252', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 0, 0, 19, 18.5, 0, 38, 0, 'FF'),
 ('CSL-252', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 19.5, 0, 38.5, 0, 'FF'),
 ('CSL-252', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 0, 0, 19, 18.5, 0, 37, 0, 'FF'),
-('CSL-257', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-257', 'BT19CSE002', 'Anupam Panwar', 9, 9, 0, 0, 18, 20, 56, 37, 93, ''),
 ('CSL-257', 'BT19CSE003', 'Neha Dhyani', 9.5, 8.5, 0, 0, 18, 18.5, 54.5, 38.5, 93, ''),
 ('CSL-257', 'BT19CSE011', 'Purvi Goyal', 9, 8.5, 0, 0, 17.5, 19, 54, 38, 92, ''),
 ('CSL-257', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 8.5, 0, 0, 18, 19.5, 56, 36.5, 92.5, ''),
-('MEL-151', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 0, 40, 100, ''),
 ('MEL-151', 'BT19CSE002', 'Anupam Panwar', 9, 9, 0, 0, 18, 20, 0, 37, 0, ''),
 ('MEL-151', 'BT19CSE003', 'Neha Dhyani', 9.5, 8.5, 0, 0, 18, 18.5, 0, 38.5, 0, ''),
 ('MEL-151', 'BT19CSE011', 'Purvi Goyal', 9, 8.5, 0, 0, 17.5, 19, 0, 38, 0, ''),
 ('MEL-151', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 8.5, 0, 0, 18, 19.5, 0, 36.5, 0, ''),
-('MEP-151', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 0, 40, 100, ''),
 ('MEP-151', 'BT19CSE002', 'Anupam Panwar', 9.5, 8, 0, 0, 18, 19, 0, 38, 0, ''),
 ('MEP-151', 'BT19CSE003', 'Neha Dhyani', 9.5, 9.5, 0, 0, 19, 18.5, 0, 38, 0, ''),
 ('MEP-151', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 19.5, 0, 38.5, 0, ''),
 ('MEP-151', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 9.5, 0, 0, 19, 18.5, 0, 37, 0, ''),
-('CSL-307', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-307', 'BT19CSE002', 'Anupam Panwar', 10, 10, 0, 0, 10, 10, 40, 10, 50, ''),
 ('CSL-307', 'BT19CSE003', 'Neha Dhyani', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
 ('CSL-307', 'BT19CSE011', 'Purvi Goyal', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
 ('CSL-307', 'BT19CSE020', 'Priyanshu Upadhyay', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
-('CSL-X1', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-X1', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, 'AA'),
 ('CSL-X1', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, 'AA'),
 ('CSL-X1', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, 'BB'),
 ('CSL-X1', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, 'AB'),
-('CSL-X2', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-X2', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, 'AA'),
 ('CSL-X2', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, 'AA'),
 ('CSL-X2', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, 'BB'),
 ('CSL-X2', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, 'AB'),
-('CSL-X3', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-X3', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, 'AA'),
 ('CSL-X3', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, 'AA'),
 ('CSL-X3', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, 'BB'),
 ('CSL-X3', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, 'AB'),
-('CSL-X4', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-X4', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, 'AA'),
 ('CSL-X4', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, 'AA'),
 ('CSL-X4', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, 'BB'),
 ('CSL-X4', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, 'AB'),
-('CSL-X5', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-X5', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, 'AA'),
 ('CSL-X5', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, 'AA'),
 ('CSL-X5', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, 'BB'),
 ('CSL-X5', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, 'AB'),
-('CSL-X6', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-X6', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, 'AA'),
 ('CSL-X6', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, 'AA'),
 ('CSL-X6', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, 'BB'),
 ('CSL-X6', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, 'AB'),
-('CSL-X7', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-X7', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, ''),
 ('CSL-X7', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, ''),
 ('CSL-X7', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, ''),
 ('CSL-X7', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, ''),
-('CSL-X8', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-X8', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, 'AA'),
 ('CSL-X8', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, 'AA'),
 ('CSL-X8', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, 'BB'),
 ('CSL-X8', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, 'AB'),
-('CSL-X9', '', 'Maximum Marks', 10, 10, 0, 0, 20, 20, 60, 40, 100, ''),
 ('CSL-X9', 'BT19CSE002', 'Anupam Panwar', 8, 9, 0, 0, 16, 19, 52, 35, 87, ''),
 ('CSL-X9', 'BT19CSE003', 'Neha Dhyani', 9, 9, 0, 0, 18, 19, 55, 38, 93, ''),
 ('CSL-X9', 'BT19CSE011', 'Purvi Goyal', 8, 5, 0, 0, 12, 14, 39, 30, 69, ''),
-('CSL-X9', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, '');
+('CSL-X9', 'BT19CSE020', 'Priyanshu Upadhyay', 8, 8, 0, 0, 15, 13, 44, 34, 78, ''),
+('CSL-258', 'BT19CSE222', 'Two', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+('CSL-258', 'BT19CSE37647234', 'jdgjsdfjb', 10, 3, 0, 0, 0, 0, 13, 0, 13, ''),
+('rel101', 'BT19CSE002', 'Anupam Panwar', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+('rel101', 'BT19CSE003', 'Neha Dhyani', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+('rel101', 'BT19CSE020', 'Priyanshu Upadhyay', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+('rel101', 'hghfd', 'jdfh', 0, 0, 0, 0, 0, 0, 0, 0, 0, ''),
+('rel101', 'BT19CSE011', 'Purvi Goyal', 0, 0, 0, 0, 0, 0, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -155,33 +143,43 @@ CREATE TABLE `courses` (
   `course_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `course_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `semester` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `batch` varchar(20) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL
+  `batch` varchar(20) CHARACTER SET utf16 COLLATE utf16_bin NOT NULL,
+  `mct1` int(11) DEFAULT NULL,
+  `mct2` int(11) DEFAULT NULL,
+  `mct3` int(11) DEFAULT NULL,
+  `mct4` int(11) DEFAULT NULL,
+  `mmt1` int(11) DEFAULT NULL,
+  `mmt2` int(11) DEFAULT NULL,
+  `mta` int(11) DEFAULT NULL,
+  `met` int(11) DEFAULT NULL,
+  `mt` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `course_name`, `course_code`, `semester`, `batch`) VALUES
-(3, 'Data Structures', 'CSL-251', 'Odd Semester-2020', '2017'),
-(3, 'Operating System', 'CSL-252', 'Odd Semester-2020', '2019'),
-(2, 'Object Oriented Design', 'CSL-253', 'Odd Semester-2020', '2020'),
-(1, 'Computer Networks', 'CSL-255', 'Even Semester-2021', '2018'),
-(1, 'Data Communication', 'CSL-257', 'Odd Semester-2020', '2019'),
-(1, 'Computer Organistaion', 'CSL-258', 'Even Semester-2021', '2020'),
-(5, 'Software Engineering', 'CSL-307', 'Even Semester-2021', '2018'),
-(2, 'Course1', 'CSL-X1', 'Odd Semester-2020', '2020'),
-(2, 'Course2', 'CSL-X2', 'Even Semester-2020', '2019'),
-(2, 'Course3', 'CSL-X3', 'Odd Semester-2020', '2019'),
-(2, 'Course4', 'CSL-X4', 'Odd Semester-2020', '2020'),
-(2, 'Course5', 'CSL-X5', 'Odd Semester-2020', '2020'),
-(2, 'Course6', 'CSL-X6', 'Odd Semester-2020', '2020'),
-(2, 'Course7', 'CSL-X7', 'Odd Semester-2020', '2019'),
-(2, 'Course8', 'CSL-X8', 'Even Semester-2020', '2019'),
-(2, 'Course9', 'CSL-X9', 'Odd Semester-2020', '2020'),
-(2, 'Object Oriented Lab', 'CSP-253', 'Odd Semester-2020', '2019'),
-(4, 'Engineering Drawing', 'MEL-151', 'Odd Semester-2020', '2018'),
-(4, 'Engineering Drawing Lab', 'MEP-151', 'Odd Semester-2020', '2017');
+INSERT INTO `courses` (`id`, `course_name`, `course_code`, `semester`, `batch`, `mct1`, `mct2`, `mct3`, `mct4`, `mmt1`, `mmt2`, `mta`, `met`, `mt`) VALUES
+(3, 'Data Structures', 'CSL-251', 'Odd Semester-2020', '2017', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(3, 'Operating System', 'CSL-252', 'Odd Semester-2020', '2019', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Object Oriented Design', 'CSL-253', 'Odd Semester-2020', '2020', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(1, 'Computer Networks', 'CSL-255', 'Even Semester-2021', '2018', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(1, 'Data Communication', 'CSL-257', 'Odd Semester-2020', '2019', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(1, 'Computer Organistaion', 'CSL-258', 'Even Semester-2021', '2020', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(5, 'Software Engineering', 'CSL-307', 'Even Semester-2021', '2018', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Course1', 'CSL-X1', 'Odd Semester-2020', '2020', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Course2', 'CSL-X2', 'Even Semester-2020', '2019', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Course3', 'CSL-X3', 'Odd Semester-2020', '2019', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Course4', 'CSL-X4', 'Odd Semester-2020', '2020', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Course5', 'CSL-X5', 'Odd Semester-2020', '2020', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Course6', 'CSL-X6', 'Odd Semester-2020', '2020', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Course7', 'CSL-X7', 'Odd Semester-2020', '2019', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Course8', 'CSL-X8', 'Even Semester-2020', '2019', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Course9', 'CSL-X9', 'Odd Semester-2020', '2020', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(2, 'Object Oriented Lab', 'CSP-253', 'Odd Semester-2020', '2019', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(4, 'Engineering Drawing', 'MEL-151', 'Odd Semester-2020', '2018', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(4, 'Engineering Drawing Lab', 'MEP-151', 'Odd Semester-2020', '2017', 10, 10, 0, 0, 20, 20, 60, 40, 100),
+(7, 'tips and tricks for relationship', 'rel101', 'Even-Semester', '2021', 10, 10, 0, 0, 20, 20, 60, 40, 100);
 
 -- --------------------------------------------------------
 
@@ -359,7 +357,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (3, 'Krishanveer Gangwar', 'kg@nituk.ac.in', 'krish'),
 (4, 'Dungali Shreehari', 'dungali@nituk.ac.in', 'dungali'),
 (5, 'Maheep Singh', 'maheep@nituk.ac.in', 'maheep'),
-(6, 'Admin', 'admin@nituk.ac.in', 'Admin@123');
+(6, 'Admin', 'admin@nituk.ac.in', 'Admin@123'),
+(7, 'ex25', 'priyanshu@bewafa.com', 'priyanshubaby');
 
 --
 -- Indexes for dumped tables
@@ -386,7 +385,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

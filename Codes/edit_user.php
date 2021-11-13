@@ -24,7 +24,7 @@ if (isset($_POST['name']) && isset($_POST['password']) && isset($_POST['email'])
     } else {
         $sql = "UPDATE users (username, email, password) VALUES ('$name', '$mail', '$pass')";
         if ($conn->query($sql) === TRUE) {
-            header('Location:dashboard_admin.php?error=Successfully added user');
+            header('Location:dashboard_admin.php?error=Successfully updated user');
             exit();
         } else {
             header('Location:dashboard_admin.php?error=Unexpected User');
