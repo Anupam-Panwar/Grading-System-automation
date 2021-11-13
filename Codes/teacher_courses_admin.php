@@ -274,7 +274,7 @@ if (isset($_SESSION['id'])) {
                     },
                     success: (response) => {
                         let result = JSON.parse(response);
-                        $('#modalTitleDelete').text('Do you really want to delete User : ' + result["course_name"]);
+                        $('#modalTitleDelete').text('Do you really want to delete Course : ' + result["course_name"]);
                     }
                 });
             deleteCourse = () => {
