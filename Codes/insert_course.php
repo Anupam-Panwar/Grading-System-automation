@@ -37,20 +37,20 @@ if (isset($_POST['course_name']) && isset($_POST['code']) && isset($_POST['year'
         exit();
     } else {
         $sql = "INSERT INTO courses (id, course_name, course_code, batch, semester,mct1,mct2,mct3,mct4,mmt1,mmt2,mta,met,mt) VALUES ('$teacher_id', '$course_name', '$code', '$year', '$semester',10,10,0,0,20,20,60,40,100)";
-        setGrade($code, "AA", 100, 86, $conn,$teacher_id);
-        setGrade($code, "AB", 85, 75, $conn,$teacher_id);
-        setGrade($code, "BB", 74, 66, $conn,$teacher_id);
-        setGrade($code, "BC", 65, 56, $conn,$teacher_id);
-        setGrade($code, "CC", 55, 46, $conn,$teacher_id);
-        setGrade($code, "DD", 45, 36, $conn,$teacher_id);
-        setGrade($code, "FF", 35, 0, $conn,$teacher_id);
         if ($conn->query($sql) === TRUE) {
+            setGrade($code, "AA", 100, 86, $conn,$teacher_id);
+            setGrade($code, "AB", 85, 75, $conn,$teacher_id);
+            setGrade($code, "BB", 74, 66, $conn,$teacher_id);
+            setGrade($code, "BC", 65, 56, $conn,$teacher_id);
+            setGrade($code, "CC", 55, 46, $conn,$teacher_id);
+            setGrade($code, "DD", 45, 36, $conn,$teacher_id);
+            setGrade($code, "FF", 35, 0, $conn,$teacher_id);
             header('Location:teacher_courses_admin.php?error=Successfully added Course&id=' . $teacher_id);
             exit();
         } else {
             header('Location:teacher_courses_admin.php?error=Unexpected Course&id=' . $teacher_id);
             exit();
-        }
+        } 
     }
 } else {
 
