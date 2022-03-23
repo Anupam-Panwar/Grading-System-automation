@@ -8,7 +8,7 @@ The purpose of this project is to <strong>automate the existing system of gradin
 <br>
 
 ## Database Schema
-![image](https://user-images.githubusercontent.com/65714751/138600169-5b891b83-e005-4151-8558-50de67f6946c.png)
+![image](https://user-images.githubusercontent.com/65714751/159770485-7f6489d4-ff88-40e7-aa59-0d01320b6372.png)
 
 ## Result
 Result of this project is successfully deployed [here](http://grading-automation.infinityfreeapp.com/)
