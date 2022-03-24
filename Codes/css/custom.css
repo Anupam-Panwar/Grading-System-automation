@@ -158,6 +158,13 @@ ul.CTAs a {
   margin-top: 5px;
 }
 
+.fa-edit:hover{
+  cursor: pointer;
+}
+
+/* .form-control:hover{
+  opacity: 1 !important;
+} */
 /* ---------------------------------------------------
     Grade Window
 ----------------------------------------------------- */

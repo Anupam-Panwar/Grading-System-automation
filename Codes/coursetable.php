@@ -7,7 +7,7 @@ if (isset($_SESSION['id'])) {
 
     <head>
         <?php
-            require __DIR__ .'/utility/head_info.php';
+        require __DIR__ . '/utility/head_info.php';
         ?>
 
         <!-- Bootstrap CSS CDN -->
@@ -27,17 +27,13 @@ if (isset($_SESSION['id'])) {
             $cd = $_GET['course'];
             $sql = "SELECT id FROM courses WHERE course_code='$cd'";
             $result = $conn->query($sql);
-            if ($result->num_rows==1) 
-            {
-                $row=$result->fetch_assoc();
-                if($_SESSION['id']!=$row['id'] && $_SESSION['name'] != 'Admin')
-                {
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                if ($_SESSION['id'] != $row['id'] && $_SESSION['name'] != 'Admin') {
                     header('Location: dashboard.php?error=COURSE NOT FOUND');
                     exit();
                 }
-            }
-            else
-            {
+            } else {
                 header('Location: dashboard.php?error=COURSE NOT FOUND');
                 exit();
             }
@@ -72,12 +68,15 @@ if (isset($_SESSION['id'])) {
 
         <div class="wrapper">
             <!-- Sidebar Holder -->
-            <?php if($_SESSION['name']!='Admin')
-            { ?>
+            <?php if ($_SESSION['name'] != 'Admin') { ?>
                 <nav id="sidebar">
                     <ul class="list-unstyled components">
                         <div class="sidebar-header">
-                            <h3><?php echo $uname; ?></h3>
+                            <img src="./images/img1.jpg" class="rounded-circle" width="100px" height="100px">
+                            <div style="display: flex; justify-content: space-between; align-items:center; margin:16px 0px">
+                                <h3 style="margin:0;"><?php echo $uname; ?></h3>
+                                <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#edit_profile"></i>
+                            </div>
                         </div>
                         <a href="dashboard.php">
                             <p class="h4">Courses</p>
@@ -94,7 +93,7 @@ if (isset($_SESSION['id'])) {
 
                     </ul>
                 </nav>
-            <?php } else{?>
+            <?php } else { ?>
                 <nav id="sidebar">
                     <ul class="list-unstyled components">
                         <div class="sidebar-header">
@@ -138,7 +137,7 @@ if (isset($_SESSION['id'])) {
 
             <!-- Page Content Holder -->
             <div id="content">
-            <?php
+                <?php
                 if (isset($_GET['error'])) {
                 ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -159,13 +158,11 @@ if (isset($_SESSION['id'])) {
 
                         <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
                             <a type="button" class="btn btn-outline-secondary" href=<?php
-                            if ($_SESSION['name'] == 'Admin') {
-                                echo "edit_admin.php?course=".$cd;
-                            }
-                            else{
-                                echo "edit.php?course=".$cd;
-                            } ?>
-                            >Edit</a>
+                                                                                    if ($_SESSION['name'] == 'Admin') {
+                                                                                        echo "edit_admin.php?course=" . $cd;
+                                                                                    } else {
+                                                                                        echo "edit.php?course=" . $cd;
+                                                                                    } ?>>Edit</a>
                             <a type="button" class="btn btn-outline-secondary" target="_blank" href="print.php?course=<?php echo $cd ?>">Print</a>
                         </div>
                     </div>
@@ -260,7 +257,7 @@ if (isset($_SESSION['id'])) {
                                     ?>
 
                                         <td><strong><?php echo $row['grade'];
-                                        } ?></strong></td>
+                                                } ?></strong></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -272,7 +269,7 @@ if (isset($_SESSION['id'])) {
                                     while ($row = $result->fetch_assoc()) {
                                     ?>
                                         <td scope="row"><?php echo $row['upper_cutoff']; ?> - <?php echo $row['lower_cutoff']; ?></td>
-                                        <?php } ?>
+                                    <?php } ?>
                                 </tr>
                                 <tr>
                                     <td><strong>Total Students</strong></td>
@@ -282,7 +279,7 @@ if (isset($_SESSION['id'])) {
                                     while ($row = $result->fetch_assoc()) {
                                     ?>
                                         <td scope="row"><?php echo $row['no_of_students']; ?></td>
-                                        <?php } ?>
+                                    <?php } ?>
                                 </tr>
                             </tbody>
                         </table>
@@ -291,13 +288,61 @@ if (isset($_SESSION['id'])) {
             </div>
         </div>
 
+        <div class="modal fade" id="edit_profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form onsubmit="return false">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex justify-content-center align-items-center flex-column" style="position:relative;">
+                                <img src="./images/img1.jpg" class="rounded-circle" width="200px" height="200px">
+                                <div class="mb-2" style="align-self:center; position:absolute; bottom:-4%">
+                                    <label for="formFile" class="form-label btn"></label>
+                                    <input class="form-control" type="file" id="formFile" style="width:115px;">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="editName" name="name" aria-describedby="emailHelp" required readonly value="Maheep Singh">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="editPassword" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="editPassword" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control" id="editPassword" name="password" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="checkbox">
+                                <label class="form-check-label" for="exampleCheck1">Show Password</label>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                            <button type="submit" class="btn btn-primary" onclick="updateUser()">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
 
         <?php
         require_once __DIR__ . '/connection/disconnect.php';
-        require __DIR__ .'/utility/foot_info.php';
+        require __DIR__ . '/utility/foot_info.php';
         ?>
 
-        
+
     <?php
 } else {
     header('Location: index.php?error=INVALID REQUEST');
@@ -307,26 +352,67 @@ if (isset($_SESSION['id'])) {
 
     <!-- Sidebar script -->
     <script type="text/javascript">
-            $(document).ready(function() {
-                $("#sidebarCollapse").on("click", function() {
-                    $("#sidebar").toggleClass("active");
-                    $(this).toggleClass("active");
-                });
+        $(document).ready(function() {
+            $("#sidebarCollapse").on("click", function() {
+                $("#sidebar").toggleClass("active");
+                $(this).toggleClass("active");
             });
-            var dropdown = document.getElementsByClassName("dropdown-btn");
-            var i;
-            for (i = 0; i < dropdown.length; i++) {
-                dropdown[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var dropdownContent = this.nextElementSibling;
-                    if (dropdownContent.style.display === "block") {
-                        dropdownContent.style.display = "none";
-                    } else {
-                        dropdownContent.style.display = "block";
+        });
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+
+        var edit_user = document.getElementById('edit_profile')
+        edit_user.addEventListener('show.bs.modal', function(event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            var recipient = button.getAttribute('data-bs-whatever')
+            $.ajax({
+                type: 'post',
+                url: 'ajax.php',
+                data: {
+                    ajax: 3,
+                    id: recipient
+                },
+                success: (response) => {
+                    let result = JSON.parse(response);
+                    $('#edit_user #editName').val(result["name"]);
+                    $('#edit_user #editEmail').val(result["email"]);
+                    $('#edit_user #editPassword').val(result["password"]);
+                }
+            });
+            updateUser = () => {
+                let name = $('#edit_user #editName').val();
+                let email = $('#edit_user #editEmail').val();
+                let password = $('#edit_user #editPassword').val();
+                $.ajax({
+                    type: 'post',
+                    url: 'ajax.php',
+                    data: {
+                        ajax: 4,
+                        id: recipient,
+                        name: name,
+                        email: email,
+                        password: password
+                    },
+                    success: (response) => {
+                        window.location.href = "dashboard_admin.php?error=Successfully Updated User";
                     }
                 });
             }
-        </script>
+        })
+    </script>
     </body>
 
     </html>
