@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2022 at 07:18 PM
+-- Generation Time: Mar 24, 2022 at 08:36 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -56,7 +56,6 @@ INSERT INTO `controlsheet` (`course_code`, `roll_no`, `name`, `class_test_1`, `c
 ('CSL-252', 'BT19CSE003', 'Neha Dhyani', 10, 10, 0, 0, 19, 19, 0, 38, 0, 'FF'),
 ('CSL-252', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 20, 0, 39, 0, 'FF'),
 ('CSL-252', 'BT19CSE020', 'Priyanshu Upadhyay', 10, 10, 0, 0, 19, 19, 0, 37, 0, 'FF'),
-('CSL-253', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL),
 ('CSL-253', 'BT19CSE002', 'Anupam Panwar', 6, 8, 0, 0, 18, 19, 51, 38, 89, 'AA'),
 ('CSL-253', 'BT19CSE003', 'Neha Dhyani', 10, 10, 0, 0, 19, 19, 58, 38, 96, 'AA'),
 ('CSL-253', 'BT19CSE011', 'Purvi Goyal', 9, 8, 0, 0, 18, 20, 55, 39, 94, 'AA'),
@@ -145,8 +144,6 @@ CREATE TABLE `courses` (
   `met` int(11) NOT NULL,
   `mt` int(11) NOT NULL,
   `flag` tinyint(1) DEFAULT 0,
-  `mean` int(11) DEFAULT 0,
-  `standard_deviation` int(11) DEFAULT 0,
   `type` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -154,25 +151,25 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `course_name`, `course_code`, `batch`, `semester`, `mct1`, `mct2`, `mct3`, `mct4`, `mmt1`, `mmt2`, `mta`, `met`, `mt`, `flag`, `mean`, `standard_deviation`, `type`) VALUES
-(3, 'Data Structures', 'CSL-251', '2017', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(3, 'Operating System', 'CSL-252', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Object Oriented Design', 'CSL-253', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(1, 'Computer Networks', 'CSL-255', '2018', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(1, 'Data Communication', 'CSL-257', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(1, 'Computer Organistaion', 'CSL-258', '2020', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(5, 'Software Engineering', 'CSL-307', '2018', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Course1', 'CSL-X1', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Course2', 'CSL-X2', '2019', 'Even 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Course3', 'CSL-X3', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Course4', 'CSL-X4', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Course5', 'CSL-X5', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Course6', 'CSL-X66', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Course7', 'CSL-X7', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Course8', 'CSL-X8', '2019', 'Even 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(2, 'Object Oriented Lab', 'CSP-253', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(4, 'Engineering Drawing', 'MEL-151', '2018', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL),
-(4, 'Engineering Drawing Lab', 'MEP-151', '2017', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, 0, 0, NULL);
+INSERT INTO `courses` (`id`, `course_name`, `course_code`, `batch`, `semester`, `mct1`, `mct2`, `mct3`, `mct4`, `mmt1`, `mmt2`, `mta`, `met`, `mt`, `flag`, `type`) VALUES
+(3, 'Data Structures', 'CSL-251', '2017', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(3, 'Operating System', 'CSL-252', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Object Oriented Design', 'CSL-253', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(1, 'Computer Networks', 'CSL-255', '2018', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(1, 'Data Communication', 'CSL-257', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(1, 'Computer Organistaion', 'CSL-258', '2020', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(5, 'Software Engineering', 'CSL-307', '2018', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Course1', 'CSL-X1', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Course2', 'CSL-X2', '2019', 'Even 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Course3', 'CSL-X3', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Course4', 'CSL-X4', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Course5', 'CSL-X5', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Course6', 'CSL-X66', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Course7', 'CSL-X7', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Course8', 'CSL-X8', '2019', 'Even 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(2, 'Object Oriented Lab', 'CSP-253', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(4, 'Engineering Drawing', 'MEL-151', '2018', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
+(4, 'Engineering Drawing Lab', 'MEP-151', '2017', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL);
 
 -- --------------------------------------------------------
 

@@ -72,10 +72,10 @@ if (isset($_SESSION['id'])) {
                 <nav id="sidebar">
                     <ul class="list-unstyled components">
                         <div class="sidebar-header">
-                            <img src="./images/img1.jpg" class="rounded-circle" width="100px" height="100px">
+                            <img src="uploads/<?php echo $_SESSION['image_url'] ?>" class="rounded-circle" width="100px" height="100px">
                             <div style="display: flex; justify-content: space-between; align-items:center; margin:16px 0px">
                                 <h3 style="margin:0;"><?php echo $uname; ?></h3>
-                                <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#edit_profile"></i>
+                                <i class="fas fa-edit" data-bs-toggle="modal" data-bs-target="#edit_profile" data-bs-whatever="<?php echo $id ?>"></i>
                             </div>
                         </div>
                         <a href="dashboard.php">
@@ -298,27 +298,27 @@ if (isset($_SESSION['id'])) {
                         </div>
                         <div class="modal-body">
                             <div class="d-flex justify-content-center align-items-center flex-column" style="position:relative;">
-                                <img src="./images/img1.jpg" class="rounded-circle" width="200px" height="200px">
+                                <img  id="picture" src="uploads/<?php echo $_SESSION['image_url'] ?>" class="rounded-circle" width="200px" height="200px" alt="Profile Picture">
                                 <div class="mb-2" style="align-self:center; position:absolute; bottom:-4%">
                                     <label for="formFile" class="form-label btn"></label>
-                                    <input class="form-control" type="file" id="formFile" style="width:115px;">
+                                    <input class="form-control" type="file" id="editPicture" style="width:115px;">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="editName" name="name" aria-describedby="emailHelp" required readonly value="Maheep Singh">
+                                <input type="text" class="form-control" id="editName" name="name" aria-describedby="emailHelp" required readonly value="<?php echo $uname; ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Current Password</label>
-                                <input type="password" class="form-control" id="editPassword" name="password" required>
+                                <input type="password" class="form-control" id="editCurrentPassword" name="password" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">New Password</label>
-                                <input type="password" class="form-control" id="editPassword" name="password" required>
+                                <input type="password" class="form-control" id="editNewPassword" name="password" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Confirm New Password</label>
-                                <input type="password" class="form-control" id="editPassword" name="password" required>
+                                <input type="password" class="form-control" id="editConfirmNewPassword" name="password" required>
                             </div>
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="checkbox">
@@ -328,7 +328,7 @@ if (isset($_SESSION['id'])) {
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
-                            <button type="submit" class="btn btn-primary" onclick="updateUser()">Save</button>
+                            <button type="submit" class="btn btn-primary" onclick="updateProfile()">Save</button>
                         </div>
                     </form>
                 </div>
@@ -372,39 +372,27 @@ if (isset($_SESSION['id'])) {
             });
         }
 
-        var edit_user = document.getElementById('edit_profile')
-        edit_user.addEventListener('show.bs.modal', function(event) {
+        var edit_profile = document.getElementById('edit_profile')
+        edit_profile.addEventListener('show.bs.modal', function(event) {
             // Button that triggered the modal
             var button = event.relatedTarget
             // Extract info from data-bs-* attributes
-            var recipient = button.getAttribute('data-bs-whatever')
-            $.ajax({
-                type: 'post',
-                url: 'ajax.php',
-                data: {
-                    ajax: 3,
-                    id: recipient
-                },
-                success: (response) => {
-                    let result = JSON.parse(response);
-                    $('#edit_user #editName').val(result["name"]);
-                    $('#edit_user #editEmail').val(result["email"]);
-                    $('#edit_user #editPassword').val(result["password"]);
-                }
-            });
-            updateUser = () => {
-                let name = $('#edit_user #editName').val();
-                let email = $('#edit_user #editEmail').val();
-                let password = $('#edit_user #editPassword').val();
+            var recipient = button.getAttribute('data-bs-whatever');
+            updateProfile = () => {
+                let image = $('#edit_profile #editPicture').val();
+                let oldPassword = $('#edit_user #editCurrentPassword').val();
+                let newPassword = $('#edit_user #editNewPassword').val();
+                let confirmNewPassword = $('#edit_user #editConfirmNewPassword').val();
                 $.ajax({
                     type: 'post',
                     url: 'ajax.php',
                     data: {
-                        ajax: 4,
+                        ajax: 10,
                         id: recipient,
-                        name: name,
-                        email: email,
-                        password: password
+                        image: image,
+                        oldPassword: oldPassword,
+                        newPassword: newPassword,
+                        confirmNewPassword: confirmNewPassword
                     },
                     success: (response) => {
                         window.location.href = "dashboard_admin.php?error=Successfully Updated User";

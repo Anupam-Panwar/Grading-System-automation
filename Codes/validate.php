@@ -46,6 +46,7 @@
                     
                     $_SESSION['id']=$row['id'];
                     $_SESSION['name']=$row['username'];
+                    $_SESSION['image_url']=$row['image_url'];
                     if($_SESSION['name'] == "Admin")
                     {
                         header('Location: dashboard_admin.php');
