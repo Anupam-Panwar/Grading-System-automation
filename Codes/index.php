@@ -30,22 +30,18 @@
                             <p class="text-muted"> Please enter your Email and Password !</p>
                         <?php if (isset($_GET["error"])) {
                        
-                             if(($_GET["error"])!='Logged out')
-                             {
-                                 ?>
+                            if(($_GET["error"])!='Logged out')
+                            {
+                                ?>
                             <div class="alert">
                                 <strong>Error!!</strong> <?php echo $_GET['error']; ?>
                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                             </div>
-                            <?php }
-                            else
-                            {
-                                ?>
+                            <?php } else { ?>
                                 <div class="alert logout">
                                 <?php echo $_GET['error']; ?>
                                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                             </div>
-
                         <?php }} ?>
                         <input type="text" name="email" placeholder="Email">
                         <input type="password" name="password" placeholder="Password">
