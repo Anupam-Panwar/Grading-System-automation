@@ -239,7 +239,7 @@ if (isset($_SESSION['id'])) {
                     <hr>
                     <br>
                     <div class="table-responsive grade">
-                        <?php if($_SESSION['name'] == 'Admin') { ?>
+                        <?php if ($_SESSION['name'] == 'Admin') { ?>
                             <div class="text-start h5">Grade Point Cutoff</div>
                         <?php } else { ?>
                             <div class="sameline grades">
@@ -295,24 +295,24 @@ if (isset($_SESSION['id'])) {
         <div class="modal fade" id="edit_profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form onsubmit="return false">
+                    <form action="updateProfilePicture.php" method="post" enctype="multipart/form-data">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="d-flex justify-content-center align-items-center flex-column" style="position:relative;">
-                                <img  id="picture" src="uploads/<?php echo $_SESSION['image_url'] ?>" class="rounded-circle" width="200px" height="200px" alt="Profile Picture">
+                                <img id="picture" src="uploads/<?php echo $_SESSION['image_url'] ?>" class="rounded-circle" width="200px" height="200px" alt="Profile Picture">
                                 <div class="mb-2" style="align-self:center; position:absolute; bottom:-4%">
                                     <label for="formFile" class="form-label btn"></label>
-                                    <input class="form-control" type="file" id="editPicture" style="width:115px;">
+                                    <input class="form-control" name="my_image" type="file" id="editPicture" style="width:115px;">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="editName" name="name" aria-describedby="emailHelp" required readonly value="<?php echo $uname; ?>">
                             </div>
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="password" class="form-label">Current Password</label>
                                 <input type="password" class="form-control" id="editCurrentPassword" name="password" required>
                             </div>
@@ -327,12 +327,12 @@ if (isset($_SESSION['id'])) {
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="checkbox">
                                 <label class="form-check-label" for="exampleCheck1">Show Password</label>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
-                            <button type="submit" class="btn btn-primary" onclick="updateProfile()">Save</button>
+                            <input name="submit" value="Upload" type="submit" class="btn btn-primary">
                         </div>
                     </form>
                 </div>
@@ -382,27 +382,6 @@ if (isset($_SESSION['id'])) {
             var button = event.relatedTarget
             // Extract info from data-bs-* attributes
             var recipient = button.getAttribute('data-bs-whatever');
-            updateProfile = () => {
-                let image = $('#edit_profile #editPicture').val();
-                let oldPassword = $('#edit_user #editCurrentPassword').val();
-                let newPassword = $('#edit_user #editNewPassword').val();
-                let confirmNewPassword = $('#edit_user #editConfirmNewPassword').val();
-                $.ajax({
-                    type: 'post',
-                    url: 'ajax.php',
-                    data: {
-                        ajax: 10,
-                        id: recipient,
-                        image: image,
-                        oldPassword: oldPassword,
-                        newPassword: newPassword,
-                        confirmNewPassword: confirmNewPassword
-                    },
-                    success: (response) => {
-                        window.location.href = "dashboard_admin.php?error=Successfully Updated User";
-                    }
-                });
-            }
         })
     </script>
     </body>

@@ -140,24 +140,5 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
             echo "done";
         }
     }
-    else if($_POST['ajax'] == '10')
-    {
-        $id = $_POST['id'];
-        $image = $_POST['image'];
-        $oldpassword = $_POST['oldPassword'];
-        $newpassword = $_POST['newPassword'];
-        $confirmpassword = $_POST['confirmPassword'];
-        $sql = "UPDATE users SET password='" .$newpassword. "',image_url='" . $image. "' WHERE id=" . $id;
-        if ($conn->query($sql) !== TRUE)
-        {
-            echo "nahi hua gaya guys";
-            exit();
-        } 
-        else
-        { 
-            echo "hua gaya guys";
-            exit();
-        }
-    }
 }
 require_once __DIR__ . '/connection/disconnect.php';
