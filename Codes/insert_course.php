@@ -8,7 +8,7 @@ if (isset($_POST['course_name']) && isset($_POST['code']) && isset($_POST['year'
         $data = htmlspecialchars($data);
         return $data;
     }
-    function setGrade($cd, $gn, $ub, $lb, $conn,$id)
+    function setGrade($cd, $gn, $ub, $lb, $conn, $id)
     {
         $sql = "INSERT INTO gradewindow (course_code, grade, lower_cutoff, upper_cutoff, no_of_students) VALUES ('$cd', '$gn', $lb, $ub, 0)";
         if ($conn->query($sql) !== TRUE) {

@@ -60,7 +60,7 @@ if (isset($_SESSION['id'])) {
             <div class="container-fluid sameline">
                 <div>
                     <a href="dashboard.php">
-                    <div class="initials text-white text-center fs-3"><?php echo substr($uname, 0, 1); ?></div>
+                        <div class="initials text-white text-center fs-3"><?php echo substr($uname, 0, 1); ?></div>
                     </a>
                 </div>
                 <span class="text-white h3">Control Sheet</span>

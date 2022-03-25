@@ -94,31 +94,95 @@
             }
 
             //Updating grade window
-            $c=count($_POST['grade']);
-            for($i=0;$i<$c;$i++)
-            {
-                $r=$_POST['grade'][$i];
-                if (!(is_numeric($_POST['lb'][$i])&&is_numeric($_POST['ub'][$i])))
-                {
-                    header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Enter valid information in Grade Window field ');
-                    exit();
-                }
-                if(($i==0 && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['ub'][$i]==100) || ($i==$c-1 && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['lb'][$i]==0 && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1) || ($i!=0 && $i!=$c-1 && ($_POST['lb'][$i]<=$_POST['ub'][$i]) && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1))
-                {
-                    $sql="UPDATE gradewindow SET lower_cutoff=".$_POST['lb'][$i].", upper_cutoff=".$_POST['ub'][$i]." WHERE course_code='$cd' AND grade='$r'";
 
-                    if ($conn->query($sql) !== TRUE)
-                    {
-                        header('Location: edit.php?course='.$cd.'&error=ERROR UPDATING GRADE CUT OFF');
+            //checking changes in gradewindow
+            $c=count($_POST['grade']);
+            for($i=0;$i<$c;$i++) {
+                $r=$_POST['grade'][$i];
+                $sql = "SELECT lower_cutoff, upper_cutoff FROM gradewindow WHERE course_code='$cd' AND grade='$r'";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                if($row['lower_cutoff'] != $_POST['lb'][$i] || $row['upper_cutoff'] != $_POST['ub'][$i]) {
+                    $sql1 = "UPDATE courses SET flag=1 WHERE course_code='$cd'";
+                    if ($conn->query($sql1) !== TRUE) {
+                        echo "error updating flag value";
                         exit();
                     }
                 }
-                else
+            }
+            $sql = "SELECT flag FROM courses WHERE course_code='$cd'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $flag = $row['flag'];
+            if($flag) {
+                $c=count($_POST['grade']);
+                for($i=0;$i<$c;$i++)
                 {
-                    //First cutoff upper bound != 100 or lowerbound(previous cutoff)-upperbound(this cutoff)!=1 or upperbound smaller than lower bound or last cutoff lower bound != 0!!
-                    header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Invalid cutoff range');
-                    exit();
+                    $r=$_POST['grade'][$i];
+                    if (!(is_numeric($_POST['lb'][$i])&&is_numeric($_POST['ub'][$i])))
+                    {
+                        header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Enter valid information in Grade Window field ');
+                        exit();
+                    }
+                    if(($i==0 && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['ub'][$i]==100) || ($i==$c-1 && $_POST['lb'][$i]<=$_POST['ub'][$i] && $_POST['lb'][$i]==0 && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1) || ($i!=0 && $i!=$c-1 && ($_POST['lb'][$i]<=$_POST['ub'][$i]) && ($_POST['lb'][$i-1]-$_POST['ub'][$i])==1))
+                    {
+                        $sql="UPDATE gradewindow SET lower_cutoff=".$_POST['lb'][$i].", upper_cutoff=".$_POST['ub'][$i]." WHERE course_code='$cd' AND grade='$r'";
+
+                        if ($conn->query($sql) !== TRUE)
+                        {
+                            header('Location: edit.php?course='.$cd.'&error=ERROR UPDATING GRADE CUT OFF');
+                            exit();
+                        }
+                    }
+                    else
+                    {
+                        //First cutoff upper bound != 100 or lowerbound(previous cutoff)-upperbound(this cutoff)!=1 or upperbound smaller than lower bound or last cutoff lower bound != 0!!
+                        header('Location: edit.php?course='.$cd.'&error=ERROR OCCURRED : Invalid cutoff range');
+                        exit();
+                    }
                 }
+            } else {
+                //for default gradewindow
+                function mean($total, $n) {
+                    $sum = 0;
+                    while($row = $total->fetch_assoc())
+                        $sum += $row['total_marks'];
+                    return $sum/$n;
+                }
+    
+                function standardDeviation($total, $n, $mean) {
+                    $sq = 0;
+                    while($row = $total->fetch_assoc())
+                        $sq += ($row['total_marks']-$mean)*($row['total_marks']-$mean);
+                    return sqrt($sq/$n);
+                }
+    
+                function setGrade($cd, $gn, $ub, $lb, $conn)
+                {
+                    $sql="UPDATE gradewindow SET lower_cutoff=".$lb.", upper_cutoff=".$ub." WHERE course_code='$cd' AND grade='$gn'";
+                    if ($conn->query($sql) !== TRUE) {
+                        header('Location: edit.php?course='.$cd.'&error=ERROR UPDATING GRADE CUT OFF');
+                    }
+                }
+    
+                $sql = "SELECT total_marks FROM controlsheet WHERE course_code='$cd'";
+                $result = $conn->query($sql);
+                $n = $result->num_rows;
+                $mean = mean($result, $n);
+                //error without start to end!!!!!!
+                //start
+                $sql = "SELECT total_marks FROM controlsheet WHERE course_code='$cd'";
+                $result = $conn->query($sql);
+                $n = $result->num_rows;
+                //end
+                $sd = standardDeviation($result, $n, $mean);
+                setGrade($cd, "AA", 100, round($mean+$sd), $conn);
+                setGrade($cd, "AB", round($mean+$sd)-1, round($mean+($sd/2)), $conn);
+                setGrade($cd, "BB", round($mean+($sd/2))-1, round($mean), $conn);
+                setGrade($cd, "BC", round($mean)-1, round($mean-($sd/2)), $conn);
+                setGrade($cd, "CC", round($mean-($sd/2))-1, round($mean-$sd), $conn);
+                setGrade($cd, "DD", round($mean-$sd)-1, round($mean-(($sd*3)/2)), $conn);
+                setGrade($cd, "FF", round($mean-(($sd*3)/2))-1, 0, $conn);
             }
 
             header('Location: coursetable.php?course='.$cd);
