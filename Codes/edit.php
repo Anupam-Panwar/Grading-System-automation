@@ -90,7 +90,7 @@ if (isset($_SESSION['id'])) {
                     <form action="insert.php?course=<?php echo $cd; ?>" method="post">
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <?php
-                            $sql = "SELECT course_name, semester, batch FROM courses WHERE course_code='$cd'";
+                            $sql = "SELECT course_name, semester, batch,type FROM courses WHERE course_code='$cd'";
                             $result = $conn->query($sql);
                             if ($row = $result->fetch_assoc()) {
                             ?>
@@ -102,7 +102,8 @@ if (isset($_SESSION['id'])) {
                                     <a href="coursetable.php?course=<?php echo $cd; ?>"><input type="button" value="Cancel" class="btn btn-outline-secondary d-print-none" /></a>
                                 </div>
                         </div>
-
+                        <h5>Type: <?php echo $row['type'];
+                                     ?> </h5>
                         <h5>Batch: <?php echo $row['batch'];
                                  ?> </h5>
 
