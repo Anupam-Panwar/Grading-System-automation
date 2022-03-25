@@ -78,7 +78,7 @@ if (isset($_SESSION['id'])) {
                 <?php } ?>
                 <div class="row row-cols-1 row-cols-md-5 g-4">
                     <?php
-                    $sql = "SELECT course_name,course_code,batch FROM courses WHERE id=$id ORDER BY batch DESC";
+                    $sql = "SELECT course_name,course_code,batch,type FROM courses WHERE id=$id ORDER BY batch DESC";
                     $result = $conn->query($sql);
                     $i = 1;
                     while ($row = $result->fetch_assoc()) {
@@ -89,7 +89,7 @@ if (isset($_SESSION['id'])) {
                                     <img src="images/img<?php echo $i ?>.jpg" class="card-img-top" alt="Course Image">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $row['course_name'] ?></h5>
-                                        <p class="card-text"><?php echo $row['course_code'] ?><br><?php echo $row['batch'] ?></p>
+                                        <p class="card-text">Type: <?php echo $row['type'] ?><br><?php echo $row['course_code'] ?><br><?php echo $row['batch'] ?></p>
                                     </div>
                                 </div>
                             </a>

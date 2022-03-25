@@ -81,14 +81,14 @@ if (isset($_SESSION['id'])) {
                     <div class="h3 text-center" id="nit">National Institute of Technology, Uttarakhand</div>
 
                     <?php
-                    $sql = "SELECT course_name, semester, batch FROM courses WHERE course_code='$cd'";
+                    $sql = "SELECT course_name, semester, batch,type FROM courses WHERE course_code='$cd'";
                     $result = $conn->query($sql);
                     if ($row = $result->fetch_assoc()) {
                     ?>
 
                         <div class="text-center h4">Control Sheet</div>
                         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                            <h4 class="h5">Course: <?php echo $cd . " " . $row['course_name']; ?></h4>
+                            <h4 class="h5">Course: <?php echo $cd . " " . $row['course_name']; ?><br>Type: <?php echo $row['type'] ?></h4>
                             <span class="ctno text-end">Control Sheet No.:__/__/_______ <br>CC/HOD/F/CF</span>
                         </div>
 
