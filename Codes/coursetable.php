@@ -334,7 +334,7 @@ if (isset($_SESSION['id'])) {
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.reload();clearImage();">Discard</button>
-                            <button type="submit" class="btn btn-primary" onclick="updateProfile()">Save</button>
+                            <input type="submit" name="submit" value="upload" class="btn btn-primary" >
                         </div>
                     </form>
                 </div>

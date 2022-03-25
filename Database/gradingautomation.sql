@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2022 at 08:36 PM
+-- Generation Time: Mar 25, 2022 at 06:20 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -204,13 +204,13 @@ INSERT INTO `gradewindow` (`course_code`, `grade`, `lower_cutoff`, `upper_cutoff
 ('CSL-252', 'CC', 46, 55, 0),
 ('CSL-252', 'DD', 36, 45, 0),
 ('CSL-252', 'FF', 0, 35, 4),
-('CSL-253', 'AA', 86, 100, 4),
-('CSL-253', 'AB', 75, 85, 0),
-('CSL-253', 'BB', 66, 74, 0),
-('CSL-253', 'BC', 56, 65, 0),
-('CSL-253', 'CC', 46, 55, 0),
-('CSL-253', 'DD', 36, 45, 0),
-('CSL-253', 'FF', 0, 35, 0),
+('CSL-253', 'AA', 96, 100, 4),
+('CSL-253', 'AB', 95, 95, 0),
+('CSL-253', 'BB', 94, 94, 0),
+('CSL-253', 'BC', 92, 93, 0),
+('CSL-253', 'CC', 91, 91, 0),
+('CSL-253', 'DD', 89, 90, 0),
+('CSL-253', 'FF', 0, 88, 0),
 ('CSL-255', 'AA', 86, 100, 2),
 ('CSL-255', 'AB', 75, 85, 1),
 ('CSL-255', 'BB', 66, 74, 1),
@@ -337,7 +337,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `image_url`) VALUES
 (1, 'Surendra Singh', 'surendra@nituk.ac.in', 'surendra', 'IMG-5f8954bd209a92.78214246.jpg'),
-(2, 'Guest', 'guest@nituk.ac.in', 'guest', 'IMG-5f8954bd209a92.78214246.jpg'),
+(2, 'Guest', 'guest@nituk.ac.in', 'guest', 'IMG-623df783c68f57.91856579.jpg'),
 (3, 'Krishanveer Gangwar', 'kg@nituk.ac.in', 'krish', 'IMG-5f8954bd209a92.78214246.jpg'),
 (4, 'Dungali Shreehari', 'dungali@nituk.ac.in', 'dungali', 'IMG-5f8954bd209a92.78214246.jpg'),
 (5, 'Maheep Singh', 'maheep@nituk.ac.in', 'maheep', 'IMG-5f8954bd209a92.78214246.jpg'),
