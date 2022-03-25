@@ -169,12 +169,9 @@
                 $result = $conn->query($sql);
                 $n = $result->num_rows;
                 $mean = mean($result, $n);
-                //error without start to end!!!!!!
-                //start
                 $sql = "SELECT total_marks FROM controlsheet WHERE course_code='$cd'";
                 $result = $conn->query($sql);
                 $n = $result->num_rows;
-                //end
                 $sd = standardDeviation($result, $n, $mean);
                 setGrade($cd, "AA", 100, round($mean+$sd), $conn);
                 setGrade($cd, "AB", round($mean+$sd)-1, round($mean+($sd/2)), $conn);
