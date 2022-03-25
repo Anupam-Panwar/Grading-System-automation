@@ -146,7 +146,7 @@ if (isset($_SESSION['id'])) {
                     </div>
                 <?php } ?>
                 <?php
-                $sql = "SELECT course_name, semester, batch FROM courses WHERE course_code='$cd'";
+                $sql = "SELECT course_name, semester, batch,type FROM courses WHERE course_code='$cd'";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 $cn = $row['course_name'];
@@ -166,6 +166,7 @@ if (isset($_SESSION['id'])) {
                             <a type="button" class="btn btn-outline-secondary" target="_blank" href="print.php?course=<?php echo $cd ?>">Print</a>
                         </div>
                     </div>
+                    <h5>Type: <?php echo $row['type']; ?></h5>
                     <h5>Batch: <?php echo $row['batch']; ?></h5>
                     <h5>Session: <?php echo $row['semester']; ?></h5>
                     <br>
@@ -245,6 +246,7 @@ if (isset($_SESSION['id'])) {
                             <div class="sameline grades">
                                 <div class="text-start h5">Grade Point Cutoff</div>
                                 <div>
+                                    <a class="btn btn-outline-secondary mb-2" href="default.php?course=<?php echo $cd ?>">Set Default Grades</a>
                                     <a class="btn btn-outline-secondary mb-2" style="padding-right: 1.63rem; padding-left:1.63rem" href="clear.php?course=<?php echo $cd ?>">Clear Grades</a>
                                     <a class="btn btn-outline-secondary mb-2" href="generate.php?course=<?php echo $cd ?>">Generate Grades</a>
                                 </div>
@@ -302,10 +304,10 @@ if (isset($_SESSION['id'])) {
                         </div>
                         <div class="modal-body">
                             <div class="d-flex justify-content-center align-items-center flex-column" style="position:relative;">
-                                <img id="picture" src="uploads/<?php echo $_SESSION['image_url'] ?>" class="rounded-circle" width="200px" height="200px" alt="Profile Picture">
-                                <div class="mb-2" style="align-self:center; position:absolute; bottom:-4%">
-                                    <label for="formFile" class="form-label btn"></label>
-                                    <input class="form-control" name="my_image" type="file" id="editPicture" style="width:115px;">
+                                <img  id="picture" src="uploads/<?php echo $_SESSION['image_url'] ?>" class="rounded-circle" width="200px" height="200px" alt="Profile Picture">
+                                <div class="mb-2" style="align-self:center; position:absolute; bottom:-18%">
+                                    <input class="form-control" name="my_image" type="file" id="editPicture" onchange="preview()">
+                                    <label for="editPicture" class=""></label>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -331,8 +333,8 @@ if (isset($_SESSION['id'])) {
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
-                            <input name="submit" value="Upload" type="submit" class="btn btn-primary">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.reload();clearImage();">Discard</button>
+                            <button type="submit" class="btn btn-primary" onclick="updateProfile()">Save</button>
                         </div>
                     </form>
                 </div>
@@ -362,6 +364,14 @@ if (isset($_SESSION['id'])) {
                 $(this).toggleClass("active");
             });
         });
+
+        function preview() {
+            picture.src = URL.createObjectURL(event.target.files[0]);
+        }
+        function clearImage() {
+                document.getElementById('editPicture').value = null;
+        }
+
         var dropdown = document.getElementsByClassName("dropdown-btn");
         var i;
         for (i = 0; i < dropdown.length; i++) {

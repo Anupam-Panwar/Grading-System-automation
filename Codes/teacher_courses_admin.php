@@ -154,6 +154,22 @@ if (isset($_SESSION['id'])) {
                                 <label for="semester" class="form-label">Semester</label>
                                 <input type="text" class="form-control" id="semester" name="semester" required>
                             </div>
+                            <div class="mb-3">
+                                <label for="type" class="form-label">Type</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Select the type of course</option>
+                                    <option value="l">L</option>
+                                    <option value="p">P</option>
+                                    <option value="d">D</option>
+                                    <option value="t">T</option>
+                                    <option value="r">R</option>
+                                    <option value="s">S</option>
+                                    <option value="v">V</option>
+                                    <option value="a">A</option>
+                                    <option value="b">B</option>
+
+                                </select>
+                            </div>
                         </div>
 
                         <div class="modal-footer">
