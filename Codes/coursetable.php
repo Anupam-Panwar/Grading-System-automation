@@ -330,7 +330,7 @@ if (isset($_SESSION['id'])) {
         <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="changePassword.php" method="post">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" aria-label="Close"></button>
@@ -338,15 +338,15 @@ if (isset($_SESSION['id'])) {
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="password" class="form-label">Current Password</label>
-                                <input type="password" class="form-control" id="editCurrentPassword" name="password" required>
+                                <input type="password" class="form-control" id="editCurrentPassword" name="currentPassword" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">New Password</label>
-                                <input type="password" class="form-control" id="editNewPassword" name="password" required>
+                                <input type="password" class="form-control" id="editNewPassword" name="newPassword" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Confirm New Password</label>
-                                <input type="password" class="form-control" id="editConfirmNewPassword" name="password" required>
+                                <input type="password" class="form-control" id="editConfirmNewPassword" name="confirmNewPassword" required>
                             </div>
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="checkbox">
@@ -356,7 +356,7 @@ if (isset($_SESSION['id'])) {
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" onclick="">Discard</button>
-                            <input type="submit" name="submit" value="Upload" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal">
+                            <input type="submit" name="submit" value="Save Changes" class="btn btn-primary" >
                         </div>
                     </form>
                 </div>

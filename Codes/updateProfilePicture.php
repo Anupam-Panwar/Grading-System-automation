@@ -51,7 +51,7 @@ if (isset($_POST['submit']) && isset($_FILES['my_image']))
     } 
     else 
     {
-        $em = "unknown error occurred!";
+        $em = "Picture not selected!";
         header("Location: dashboard.php?error=$em");
     }
 } 
