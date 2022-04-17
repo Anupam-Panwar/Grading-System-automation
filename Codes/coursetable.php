@@ -156,8 +156,8 @@ if (isset($_SESSION['id'])) {
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                         <h4 class="h4"><?php echo "Course: " . $cn ?></h4>
 
-                        <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                            
+                        <div class="d-grid gap-2 d-flex" role="group" aria-label="First group">
+                            <input type="search" class="form-control" id="datatable-search-input" placeholder="Search Student" onkeyup="filterTable()">
                             <a type="button" class="btn btn-outline-secondary" href=<?php
                                                                                     if ($_SESSION['name'] == 'Admin') {
                                                                                         echo "edit_admin.php?course=" . $cd;
@@ -172,7 +172,7 @@ if (isset($_SESSION['id'])) {
                     <h5>Session: <?php echo $row['semester']; ?></h5>
                     <br>
                     <div class="table-responsive">
-                        <table class="table table-striped table-sm">
+                        <table class="table table-striped table-sm" id="table">
                             <thead>
                                 <tr>
                                     <th>S. No.</th>
@@ -305,7 +305,7 @@ if (isset($_SESSION['id'])) {
                         </div>
                         <div class="modal-body">
                             <div class="d-flex justify-content-center align-items-center flex-column" style="position:relative;">
-                                <img  id="picture" src="uploads/<?php echo $_SESSION['image_url'] ?>" class="rounded-circle" width="200px" height="200px" alt="Profile Picture">
+                                <img id="picture" src="uploads/<?php echo $_SESSION['image_url'] ?>" class="rounded-circle" width="200px" height="200px" alt="Profile Picture">
                                 <div class="mb-2" style="align-self:center; position:absolute; bottom:-18%">
                                     <input class="form-control" name="my_image" type="file" id="editPicture" onchange="preview()">
                                     <label for="editPicture" class=""></label>
@@ -321,7 +321,7 @@ if (isset($_SESSION['id'])) {
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.reload();clearImage();">Discard</button>
-                            <input type="submit" name="submit" value="Upload" class="btn btn-primary" >
+                            <input type="submit" name="submit" value="Upload" class="btn btn-primary">
                         </div>
                     </form>
                 </div>
@@ -357,7 +357,7 @@ if (isset($_SESSION['id'])) {
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" onclick="">Discard</button>
-                            <input type="submit" name="submit" value="Save Changes" class="btn btn-primary" >
+                            <input type="submit" name="submit" value="Save Changes" class="btn btn-primary">
                         </div>
                     </form>
                 </div>
@@ -382,12 +382,41 @@ if (isset($_SESSION['id'])) {
 
     <!-- Sidebar script -->
     <script type="text/javascript">
+
+
         $(document).ready(function() {
             $("#sidebarCollapse").on("click", function() {
                 $("#sidebar").toggleClass("active");
                 $(this).toggleClass("active");
             });
         });
+
+
+        function filterTable() {
+            let input, filter, table, tr, td_roll, td_name, i, txtValue1, txtValue2;
+            input = document.getElementById("datatable-search-input");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td_roll = tr[i].getElementsByTagName("td")[1];
+                td_name = tr[i].getElementsByTagName("td")[2];
+                if (td_name||td_roll) {
+                    txtValue1 = td_roll.textContent || td_roll.innerText;
+                    txtValue2 = td_name.textContent || td_name.innerText;
+                    if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+        }
+
+
 
         $("#changePassword #checkbox").change(function() {
             $(this).prop("checked") ? $("#changePassword #editCurrentPassword").prop("type", "text") : $("#changePassword #editCurrentPassword").prop("type", "password");
@@ -398,8 +427,9 @@ if (isset($_SESSION['id'])) {
         function preview() {
             picture.src = URL.createObjectURL(event.target.files[0]);
         }
+
         function clearImage() {
-                document.getElementById('editPicture').value = null;
+            document.getElementById('editPicture').value = null;
         }
 
         var dropdown = document.getElementsByClassName("dropdown-btn");
