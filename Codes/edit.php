@@ -9,7 +9,7 @@ if (isset($_SESSION['id'])) {
 
     <head>
         <?php
-        require __DIR__ .'/utility/head_info.php';
+        require __DIR__ . '/utility/head_info.php';
         ?>
 
         <!-- Bootstrap CSS CDN -->
@@ -29,17 +29,13 @@ if (isset($_SESSION['id'])) {
             $cd = $_GET['course'];
             $sql = "SELECT id FROM courses WHERE course_code='$cd'";
             $result = $conn->query($sql);
-            if ($result->num_rows==1) 
-            {
-                $row=$result->fetch_assoc();
-                if($_SESSION['id']!=$row['id'])
-                {
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                if ($_SESSION['id'] != $row['id']) {
                     header('Location: dashboard.php?error=COURSE NOT FOUND');
                     exit();
                 }
-            }
-            else
-            {
+            } else {
                 header('Location: dashboard.php?error=COURSE NOT FOUND');
                 exit();
             }
@@ -78,7 +74,7 @@ if (isset($_SESSION['id'])) {
 
             <!-- Page Content Holder -->
             <div id="content">
-            <?php
+                <?php
                 if (isset($_GET['error'])) {
                 ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -98,14 +94,18 @@ if (isset($_SESSION['id'])) {
                                 <?php $cn = $row['course_name']; ?>
 
                                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
+                                    <input type="file" id="uploadcsv" name="file" class="btn btn-outline-success" style="display:none">
+                                    <button class="btn btn-outline-secondary">
+                                        <label for="uploadcsv">Upload CSV</label>
+                                    </button>
                                     <input type="submit" value="Save" class="btn btn-outline-secondary d-print-none" />
                                     <a href="coursetable.php?course=<?php echo $cd; ?>"><input type="button" value="Cancel" class="btn btn-outline-secondary d-print-none" /></a>
                                 </div>
                         </div>
                         <h5>Type: <?php echo $row['type'];
-                                     ?> </h5>
+                                    ?> </h5>
                         <h5>Batch: <?php echo $row['batch'];
-                                 ?> </h5>
+                                    ?> </h5>
 
                         <h5>Session: <?php echo $row['semester'];
                                     } ?> </h5>
@@ -190,8 +190,8 @@ if (isset($_SESSION['id'])) {
                                         $result = $conn->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                         ?>
-                                            <td><input  class="gradebutton" name="grade[]" value="<?php echo $row['grade']; ?>" style="font-weight:bold" readonly></input>
-                                           <?php } ?></td>
+                                            <td><input class="gradebutton" name="grade[]" value="<?php echo $row['grade']; ?>" style="font-weight:bold" readonly></input>
+                                            <?php } ?></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -202,12 +202,12 @@ if (isset($_SESSION['id'])) {
                                         $result = $conn->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                         ?>
-                                             <td>
-                                                    <input class="gradewin" name="ub[]" value="<?php echo $row['upper_cutoff']; ?>"></input>
-                                                    -
-                                                    <input class="gradewin" name="lb[]" value="<?php echo $row['lower_cutoff']; ?>"></input>
-                                                </td>
-                                                <?php } ?> 
+                                            <td>
+                                                <input class="gradewin" name="ub[]" value="<?php echo $row['upper_cutoff']; ?>"></input>
+                                                -
+                                                <input class="gradewin" name="lb[]" value="<?php echo $row['lower_cutoff']; ?>"></input>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
                                     <tr>
                                         <td><strong>Total Students</strong></td>
@@ -216,10 +216,10 @@ if (isset($_SESSION['id'])) {
                                         $result = $conn->query($sql);
                                         while ($row = $result->fetch_assoc()) {
                                         ?>
-                                             <td>
-                                                    <?php echo $row['no_of_students']; ?>
-                                                </td>
-                                                <?php } ?> 
+                                            <td>
+                                                <?php echo $row['no_of_students']; ?>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
                                 </tbody>
                             </table>
@@ -232,7 +232,7 @@ if (isset($_SESSION['id'])) {
 
         <?php
         require_once __DIR__ . '/connection/disconnect.php';
-        require __DIR__ .'/utility/foot_info.php';
+        require __DIR__ . '/utility/foot_info.php';
         ?>
 
         <script type="text/javascript">
