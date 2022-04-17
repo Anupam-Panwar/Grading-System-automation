@@ -157,6 +157,7 @@ if (isset($_SESSION['id'])) {
                         <h4 class="h4"><?php echo "Course: " . $cn ?></h4>
 
                         <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
+                            
                             <a type="button" class="btn btn-outline-secondary" href=<?php
                                                                                     if ($_SESSION['name'] == 'Admin') {
                                                                                         echo "edit_admin.php?course=" . $cd;
