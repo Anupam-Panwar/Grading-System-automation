@@ -135,15 +135,24 @@ if (isset($_SESSION['id'])) {
                                         <?php
                                         $sql = "SELECT * FROM courses WHERE course_code='$cd'";
                                         $result = $conn->query($sql);
-                                        if ($row = $result->fetch_assoc()) { ?>
-                                            <th><input class="classtest" name="mct1" value="<?php echo $row['mct1']; ?>"></input></th>
-                                            <th><input class="classtest" name="mct2" value="<?php echo $row['mct2']; ?>"></input></th>
-                                            <th><input class="classtest" name="mct3" value="<?php echo $row['mct3']; ?>"></input></th>
-                                            <th><input class="classtest" name="mct4" value="<?php echo $row['mct4']; ?>"></input></th>
-                                            <th><input class="marks" name="mmt1" value="<?php echo $row['mmt1']; ?>"></input></th>
-                                            <th><input class="marks" name="mmt2" value="<?php echo $row['mmt2']; ?>"></input></th>
+                                        if ($row = $result->fetch_assoc()) {
+
+                                            $sql = "SELECT * FROM flag";
+                                            $res = $conn->query($sql);
+                                            $row1 = $res->fetch_assoc();
+                                            $flag_mt1 = $row1['mt1'];
+                                            $flag_mt2 = $row1['mt2'];
+                                            $flag_ct = $row1['ct'];
+                                            $flag_et = $row1['et'];
+                                        ?>
+                                            <th><input class="classtest" name="mct1" value="<?php echo $row['mct1']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></th>
+                                            <th><input class="classtest" name="mct2" value="<?php echo $row['mct2']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></th>
+                                            <th><input class="classtest" name="mct3" value="<?php echo $row['mct3']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></th>
+                                            <th><input class="classtest" name="mct4" value="<?php echo $row['mct4']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></th>
+                                            <th><input class="marks" name="mmt1" value="<?php echo $row['mmt1']; ?>" <?php if($flag_mt1 == 1) echo "readonly"?>></th>
+                                            <th><input class="marks" name="mmt2" value="<?php echo $row['mmt2']; ?>" <?php if($flag_mt2 == 1) echo "readonly"?>></th>
                                             <th><?php echo $row['mta']; ?></th>
-                                            <th><input class="marks" name="met" value="<?php echo $row['met']; ?>"></input></th>
+                                            <th><input class="marks" name="met" value="<?php echo $row['met']; ?>" <?php if($flag_et == 1) echo "readonly"?>></th>
                                             <th><?php echo $row['mt']; ?></th>
                                             <th></th>
                                     </tr>
@@ -159,14 +168,14 @@ if (isset($_SESSION['id'])) {
                                             <td><strong><?php echo $i++; ?></strong></td>
                                             <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no']; ?>" style="font-weight:bold" readonly></input></td>
                                             <td><strong><?php echo $row['name']; ?></strong></td>
-                                            <td><input class="classtest" name="ct1[]" value="<?php echo $row['class_test_1']; ?>"></input></td>
-                                            <td><input class="classtest" name="ct2[]" value="<?php echo $row['class_test_2']; ?>"></input></td>
-                                            <td><input class="classtest" name="ct3[]" value="<?php echo $row['class_test_3']; ?>"></input></td>
-                                            <td><input class="classtest" name="ct4[]" value="<?php echo $row['class_test_4']; ?>"></input></td>
-                                            <td><input class="marks" name="mt1[]" value="<?php echo $row['mid_term_1']; ?>"></input></td>
-                                            <td><input class="marks" name="mt2[]" value="<?php echo $row['mid_term_2']; ?>"></input></td>
+                                            <td><input class="classtest" name="ct1[]" value="<?php echo $row['class_test_1']; ?>" <?php if($flag_ct == 1) echo "readonly"?> ></td>
+                                            <td><input class="classtest" name="ct2[]" value="<?php echo $row['class_test_2']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></td>
+                                            <td><input class="classtest" name="ct3[]" value="<?php echo $row['class_test_3']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></td>
+                                            <td><input class="classtest" name="ct4[]" value="<?php echo $row['class_test_4']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></td>
+                                            <td><input class="marks" name="mt1[]" value="<?php echo $row['mid_term_1']; ?>" <?php if($flag_mt1 == 1) echo "readonly"?>></td>
+                                            <td><input class="marks" name="mt2[]" value="<?php echo $row['mid_term_2']; ?>" <?php if($flag_mt2 == 1) echo "readonly"?>></td>
                                             <td><?php echo $row['total_assessment']; ?></td>
-                                            <td><input class="marks" name="endterm[]" value="<?php echo $row['end_term']; ?>"></input></td>
+                                            <td><input class="marks" name="endterm[]" value="<?php echo $row['end_term']; ?>" <?php if($flag_et == 1) echo "readonly"?>></td>
                                             <td><?php echo $row['total_marks']; ?></td>
                                             <td><?php echo $row['grade']; ?></td>
                                         </tr>

@@ -140,5 +140,85 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
             echo "done";
         }
     }
+    else if($_POST['ajax'] == '10')
+    {
+        $id = $_POST['id'];
+        $sql = "SELECT mt1 FROM flag WHERE user_id =".$id;
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $res = intval($row['mt1']);
+        $set = 1-$res;
+        $sql = "UPDATE flag SET mt1=" . $set . " WHERE user_id =" . $id;
+        if ($conn->query($sql) === TRUE)
+        {
+            echo "hua gaya guys";
+            exit();
+        } 
+        else
+        { 
+            echo "nahi hua gaya guys";
+            exit();
+        }
+    }
+    else if($_POST['ajax'] == '11')
+    {
+        $id = $_POST['id'];
+        $sql = "SELECT mt2 FROM flag WHERE user_id =".$id;
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $res = intval($row['mt2']);
+        $set = 1-$res;
+        $sql = "UPDATE flag SET mt2=" . $set . " WHERE user_id =" . $id;
+        if ($conn->query($sql) === TRUE)
+        {
+            echo "hua gaya guys";
+            exit();
+        } 
+        else
+        { 
+            echo "nahi hua gaya guys";
+            exit();
+        }
+    }
+    else if($_POST['ajax'] == '12')
+    {
+        $id = $_POST['id'];
+        $sql = "SELECT ct FROM flag WHERE user_id =".$id;
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $res = intval($row['ct']);
+        $set = 1-$res;
+        $sql = "UPDATE flag SET ct=" . $set . " WHERE user_id =" . $id;
+        if ($conn->query($sql) === TRUE)
+        {
+            echo "hua gaya guys";
+            exit();
+        } 
+        else
+        { 
+            echo "nahi hua gaya guys";
+            exit();
+        }
+    }
+    else if($_POST['ajax'] == '13')
+    {
+        $id = $_POST['id'];
+        $sql = "SELECT et FROM flag WHERE user_id =".$id;
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $res = intval($row['et']);
+        $set = 1-$res;
+        $sql = "UPDATE flag SET et=" . $set . " WHERE user_id =" . $id;
+        if ($conn->query($sql) === TRUE)
+        {
+            echo "hua gaya guys";
+            exit();
+        } 
+        else
+        { 
+            echo "nahi hua gaya guys";
+            exit();
+        }
+    }
 }
 require_once __DIR__ . '/connection/disconnect.php';
