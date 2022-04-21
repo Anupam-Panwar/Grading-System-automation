@@ -184,6 +184,9 @@ if (isset($_SESSION['id'])) {
                                     <th>End Term Exam</th>
                                     <th>Total</th>
                                     <th>Grade</th>
+                                    <?php if ($_SESSION['name'] == 'Admin') { ?>
+                                        <th></th>
+                                    <?php } ?>
                                 </tr>
                                 <tr>
                                     <th></th>
@@ -204,6 +207,9 @@ if (isset($_SESSION['id'])) {
                                         <th><?php echo $row['met']; ?></th>
                                         <th><?php echo $row['mt']; ?></th>
                                         <th></th>
+                                        <?php if ($_SESSION['name'] == 'Admin') { ?>
+                                            <th></th>
+                                        <?php } ?>
                                     <?php } ?>
                                 </tr>
                             </thead>
@@ -227,6 +233,12 @@ if (isset($_SESSION['id'])) {
                                         <td><?php echo $row['end_term']; ?></td>
                                         <td><?php echo $row['total_marks']; ?></td>
                                         <td><?php echo $row['grade']; ?></td>
+                                        <?php if ($_SESSION['name'] == 'Admin') { ?>
+                                            <td style="display:flex; flex-direction: row;">
+                                                <!-- new addition <span style="width:8rem;"class="btn btn-sm btn-success btn_row_below_new">Add-New</span> | -->
+                                                <span style="width:2rem;" class="btn btn-sm btn-danger btn_row_delete" id="<?php echo $row['roll_no']; ?>"><i class="fas fa-trash"></i></span>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -358,6 +370,30 @@ if (isset($_SESSION['id'])) {
                 }
             });
         }
+
+        $(document).ready(function($) {
+            $(document).on('click', ".btn_row_delete", function(e) {
+                let rowCount = $('.tbl_code_with_mark tbody tr').length;
+                var r = $(this).closest('tr').remove();
+                for (var i = 1; i <= rowCount; i++) {
+                    $(".tbl_code_with_mark tbody tr:nth-child(" + i + ") td:first").text(i)
+                }
+                var rno = this.id;
+                $.ajax({
+                    type: 'post',
+                    url: 'ajax.php',
+                    data: {
+                        ajax: 9,
+                        id: rno,
+                        cd: "<?php echo $cd ?>"
+                    },
+                    success: (response) => {
+                        console.log(response);
+                    }
+                });
+            });
+            //--->current row > delete > end
+        });
 
     </script>
     </body>

@@ -166,16 +166,21 @@ if (isset($_SESSION['id'])) {
                                             <td><?php echo $row['total_assessment']; ?></td>
                                             <td><?php echo $row['end_term']; ?></td>
                                             <td><?php echo $row['total_marks']; ?></td>
-                                            <td><?php echo $row['grade']; ?></td>
-                                            <td style="display:flex; flex-direction: row;   ">
-                                                <!-- new addition <span style="width:8rem;"class="btn btn-sm btn-success btn_row_below_new">Add-New</span> | -->
-                                                <span style="width:2rem;" class="btn btn-sm btn-danger btn_row_delete" id="<?php echo $row['roll_no']; ?>"><i class="fas fa-trash"></i></span>
+                                            <td style="padding-left:0px; padding-right:0px; padding-bottom:0px;">
+                                                <select style="padding-left:4px; padding-top:2px; padding-bottom:2px; padding-right:8px;" class="form-select marks" aria-label="Default select example" name="grade[]" value="<?php echo $row['grade']; ?>">
+                                                    <option selected><?php echo $row['grade']; ?></option>
+                                                    <?php if($row['grade']=='XX') { ?>
+                                                        <option value=""></option>
+                                                    <?php } else { ?>
+                                                        <option value="XX">XX</option>
+                                                    <?php } ?>
+                                                </select>
                                             </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>
-                            <div class="text-center"><span class="btn btn-sm btn-success btn_row_add_below_end"> Add A Blank Row At The End</span></div>
+                            <div class="text-center"><span class="btn btn-sm btn-success btn_row_add_below_end">Add Student</span></div>
                         </div>
 
                         <br>
@@ -251,35 +256,13 @@ if (isset($_SESSION['id'])) {
         <!-- NEW -->
         <script>
             $(document).ready(function($) {
-                //--->add blank row at the end 
+                //--->add student
                 $(document).on('click', ".btn_row_add_below_end", function(e) {
-                    $(".tbl_code_with_mark tbody").append('<tr><td class="sno" style="font-weight:bold">1</td><td><input class="rollno" name="roll[]" value="" style="font-weight:bold"></input></td><td><input class="name" name="name[]" value=""></input></td><!-- <td><strong>""</strong></td> --><td><input class="classtest" name="ct1[]" value="0"></input></td><td><input class="classtest" name="ct2[]" value="0"></input></td><td><input class="classtest" name="ct3[]" value="0"></input></td><td><input class="classtest" name="ct4[]" value="0"></input></td><td><input class="marks" name="mt1[]" value="0"></input></td><td><input class="marks" name="mt2[]" value="0"></input></td><td></td><td><input class="marks" name="endterm[]" value="0"></input></td><td></td><td></td><td style="display:flex; flex-direction: row;   "><span style="width:2rem;"class="btn btn-sm btn-danger btn_row_delete"><i class="fas fa-trash"></i></span></td></tr>');
+                    $(".tbl_code_with_mark tbody").append('<tr><td class="sno" style="font-weight:bold">1</td><td><input class="rollno" name="roll[]" value="" style="font-weight:bold"></input></td><td><input class="name" name="name[]" value=""></input></td><!-- <td><strong>""</strong></td> --><td><input class="classtest" name="ct1[]" value="0"></input></td><td><input class="classtest" name="ct2[]" value="0"></input></td><td><input class="classtest" name="ct3[]" value="0"></input></td><td><input class="classtest" name="ct4[]" value="0"></input></td><td><input class="marks" name="mt1[]" value="0"></input></td><td><input class="marks" name="mt2[]" value="0"></input></td><td></td><td><input class="marks" name="endterm[]" value="0"></input></td><td></td><td></td></tr>');
                     let rowCount = $('.tbl_code_with_mark tbody tr').length;
                     $(".tbl_code_with_mark tbody tr:last td:first").text(rowCount)
 
                 });
-                $(document).on('click', ".btn_row_delete", function(e) {
-                    let rowCount = $('.tbl_code_with_mark tbody tr').length;
-                    var r = $(this).closest('tr').remove();
-                    for (var i = 1; i <= rowCount; i++) {
-                        $(".tbl_code_with_mark tbody tr:nth-child(" + i + ") td:first").text(i)
-                    }
-                    var rno = this.id;
-                    $.ajax({
-                        type: 'post',
-                        url: 'ajax.php',
-                        data: {
-                            ajax: 9,
-                            id: rno,
-                            cd: "<?php echo $cd ?>"
-                        },
-                        success: (response) => {
-                            console.log(response);
-                        }
-                    });
-                });
-                //--->current row > delete > end
-
             });
         </script>
 
