@@ -27,7 +27,6 @@ if (isset($_SESSION['id'])) {
         <?php
         require_once __DIR__ . '/connection/connect.php';
         $id = $_SESSION['id'];
-        $del = array();
         $uname = $_SESSION['name'];
         if (isset($_GET['course'])) {
             $cd = $_GET['course'];
@@ -173,7 +172,6 @@ if (isset($_SESSION['id'])) {
                                             <td><?php echo $row['total_assessment']; ?></td>
                                             <td style=<?php if($row['end_term']=='Ab') echo "color:red;"?>><?php echo $row['end_term']; ?></td>
                                             <td><?php echo $row['total_marks']; ?></td>
-                                            <!-- <td><?php //echo $row['grade']; ?></td> -->
                                             <td style="padding-left:0px; padding-right:0px; padding-bottom:0px;">
                                                 <select style="padding-left:4px; padding-top:2px; padding-bottom:2px; padding-right:8px;" class="form-select marks" aria-label="Default select example" name="grade[]" value="<?php echo $row['grade']; ?>">
                                                     <option selected><?php echo $row['grade']; ?></option>
@@ -186,7 +184,7 @@ if (isset($_SESSION['id'])) {
                                             </td>
                                             <td style="display:flex; flex-direction: row;   ">
                                                 <!-- new addition <span style="width:8rem;"class="btn btn-sm btn-success btn_row_below_new">Add-New</span> | -->
-                                                <span style="width:2rem;" class="btn btn-sm btn-danger btn_row_delete" id="<?php echo $row['roll_no']; ?>" name="delete" value="<?php echo $del; ?>"><i class="fas fa-trash"></i></span>
+                                                <span style="width:2rem;" class="btn btn-sm btn-danger btn_row_delete" id="<?php echo $row['roll_no']; ?>"><i class="fas fa-trash"></i></span>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -281,7 +279,7 @@ if (isset($_SESSION['id'])) {
                     console.log(toDelete);
                     if(toDelete.length!=0){
                         toDelete.map((x)=>{
-                                $.ajax({
+                            $.ajax({
                                 type: 'post',
                                 url: 'ajax.php',
                                 data: {
@@ -295,18 +293,6 @@ if (isset($_SESSION['id'])) {
                             });
                         })
                     }
-                    // $.ajax({
-                    //     type: 'post',
-                    //     url: 'ajax.php',
-                    //     data: {
-                    //         ajax: 9,
-                    //         id: rno,
-                    //         cd: "<?php //echo $cd ?>"
-                    //     },
-                    //     success: (response) => {
-                    //         console.log(response);
-                    //     }
-                    // });
                 })
 
                 $(document).on('click', ".btn_row_delete", function(e) {
@@ -317,19 +303,6 @@ if (isset($_SESSION['id'])) {
                     }
                     var rno = this.id;
                     toDelete.push(rno);
-                    
-                    // $.ajax({
-                    //     type: 'post',
-                    //     url: 'ajax.php',
-                    //     data: {
-                    //         ajax: 9,
-                    //         id: rno,
-                    //         cd: "<?php //echo $cd ?>"
-                    //     },
-                    //     success: (response) => {
-                    //         console.log(response);
-                    //     }
-                    // });
                 });
                 //--->current row > delete > end
 

@@ -61,7 +61,7 @@
                             <p class="h4">Teachers</p>
                         </a>
                         <?php
-                        $sql = "SELECT id,username, level FROM users";
+                        $sql = "SELECT id,username,level FROM users";
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             if ($row['level'] != 3) {
@@ -517,7 +517,7 @@
                             id: recipient
                         },
                         success: (response) => {
-                            window.location.href = "dashboard_admin.php?error=Successfully Deleted User";
+                            window.location.href = "dashboard_admin.php?error="+response;
                         }
                     });
                 }
@@ -559,7 +559,7 @@
                             password: password
                         },
                         success: (response) => {
-                            window.location.href = "dashboard_admin.php?error=Successfully Updated User";
+                            window.location.href = "dashboard_admin.php?error="+response;
                         }
                     });
                 }
@@ -573,7 +573,7 @@
                         id: <?php echo ($_SESSION['id']) ?>
                     },
                     success: (response) => {
-                        window.location.href = "dashboard_admin.php?error=Successfully Freezed MT1 Marks";
+                        window.location.href = "dashboard_admin.php?error="+response;
                     }
                 });
             }
@@ -586,7 +586,7 @@
                         id: <?php echo ($_SESSION['id']) ?>
                     },
                     success: (response) => {
-                        window.location.href = "dashboard_admin.php?error=Successfully Freezed MT2 Marks";
+                        window.location.href = "dashboard_admin.php?error="+response;
                     }
                 });
             }
@@ -599,7 +599,7 @@
                         id: <?php echo ($_SESSION['id']) ?>
                     },
                     success: (response) => {
-                        window.location.href = "dashboard_admin.php?error=Successfully Freezed CT Marks";
+                        window.location.href = "dashboard_admin.php?error="+response;
                     }
                 });
             }
@@ -612,7 +612,7 @@
                         id: <?php echo ($_SESSION['id']) ?>
                     },
                     success: (response) => {
-                        window.location.href = "dashboard_admin.php?error=Successfully Freezed ET Marks";
+                        window.location.href = "dashboard_admin.php?error="+response;
                     }
                 });
             }

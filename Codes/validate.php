@@ -48,6 +48,7 @@
                     $_SESSION['name']=$row['username'];
                     $_SESSION['image_url']=$row['image_url'];
                     $_SESSION['level']=$row['level'];
+                    $_SESSION['dept'] = $row['department'];
 
                     if($_SESSION['level'] == 1)
                     {
@@ -56,7 +57,6 @@
                     }
                     else if($_SESSION['level'] == 2)
                     {
-                        $_SESSION['dept'] = $row['department'];
                         header('Location: dashboard_hod.php');
                         exit();
                     }
