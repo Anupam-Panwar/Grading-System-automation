@@ -31,7 +31,7 @@
                 $result = $conn->query($sql);
                 if ($result->num_rows) {
                     //Updation
-                    $sql1 = "UPDATE controlsheet SET name='" . $_POST['name'][$i] . "' WHERE course_code='$cd' AND roll_no='$r'";
+                    $sql1 = "UPDATE controlsheet SET name='" . $_POST['name'][$i] . "', grade='".$_POST['grade'][$i]."' WHERE course_code='$cd' AND roll_no='$r'";
                     if ($conn->query($sql1) !== TRUE) {
                         header('Location: edit_admin.php?course='.$cd.'&error=ERROR UPDATING RECORD');
                         exit();
