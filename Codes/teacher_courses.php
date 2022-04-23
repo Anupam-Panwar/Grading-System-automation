@@ -4,6 +4,7 @@ if (isset($_SESSION['id'])) {
     require_once __DIR__ . '/connection/connect.php';
     $id = $_GET['id'];
     $name = $_SESSION['name'];
+    $level = $_SESSION['level'];
 ?>
     <!DOCTYPE html>
     <html>
@@ -87,7 +88,7 @@ if (isset($_SESSION['id'])) {
 
             <div id="content">
                 <?php
-                if($name == 'HOD-CSE') {
+                if($level == 2) {
                 ?>
                 <button type="button" id="addIcon" data-bs-toggle="modal" data-bs-target="#new_course">
                     <i class="fa fa-plus"></i>

@@ -4,6 +4,7 @@
         require_once __DIR__ . '/connection/connect.php';
         $id = $_SESSION['id'];
         $name = $_SESSION['name'];
+        $dept = $_SESSION['dept'];
     ?>
         <!DOCTYPE html>
         <html>
@@ -12,7 +13,7 @@
             <?php
             require __DIR__ . '/utility/head_info.php';
             ?>
-            <title>Dashboard_HOD-CSE</title>
+            <title>Dashboard_HOD</title>
 
             <!-- Bootstrap CSS -->
             <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -61,10 +62,10 @@
                             <p class="h4">Teachers</p>
                         </a>
                         <?php
-                        $sql = "SELECT id,username FROM users WHERE department='CSE'";
+                        $sql = "SELECT id,username,level FROM users WHERE department='".$dept."'";
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
-                            if ($row['username'] == "Admin" || $row['username'] == "HOD-CSE") {
+                            if ($row['level'] != 3) {
                                 continue;
                             }
                         ?>
@@ -103,11 +104,11 @@
                     <?php } ?>
                     <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4">
                         <?php
-                        $sql = "SELECT id, username, email, department FROM users WHERE department='CSE'";
+                        $sql = "SELECT id, username, email, department,level FROM users WHERE department='".$dept."'";
                         $result = $conn->query($sql);
                         $i = 1;
                         while ($row = $result->fetch_assoc()) {
-                            if ($row['username'] == "Admin" || $row['username'] == "HOD-CSE") {
+                            if ($row['level'] != 3) {
                                 continue;
                             }
                             $sql1 = "SELECT course_code FROM courses WHERE id=" . $row['id'];
@@ -118,17 +119,13 @@
                                 <span>
                                     <div class="container mt-4 d-flex justify-content-center card h-100 ps-3">
                                         <div class="d-flex align-items-center">
-                                            <img src="images/generic_image.png" class="rounded" width="35%" alt="Teacher Image" onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">
+                                            <img src="images/generic_image.png" class="rounded" width="35%" alt="Teacher Image" onclick="javascript:location.href='teacher_courses.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">
                                             <div class="ms-3 w-auto">
-                                                <h4 class="mb-0 mt-0 text-break" onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['username'] ?></h4> 
-                                                <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['email'] ?></span><br>
-                                                <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">Courses: <?php echo $course_count ?></span><br>
-                                                <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['department'] ?></span>
+                                                <h4 class="mb-0 mt-0 text-break" onclick="javascript:location.href='teacher_courses.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['username'] ?></h4> 
+                                                <span onclick="javascript:location.href='teacher_courses.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['email'] ?></span><br>
+                                                <span onclick="javascript:location.href='teacher_courses.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">Courses: <?php echo $course_count ?></span><br>
+                                                <span onclick="javascript:location.href='teacher_courses.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['department'] ?></span>
                                 </span>
-                                <div class="button mt-2 d-flex flex-row align-items-center">
-                                    <a class="btn btn-sm btn-outline-primary w-auto px-3" data-bs-toggle="modal" data-bs-target="#edit_user" data-bs-whatever="<?php echo $row['id'] ?>">Edit</a>
-                                    <a class="btn btn-sm btn-primary ms-1 w-auto px-3" data-bs-toggle="modal" data-bs-target="#delete" data-bs-whatever="<?php echo $row['id'] ?>">Delete</a>
-                                </div>
                             </div>
                     </div>
                 </div>
@@ -138,43 +135,7 @@
         </div>
         </div>
         </div>
-        <!-- Modal for Adding new user-->
-        <div class="modal fade" id="new_user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="insert_user.php" method="post">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add New teacher</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email id</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="checkbox">
-                                <label class="form-check-label" for="checkbox">Show Password</label>
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
-                            <button type="submit" class="btn btn-primary">Add</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        </div>
+        
 
         <!-- Modal for delete -->
         <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -251,53 +212,7 @@
                             </div>
 
                             <div class="d-flex justify-content-end"><button type="button" class="btn btn-dark" data-bs-target="#changePassword" data-bs-toggle="modal" data-bs-dismiss="modal">Change Password</button></div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark" data-bs-target="#freezeMt1" data-bs-toggle="modal" data-bs-dismiss="modal">
-                                    <?php
-                                    $sql = "SELECT * FROM flag";
-                                    $res = $conn->query($sql);
-                                    $row1 = $res->fetch_assoc();
-                                    $flag_mt1 = $row1['mt1'];
-                                    $flag_mt2 = $row1['mt2'];
-                                    $flag_ct = $row1['ct'];
-                                    $flag_et = $row1['et'];
-                                    if ($flag_mt1 == 0)
-                                        echo "Freeze MT1";
-                                    else
-                                        echo "Unfreeze MT1";
-                                    ?>
-                                </button>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark" data-bs-target="#freezeMt2" data-bs-toggle="modal" data-bs-dismiss="modal">
-                                    <?php
-                                    if ($flag_mt2 == 0)
-                                        echo "Freeze MT2";
-                                    else
-                                        echo "Unfreeze MT2";
-                                    ?>
-                                </button>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark" data-bs-target="#freezeCT" data-bs-toggle="modal" data-bs-dismiss="modal">
-                                    <?php
-                                    if ($flag_ct == 0)
-                                        echo "Freeze CT";
-                                    else
-                                        echo "Unfreeze CT";
-                                    ?>
-                                </button>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark" data-bs-target="#freezeET" data-bs-toggle="modal" data-bs-dismiss="modal">
-                                    <?php
-                                    if ($flag_et == 0)
-                                        echo "Freeze ET";
-                                    else
-                                        echo "Unfreeze ET";
-                                    ?>
-                                </button>
-                            </div>
+                            
                         </div>
 
                         <div class="modal-footer">
@@ -344,69 +259,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="freezeMt1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Freeze MT1 Marks?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" onclick="">No</button>
-                        <button type="submit" class="btn btn-primary" onclick="mt1()">Yes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="freezeMt2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Freeze MT2 Marks?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" onclick="">No</button>
-                        <button type="submit" class="btn btn-primary" onclick="mt2()">Yes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="freezeCT" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Freeze CT Marks?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" onclick="">No</button>
-                        <button type="submit" class="btn btn-primary" onclick="ct()">Yes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="freezeET" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Freeze ET Marks?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" onclick="">No</button>
-                        <button type="submit" class="btn btn-primary" onclick="et()">Yes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- <button type="button" id="addIcon" data-bs-toggle="modal" data-bs-target="#new_user">
-            <i class="fa fa-plus"></i>
-        </button> -->
+        
     <?php
     } else {
         header('Location: index.php?error=INVALID USER');

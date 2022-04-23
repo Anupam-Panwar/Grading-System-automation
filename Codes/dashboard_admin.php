@@ -61,10 +61,10 @@
                             <p class="h4">Teachers</p>
                         </a>
                         <?php
-                        $sql = "SELECT id,username FROM users";
+                        $sql = "SELECT id,username, level FROM users";
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
-                            if ($row['username'] == "Admin" || $row['username'] == "HOD-CSE") {
+                            if ($row['level'] != 3) {
                                 continue;
                             }
                         ?>
@@ -103,11 +103,11 @@
                     <?php } ?>
                     <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4">
                         <?php
-                        $sql = "SELECT id, username, email FROM users";
+                        $sql = "SELECT id, username, email, level FROM users";
                         $result = $conn->query($sql);
                         $i = 1;
                         while ($row = $result->fetch_assoc()) {
-                            if ($row['username'] == "Admin" || $row['username'] == "HOD-CSE") {
+                            if ($row['level'] != 3) {
                                 continue;
                             }
                             $sql1 = "SELECT course_code FROM courses WHERE id=" . $row['id'];
@@ -118,10 +118,10 @@
                                 <span>
                                     <div class="container mt-4 d-flex justify-content-center card h-100 ps-3">
                                         <div class="d-flex align-items-center">
-                                            <img src="images/generic_image.png" class="rounded" width="35%" alt="Teacher Image" onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">
+                                            <img src="images/generic_image.png" class="rounded" width="35%" alt="Teacher Image" onclick="javascript:location.href='teacher_courses.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">
                                             <div class="ms-3 w-auto">
-                                                <h4 class="mb-0 mt-0 text-break" onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['username'] ?></h4> <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['email'] ?></span><br>
-                                                <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">Courses: <?php echo $course_count ?></span>
+                                                <h4 class="mb-0 mt-0 text-break" onclick="javascript:location.href='teacher_courses.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['username'] ?></h4> <span onclick="javascript:location.href='teacher_courses.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['email'] ?></span><br>
+                                                <span onclick="javascript:location.href='teacher_courses.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">Courses: <?php echo $course_count ?></span>
                                 </span>
                                 <div class="button mt-2 d-flex flex-row align-items-center">
                                     <a class="btn btn-sm btn-outline-primary w-auto px-3" data-bs-toggle="modal" data-bs-target="#edit_user" data-bs-whatever="<?php echo $row['id'] ?>">Edit</a>

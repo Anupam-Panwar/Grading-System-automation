@@ -6,7 +6,7 @@
         header('Location: index.php?error=Multiple Login is not allowed');
         exit();
     }
-    if(isset($_POST['email'])&&isset($_POST['password']))
+    if(isset($_POST['email']) && isset($_POST['password']))
     {
         function validate($data)
         {
@@ -47,14 +47,17 @@
                     $_SESSION['id']=$row['id'];
                     $_SESSION['name']=$row['username'];
                     $_SESSION['image_url']=$row['image_url'];
-                    if($_SESSION['name'] == "Admin")
+                    $_SESSION['level']=$row['level'];
+
+                    if($_SESSION['level'] == 1)
                     {
                         header('Location: dashboard_admin.php');
                         exit();
                     }
-                    else if($_SESSION['name'] == "HOD-CSE")
+                    else if($_SESSION['level'] == 2)
                     {
-                        header('Location: dashboard_hod-cse.php');
+                        $_SESSION['dept'] = $row['department'];
+                        header('Location: dashboard_hod.php');
                         exit();
                     }
                     else
