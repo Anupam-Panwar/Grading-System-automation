@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2022 at 01:53 PM
+-- Generation Time: Apr 23, 2022 at 08:01 AM
 -- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -68,10 +68,12 @@ INSERT INTO `controlsheet` (`course_code`, `roll_no`, `name`, `class_test_1`, `c
 ('CSL-257', 'BT19CSE003', 'Neha Dhyani', '10', '9', '0', '0', '18', '19', 55, '39', 93, ''),
 ('CSL-257', 'BT19CSE011', 'Purvi Goyal', '9', '9', '0', '0', '18', '19', 54, '38', 92, ''),
 ('CSL-257', 'BT19CSE020', 'Priyanshu Upadhyay', '10', '9', '0', '0', '18', '20', 56, '37', 93, ''),
+('CSL-258', '', '', '0', '0', '0', '0', '0', '0', 0, '0', 0, NULL),
 ('CSL-258', 'BT19CSE002', 'Anupam Panwar', '8', '9', '0', '0', '16', '19', 52, '35', 87, 'AA'),
 ('CSL-258', 'BT19CSE003', 'Neha Dhyani', '9', '9', '0', '0', '18', '19', 55, '38', 93, 'AA'),
 ('CSL-258', 'BT19CSE011', 'Purvi Goyal', '8', '5', '0', '0', '12', '14', 39, '30', 69, 'BB'),
 ('CSL-258', 'BT19CSE020', 'Priyanshu Upadhyay', '8', '8', '0', '0', '15', '13', 44, '34', 78, 'AB'),
+('CSL-258', 'BT19ECE021', 'Reshma Dudhekula', '0', '0', '0', '0', '0', '0', 0, '0', 0, NULL),
 ('CSL-307', 'BT19CSE002', 'Anupam Panwar', '10', '10', '0', '0', '10', '10', 40, '10', 50, ''),
 ('CSL-307', 'BT19CSE003', 'Neha Dhyani', '0', '0', '0', '0', '0', '0', 0, '0', 0, ''),
 ('CSL-307', 'BT19CSE011', 'Purvi Goyal', '0', '0', '0', '0', '0', '0', 0, '0', 0, ''),
@@ -143,32 +145,33 @@ CREATE TABLE `courses` (
   `met` int(11) NOT NULL,
   `mt` int(11) NOT NULL,
   `flag` tinyint(1) DEFAULT 0,
-  `type` varchar(5) DEFAULT NULL
+  `type` varchar(5) DEFAULT NULL,
+  `department` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `course_name`, `course_code`, `batch`, `semester`, `mct1`, `mct2`, `mct3`, `mct4`, `mmt1`, `mmt2`, `mta`, `met`, `mt`, `flag`, `type`) VALUES
-(3, 'Data Structures', 'CSL-251', '2017', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(3, 'Operating System', 'CSL-252', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Object Oriented Design', 'CSL-253', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(1, 'Computer Networks', 'CSL-255', '2018', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(1, 'Data Communication', 'CSL-257', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(1, 'Computer Organistaion', 'CSL-258', '2020', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(5, 'Software Engineering', 'CSL-307', '2018', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Course1', 'CSL-X1', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Course2', 'CSL-X2', '2019', 'Even 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Course3', 'CSL-X3', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Course4', 'CSL-X4', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Course5', 'CSL-X5', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Course6', 'CSL-X66', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Course7', 'CSL-X7', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Course8', 'CSL-X8', '2019', 'Even 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(2, 'Object Oriented Lab', 'CSP-253', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(4, 'Engineering Drawing', 'MEL-151', '2018', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL),
-(4, 'Engineering Drawing Lab', 'MEP-151', '2017', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL);
+INSERT INTO `courses` (`id`, `course_name`, `course_code`, `batch`, `semester`, `mct1`, `mct2`, `mct3`, `mct4`, `mmt1`, `mmt2`, `mta`, `met`, `mt`, `flag`, `type`, `department`) VALUES
+(3, 'Data Structures', 'CSL-251', '2017', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(3, 'Operating System', 'CSL-252', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Object Oriented Design', 'CSL-253', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(1, 'Computer Networks', 'CSL-255', '2018', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(1, 'Data Communication', 'CSL-257', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(1, 'Computer Organistaion', 'CSL-258', '2020', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(5, 'Software Engineering', 'CSL-307', '2018', 'Even 2021', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Course1', 'CSL-X1', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Course2', 'CSL-X2', '2019', 'Even 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Course3', 'CSL-X3', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Course4', 'CSL-X4', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Course5', 'CSL-X5', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Course6', 'CSL-X66', '2020', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Course7', 'CSL-X7', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Course8', 'CSL-X8', '2019', 'Even 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(2, 'Object Oriented Lab', 'CSP-253', '2019', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'CSE'),
+(4, 'Engineering Drawing', 'MEL-151', '2018', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'ME'),
+(4, 'Engineering Drawing Lab', 'MEP-151', '2017', 'Odd 2020', 10, 10, 0, 0, 20, 20, 60, 40, 100, 0, NULL, 'ME');
 
 -- --------------------------------------------------------
 
@@ -348,20 +351,24 @@ CREATE TABLE `users` (
   `username` varchar(25) NOT NULL,
   `email` varchar(30) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `image_url` text NOT NULL
+  `image_url` text NOT NULL DEFAULT 'IMG-5f8954bd209a92.78214246.jpg',
+  `level` int(5) NOT NULL DEFAULT 3,
+  `department` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `image_url`) VALUES
-(1, 'Surendra Singh', 'surendra@nituk.ac.in', 'surendra', 'IMG-5f8954bd209a92.78214246.jpg'),
-(2, 'Guest', 'guest@nituk.ac.in', 'Guest', 'IMG-623df783c68f57.91856579.jpg'),
-(3, 'Krishanveer Gangwar', 'kg@nituk.ac.in', 'krish', 'IMG-5f8954bd209a92.78214246.jpg'),
-(4, 'Dungali Shreehari', 'dungali@nituk.ac.in', 'dungali', 'IMG-5f8954bd209a92.78214246.jpg'),
-(5, 'Maheep Singh', 'maheep@nituk.ac.in', 'maheep', 'IMG-5f8954bd209a92.78214246.jpg'),
-(6, 'Admin', 'admin@nituk.ac.in', 'Admin@123', 'IMG-5f8954bd209a92.78214246.jpg');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `image_url`, `level`, `department`) VALUES
+(1, 'Surendra Singh', 'surendra@nituk.ac.in', 'surendra', 'IMG-5f8954bd209a92.78214246.jpg', 3, 'CSE'),
+(2, 'Guest', 'guest@nituk.ac.in', 'Guest', 'IMG-623df783c68f57.91856579.jpg', 3, 'ME'),
+(3, 'Krishanveer Gangwar', 'kg@nituk.ac.in', 'krish', 'IMG-5f8954bd209a92.78214246.jpg', 3, 'CSE'),
+(4, 'Dungali Shreehari', 'dungali@nituk.ac.in', 'dungali', 'IMG-5f8954bd209a92.78214246.jpg', 3, 'ME'),
+(5, 'Maheep Singh', 'maheep@nituk.ac.in', 'maheep', 'IMG-5f8954bd209a92.78214246.jpg', 3, 'CSE'),
+(6, 'Admin', 'admin@nituk.ac.in', 'Admin@123', 'IMG-5f8954bd209a92.78214246.jpg', 1, 'NA'),
+(7, 'HOD-CSE', 'hodcse@nituk.ac.in', 'hodcse@123', 'IMG-5f8954bd209a92.78214246.jpg', 2, 'CSE'),
+(11, 'Purvi Goyal', 'goyalpurvi7@gmail.com', 'sdfghj', '', 3, 'Computer Science and Engineering');
 
 --
 -- Indexes for dumped tables
@@ -406,7 +413,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
