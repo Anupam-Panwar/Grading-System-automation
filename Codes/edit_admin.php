@@ -27,6 +27,7 @@ if (isset($_SESSION['id'])) {
         <?php
         require_once __DIR__ . '/connection/connect.php';
         $id = $_SESSION['id'];
+        $del = array();
         $uname = $_SESSION['name'];
         if (isset($_GET['course'])) {
             $cd = $_GET['course'];
@@ -97,7 +98,7 @@ if (isset($_SESSION['id'])) {
                                 <?php $cn = $row['course_name']; ?>
 
                                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                                    <input type="submit" value="Save" class="btn btn-outline-secondary d-print-none" />
+                                    <input type="submit" value="Save" class="btn btn-outline-secondary d-print-none" id ="save" onclick="deleteStudent();"/>
                                     <a href="coursetable.php?course=<?php echo $cd; ?>"><input type="button" value="Cancel" class="btn btn-outline-secondary d-print-none" /></a>
                                 </div>
                         </div>
@@ -125,6 +126,9 @@ if (isset($_SESSION['id'])) {
                                         <th>End Term Exam</th>
                                         <th>Total</th>
                                         <th>Grade</th>
+                                        <?php if ($_SESSION['name'] == 'Admin') { ?>
+                                            <th></th>
+                                        <?php } ?>
                                     </tr>
                                     <tr>
                                         <th>S. No.</th>
@@ -144,6 +148,9 @@ if (isset($_SESSION['id'])) {
                                             <th><?php echo $row['met']; ?></th>
                                             <th><?php echo $row['mt']; ?></th>
                                             <th></th>
+                                            <?php if ($_SESSION['name'] == 'Admin') { ?>
+                                            <th></th>
+                                        <?php } ?>
                                     </tr>
                                 <?php } ?>
                                 </thead>
@@ -166,6 +173,7 @@ if (isset($_SESSION['id'])) {
                                             <td><?php echo $row['total_assessment']; ?></td>
                                             <td><?php echo $row['end_term']; ?></td>
                                             <td><?php echo $row['total_marks']; ?></td>
+                                            <!-- <td><?php //echo $row['grade']; ?></td> -->
                                             <td style="padding-left:0px; padding-right:0px; padding-bottom:0px;">
                                                 <select style="padding-left:4px; padding-top:2px; padding-bottom:2px; padding-right:8px;" class="form-select marks" aria-label="Default select example" name="grade[]" value="<?php echo $row['grade']; ?>">
                                                     <option selected><?php echo $row['grade']; ?></option>
@@ -175,6 +183,10 @@ if (isset($_SESSION['id'])) {
                                                         <option value="XX">XX</option>
                                                     <?php } ?>
                                                 </select>
+                                            </td>
+                                            <td style="display:flex; flex-direction: row;   ">
+                                                <!-- new addition <span style="width:8rem;"class="btn btn-sm btn-success btn_row_below_new">Add-New</span> | -->
+                                                <span style="width:2rem;" class="btn btn-sm btn-danger btn_row_delete" id="<?php echo $row['roll_no']; ?>" name="delete" value="<?php echo $del; ?>"><i class="fas fa-trash"></i></span>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -255,14 +267,72 @@ if (isset($_SESSION['id'])) {
 
         <!-- NEW -->
         <script>
+            var toDelete = [];
             $(document).ready(function($) {
                 //--->add student
                 $(document).on('click', ".btn_row_add_below_end", function(e) {
-                    $(".tbl_code_with_mark tbody").append('<tr><td class="sno" style="font-weight:bold">1</td><td><input class="rollno" name="roll[]" value="" style="font-weight:bold"></input></td><td><input class="name" name="name[]" value=""></input></td><!-- <td><strong>""</strong></td> --><td><input class="classtest" name="ct1[]" value="0"></input></td><td><input class="classtest" name="ct2[]" value="0"></input></td><td><input class="classtest" name="ct3[]" value="0"></input></td><td><input class="classtest" name="ct4[]" value="0"></input></td><td><input class="marks" name="mt1[]" value="0"></input></td><td><input class="marks" name="mt2[]" value="0"></input></td><td></td><td><input class="marks" name="endterm[]" value="0"></input></td><td></td><td></td></tr>');
+                    $(".tbl_code_with_mark tbody").append('<tr><td class="sno" style="font-weight:bold">1</td><td><input class="rollno" name="roll[]" value="" style="font-weight:bold"></input></td><td><input class="name" name="name[]" value=""></input></td><!-- <td><strong>""</strong></td> --><td><input class="classtest" name="ct1[]" value="0"></input></td><td><input class="classtest" name="ct2[]" value="0"></input></td><td><input class="classtest" name="ct3[]" value="0"></input></td><td><input class="classtest" name="ct4[]" value="0"></input></td><td><input class="marks" name="mt1[]" value="0"></input></td><td><input class="marks" name="mt2[]" value="0"></input></td><td></td><td><input class="marks" name="endterm[]" value="0"></input></td><td></td><td></td><td style="display:flex; flex-direction: row;   "><span style="width:2rem;"class="btn btn-sm btn-danger btn_row_delete"><i class="fas fa-trash"></i></span></td></tr>');
                     let rowCount = $('.tbl_code_with_mark tbody tr').length;
                     $(".tbl_code_with_mark tbody tr:last td:first").text(rowCount)
 
                 });
+
+                $(document).on('click', '#save', (e)=>{
+                    console.log(toDelete);
+                    if(toDelete.length!=0){
+                        toDelete.map((x)=>{
+                                $.ajax({
+                                type: 'post',
+                                url: 'ajax.php',
+                                data: {
+                                    ajax: 9,
+                                    id: x,
+                                    cd: "<?php echo $cd ?>"
+                                },
+                                success: (response) => {
+                                    console.log(response);
+                                }
+                            });
+                        })
+                    }
+                    // $.ajax({
+                    //     type: 'post',
+                    //     url: 'ajax.php',
+                    //     data: {
+                    //         ajax: 9,
+                    //         id: rno,
+                    //         cd: "<?php //echo $cd ?>"
+                    //     },
+                    //     success: (response) => {
+                    //         console.log(response);
+                    //     }
+                    // });
+                })
+
+                $(document).on('click', ".btn_row_delete", function(e) {
+                    let rowCount = $('.tbl_code_with_mark tbody tr').length;
+                    var r = $(this).closest('tr').remove();
+                    for (var i = 1; i <= rowCount; i++) {
+                        $(".tbl_code_with_mark tbody tr:nth-child(" + i + ") td:first").text(i)
+                    }
+                    var rno = this.id;
+                    toDelete.push(rno);
+                    
+                    // $.ajax({
+                    //     type: 'post',
+                    //     url: 'ajax.php',
+                    //     data: {
+                    //         ajax: 9,
+                    //         id: rno,
+                    //         cd: "<?php //echo $cd ?>"
+                    //     },
+                    //     success: (response) => {
+                    //         console.log(response);
+                    //     }
+                    // });
+                });
+                //--->current row > delete > end
+
             });
         </script>
 
