@@ -5,6 +5,7 @@ if (isset($_SESSION['id'])) {
     $id = $_GET['id'];
     $name = $_SESSION['name'];
     $level = $_SESSION['level'];
+    $dept = $_SESSION['dept'];
 ?>
     <!DOCTYPE html>
     <html>
@@ -55,10 +56,10 @@ if (isset($_SESSION['id'])) {
                         <p class="h4">Teachers</p>
                     </a>
                     <?php
-                    $sql = "SELECT id,username FROM users";
+                    $sql = ($level == 2) ? "SELECT id,username,level FROM users WHERE department='".$dept."'" : "SELECT id,username,level FROM users";
                     $result = $conn->query($sql);
                     while ($row = $result->fetch_assoc()) {
-                        if ($row['username'] == "Admin") {
+                        if ($row['level'] != 3) {
                             continue;
                         }
                     ?>
@@ -111,9 +112,7 @@ if (isset($_SESSION['id'])) {
                     ?>
                         <div class="col">
                             <div class="card h-100 d-flex">
-                                <?php
-                                if($name != "HOD-CSE"){
-                                    ?>
+                                <?php if($name != "HOD-CSE") { ?>
                                 <a href="coursetable.php?course=<?php echo $row['course_code']; ?>"> <?php } ?>
                                     <img src="images/img<?php echo $i ?>.jpg" class="card-img-top" alt="Course Image">
                                     <div class="card-body">
@@ -314,7 +313,7 @@ if (isset($_SESSION['id'])) {
                         id: recipient
                     },
                     success: (response) => {
-                        window.location.href = "teacher_courses_admin.php?error=Successfully Deleted Course&id="+param;
+                        window.location.href = "teacher_courses.php?error="+response+"&id="+param;
                     }
                 });
             }
@@ -365,7 +364,7 @@ if (isset($_SESSION['id'])) {
                     },
                     success: (response) => {
                         console.log(response);
-                        window.location.href = "teacher_courses_admin.php?error=Successfully Updated Course&id="+param;
+                        window.location.href = "teacher_courses.php?error="+response+"&id="+param;
                     }
                 });
             }
