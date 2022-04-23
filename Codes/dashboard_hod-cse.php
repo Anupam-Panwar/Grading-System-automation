@@ -1,4 +1,4 @@
-    <?php
+<?php
     session_start();
     if (isset($_SESSION['id'])) {
         require_once __DIR__ . '/connection/connect.php';
@@ -12,7 +12,7 @@
             <?php
             require __DIR__ . '/utility/head_info.php';
             ?>
-            <title>Dashboard_admin</title>
+            <title>Dashboard_HOD-CSE</title>
 
             <!-- Bootstrap CSS -->
             <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -61,7 +61,7 @@
                             <p class="h4">Teachers</p>
                         </a>
                         <?php
-                        $sql = "SELECT id,username FROM users";
+                        $sql = "SELECT id,username FROM users WHERE department='CSE'";
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             if ($row['username'] == "Admin" || $row['username'] == "HOD-CSE") {
@@ -103,7 +103,7 @@
                     <?php } ?>
                     <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4">
                         <?php
-                        $sql = "SELECT id, username, email FROM users";
+                        $sql = "SELECT id, username, email, department FROM users WHERE department='CSE'";
                         $result = $conn->query($sql);
                         $i = 1;
                         while ($row = $result->fetch_assoc()) {
@@ -120,8 +120,10 @@
                                         <div class="d-flex align-items-center">
                                             <img src="images/generic_image.png" class="rounded" width="35%" alt="Teacher Image" onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">
                                             <div class="ms-3 w-auto">
-                                                <h4 class="mb-0 mt-0 text-break" onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['username'] ?></h4> <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['email'] ?></span><br>
-                                                <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">Courses: <?php echo $course_count ?></span>
+                                                <h4 class="mb-0 mt-0 text-break" onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['username'] ?></h4> 
+                                                <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['email'] ?></span><br>
+                                                <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer">Courses: <?php echo $course_count ?></span><br>
+                                                <span onclick="javascript:location.href='teacher_courses_admin.php?id=<?php echo $row['id']; ?>'" style="cursor:pointer"><?php echo $row['department'] ?></span>
                                 </span>
                                 <div class="button mt-2 d-flex flex-row align-items-center">
                                     <a class="btn btn-sm btn-outline-primary w-auto px-3" data-bs-toggle="modal" data-bs-target="#edit_user" data-bs-whatever="<?php echo $row['id'] ?>">Edit</a>
@@ -157,10 +159,6 @@
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="department" class="form-label">Department</label>
-                                <input type="department" class="form-control" id="department" name="department" required>
                             </div>
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="checkbox">
@@ -406,9 +404,9 @@
 
 
 
-        <button type="button" id="addIcon" data-bs-toggle="modal" data-bs-target="#new_user">
+        <!-- <button type="button" id="addIcon" data-bs-toggle="modal" data-bs-target="#new_user">
             <i class="fa fa-plus"></i>
-        </button>
+        </button> -->
     <?php
     } else {
         header('Location: index.php?error=INVALID USER');

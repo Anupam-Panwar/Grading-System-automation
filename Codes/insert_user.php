@@ -11,6 +11,7 @@ if (isset($_POST['name']) && isset($_POST['password']) && isset($_POST['email'])
     $mail = validate($_POST['email']);
     $pass = validate($_POST['password']);
     $name = validate($_POST['name']);
+    $dept = validate($_POST['department']);
 
     if (empty($mail)) {
         header('Location: dashboard_admin.php?error=Email required');
@@ -22,7 +23,7 @@ if (isset($_POST['name']) && isset($_POST['password']) && isset($_POST['email'])
         header('Location: dashboard_admin.php?error=Password required');
         exit();
     } else {
-        $sql = "INSERT INTO users (username, email, password) VALUES ('$name', '$mail', '$pass')";
+        $sql = "INSERT INTO users (username, email, password, department) VALUES ('$name', '$mail', '$pass','$dept')";
         if ($conn->query($sql) === TRUE) {
             header('Location:dashboard_admin.php?error=Successfully added user');
             exit();

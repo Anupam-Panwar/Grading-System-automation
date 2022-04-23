@@ -52,6 +52,11 @@
                         header('Location: dashboard_admin.php');
                         exit();
                     }
+                    else if($_SESSION['name'] == "HOD-CSE")
+                    {
+                        header('Location: dashboard_hod-cse.php');
+                        exit();
+                    }
                     else
                     {
                         header('Location: dashboard.php');

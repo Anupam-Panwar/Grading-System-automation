@@ -86,10 +86,13 @@ if (isset($_SESSION['id'])) {
             <!-- Page Content Holder -->
 
             <div id="content">
+                <?php
+                if($name == 'HOD-CSE') {
+                ?>
                 <button type="button" id="addIcon" data-bs-toggle="modal" data-bs-target="#new_course">
                     <i class="fa fa-plus"></i>
                 </button>
-                <?php
+                <?php }
                 if (isset($_GET['error'])) {
                 ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -99,18 +102,22 @@ if (isset($_SESSION['id'])) {
                 <?php } ?>
                 <div class="row row-cols-1 row-cols-md-5 g-4">
                     <?php
-                    $sql = "SELECT course_name,course_code,batch FROM courses WHERE id=$id ORDER BY batch DESC";
+                    $sql = "SELECT course_name,course_code,batch,type,department FROM courses WHERE id=$id ORDER BY batch DESC";
                     $result = $conn->query($sql);
+
                     $i = 1;
                     while ($row = $result->fetch_assoc()) {
                     ?>
                         <div class="col">
                             <div class="card h-100 d-flex">
-                                <a href="coursetable.php?course=<?php echo $row['course_code']; ?>">
+                                <?php
+                                if($name != "HOD-CSE"){
+                                    ?>
+                                <a href="coursetable.php?course=<?php echo $row['course_code']; ?>"> <?php } ?>
                                     <img src="images/img<?php echo $i ?>.jpg" class="card-img-top" alt="Course Image">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $row['course_name'] ?></h5>
-                                        <p class="card-text"><?php echo $row['course_code'] ?><?php echo " | " . $row['batch'] ?></p>
+                                        <p class="card-text"><?php echo $row['course_code'] ?><?php echo " | " . $row['batch'] ?><br><?php echo $row['department'] ?><?php echo " | Type : " . $row['type'] ?></p>
                                     </div>
                                 </a>
                                 <div class="button mt-2 d-flex flex-row align-items-center p-2">
@@ -128,7 +135,7 @@ if (isset($_SESSION['id'])) {
                 </div>
             </div>
         </div>
-        <!-- Modal for Adding new course-->
+        <!-- Modal for Adding new course -->
         <div class="modal fade" id="new_course" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -155,8 +162,12 @@ if (isset($_SESSION['id'])) {
                                 <input type="text" class="form-control" id="semester" name="semester" required>
                             </div>
                             <div class="mb-3">
+                                <label for="department" class="form-label">Department</label>
+                                <input type="text" class="form-control" id="department" name="department" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="type" class="form-label">Type</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" name="type">
                                     <option selected>Select the type of course</option>
                                     <option value="l">L</option>
                                     <option value="p">P</option>

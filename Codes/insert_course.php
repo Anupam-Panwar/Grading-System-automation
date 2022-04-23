@@ -20,6 +20,8 @@ if (isset($_POST['course_name']) && isset($_POST['code']) && isset($_POST['year'
     $year = validate($_POST['year']);
     $teacher_id = validate($_GET['id']);
     $semester = validate($_POST['semester']);
+    $department = validate($_POST['department']);
+    $type = validate($_POST['type']);
     if (empty($course_name)) {
         header('Location: teacher_courses_admin.php?error=Course Name required&id=' . $teacher_id);
         exit();
@@ -35,8 +37,14 @@ if (isset($_POST['course_name']) && isset($_POST['code']) && isset($_POST['year'
     } else if (empty($teacher_id)) {
         header('Location: teacher_courses_admin.php?error=There was an error!&id=' . $teacher_id);
         exit();
+    } else if (empty($department)) {
+        header('Location: teacher_courses_admin.php?error=There was an error-department!&id=' . $teacher_id);
+        exit();
+    } else if (empty($type)) {
+        header('Location: teacher_courses_admin.php?error=There was an error-type!&id=' . $teacher_id);
+        exit();
     } else {
-        $sql = "INSERT INTO courses (id, course_name, course_code, batch, semester,mct1,mct2,mct3,mct4,mmt1,mmt2,mta,met,mt) VALUES ('$teacher_id', '$course_name', '$code', '$year', '$semester',10,10,0,0,20,20,60,40,100)";
+        $sql = "INSERT INTO courses (id, course_name, course_code, batch, semester,mct1,mct2,mct3,mct4,mmt1,mmt2,mta,met,mt, flag, type, department) VALUES ('$teacher_id', '$course_name', '$code', '$year', '$semester',10,10,0,0,20,20,60,40,100, 0, '$type', '$department')";
         if ($conn->query($sql) === TRUE) {
             setGrade($code, "AA", 100, 86, $conn,$teacher_id);
             setGrade($code, "AB", 85, 75, $conn,$teacher_id);
