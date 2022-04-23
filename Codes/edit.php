@@ -94,10 +94,6 @@ if (isset($_SESSION['id'])) {
                                 <?php $cn = $row['course_name']; ?>
 
                                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                                    <input type="file" id="uploadcsv" name="file" class="btn btn-outline-success" style="display:none">
-                                    <button class="btn btn-outline-secondary">
-                                        <label for="uploadcsv">Upload CSV</label>
-                                    </button>
                                     <input type="submit" value="Save" class="btn btn-outline-secondary d-print-none" />
                                     <a href="coursetable.php?course=<?php echo $cd; ?>"><input type="button" value="Cancel" class="btn btn-outline-secondary d-print-none" /></a>
                                 </div>
@@ -145,14 +141,16 @@ if (isset($_SESSION['id'])) {
                                             $flag_ct = $row1['ct'];
                                             $flag_et = $row1['et'];
                                         ?>
-                                            <th><input class="classtest" name="mct1" value="<?php echo $row['mct1']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></th>
-                                            <th><input class="classtest" name="mct2" value="<?php echo $row['mct2']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></th>
-                                            <th><input class="classtest" name="mct3" value="<?php echo $row['mct3']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></th>
-                                            <th><input class="classtest" name="mct4" value="<?php echo $row['mct4']; ?>" <?php if($flag_ct == 1) echo "readonly"?>></th>
-                                            <th><input class="marks" name="mmt1" value="<?php echo $row['mmt1']; ?>" <?php if($flag_mt1 == 1) echo "readonly"?>></th>
-                                            <th><input class="marks" name="mmt2" value="<?php echo $row['mmt2']; ?>" <?php if($flag_mt2 == 1) echo "readonly"?>></th>
+                                            <th>
+                                                <input class="classtest" name="mct1" value="<?php echo $row['mct1']; ?>" <?php if($flag_ct == 1) echo "readonly"?> style="<?php if($flag_ct == 1) echo "background-color:#dadcde;"?>">
+                                            </th>
+                                            <th><input class="classtest" name="mct2" value="<?php echo $row['mct2']; ?>" <?php if($flag_ct == 1) echo "readonly"?> style="<?php if($flag_ct == 1) echo "background-color:#dadcde;"?>"></th>
+                                            <th><input class="classtest" name="mct3" value="<?php echo $row['mct3']; ?>" <?php if($flag_ct == 1) echo "readonly"?> style="<?php if($flag_ct == 1) echo "background-color:#dadcde;"?>"></th>
+                                            <th><input class="classtest" name="mct4" value="<?php echo $row['mct4']; ?>" <?php if($flag_ct == 1) echo "readonly"?> style="<?php if($flag_ct == 1) echo "background-color:#dadcde;"?>"></th>
+                                            <th><input class="marks" name="mmt1" value="<?php echo $row['mmt1']; ?>" <?php if($flag_mt1 == 1) echo "readonly"?> style="<?php if($flag_mt1 == 1) echo "background-color:#dadcde;"?>"></th>
+                                            <th><input class="marks" name="mmt2" value="<?php echo $row['mmt2']; ?>" <?php if($flag_mt2 == 1) echo "readonly"?> style="<?php if($flag_mt2 == 1) echo "background-color:#dadcde;"?>"></th>
                                             <th><?php echo $row['mta']; ?></th>
-                                            <th><input class="marks" name="met" value="<?php echo $row['met']; ?>" <?php if($flag_et == 1) echo "readonly"?>></th>
+                                            <th><input class="marks" name="met" value="<?php echo $row['met']; ?>" <?php if($flag_et == 1) echo "readonly"?> style="<?php if($flag_et == 1) echo "background-color:#dadcde;"?>"></th>
                                             <th><?php echo $row['mt']; ?></th>
                                             <th></th>
                                     </tr>
@@ -168,14 +166,14 @@ if (isset($_SESSION['id'])) {
                                             <td><strong><?php echo $i++; ?></strong></td>
                                             <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no']; ?>" style="font-weight:bold" readonly></input></td>
                                             <td><strong><?php echo $row['name']; ?></strong></td>
-                                            <td><input class="classtest" name="ct1[]" value="<?php echo $row['class_test_1']; ?>" <?php if($flag_ct == 1 || $row['grade']=='XX') echo "readonly"?> ></td>
-                                            <td><input class="classtest" name="ct2[]" value="<?php echo $row['class_test_2']; ?>" <?php if($flag_ct == 1 || $row['grade']=='XX') echo "readonly"?>></td>
-                                            <td><input class="classtest" name="ct3[]" value="<?php echo $row['class_test_3']; ?>" <?php if($flag_ct == 1 || $row['grade']=='XX') echo "readonly"?>></td>
-                                            <td><input class="classtest" name="ct4[]" value="<?php echo $row['class_test_4']; ?>" <?php if($flag_ct == 1 || $row['grade']=='XX') echo "readonly"?>></td>
-                                            <td><input class="marks" name="mt1[]" value="<?php echo $row['mid_term_1']; ?>" <?php if($flag_mt1 == 1 || $row['grade']=='XX') echo "readonly"?>></td>
-                                            <td><input class="marks" name="mt2[]" value="<?php echo $row['mid_term_2']; ?>" <?php if($flag_mt2 == 1 || $row['grade']=='XX') echo "readonly"?>></td>
+                                            <td><input class="classtest" name="ct1[]" value="<?php echo $row['class_test_1']; ?>" <?php if($flag_ct == 1 || $row['grade']=='XX') echo "readonly"?> style="<?php if($flag_ct == 1 || $row['grade']=='XX') echo "background-color:#dadcde;"; if($row['class_test_1']=='Ab') echo "color:red;";?>"></td>
+                                            <td><input class="classtest" name="ct2[]" value="<?php echo $row['class_test_2']; ?>" <?php if($flag_ct == 1 || $row['grade']=='XX') echo "readonly"?> style="<?php if($flag_ct == 1 || $row['grade']=='XX') echo "background-color:#dadcde;"; if($row['class_test_2']=='Ab') echo "color:red;";?>"></td>
+                                            <td><input class="classtest" name="ct3[]" value="<?php echo $row['class_test_3']; ?>" <?php if($flag_ct == 1 || $row['grade']=='XX') echo "readonly"?> style="<?php if($flag_ct == 1 || $row['grade']=='XX') echo "background-color:#dadcde;"; if($row['class_test_3']=='Ab') echo "color:red;";?>"></td>
+                                            <td><input class="classtest" name="ct4[]" value="<?php echo $row['class_test_4']; ?>" <?php if($flag_ct == 1 || $row['grade']=='XX') echo "readonly"?> style="<?php if($flag_ct == 1 || $row['grade']=='XX') echo "background-color:#dadcde;"; if($row['class_test_4']=='Ab') echo "color:red;";?>"></td>
+                                            <td><input class="marks" name="mt1[]" value="<?php echo $row['mid_term_1']; ?>" <?php if($flag_mt1 == 1 || $row['grade']=='XX') echo "readonly"?> style="<?php if($flag_mt1 == 1 || $row['grade']=='XX') echo "background-color:#dadcde;"; if($row['mid_term_1']=='Ab') echo "color:red;";?>"></td>
+                                            <td><input class="marks" name="mt2[]" value="<?php echo $row['mid_term_2']; ?>" <?php if($flag_mt2 == 1 || $row['grade']=='XX') echo "readonly"?> style="<?php if($flag_mt2 == 1 || $row['grade']=='XX') echo "background-color:#dadcde;"; if($row['mid_term_2']=='Ab') echo "color:red;";?>"></td>
                                             <td><?php echo $row['total_assessment']; ?></td>
-                                            <td><input class="marks" name="endterm[]" value="<?php echo $row['end_term']; ?>" <?php if($flag_et == 1 || $row['grade']=='XX') echo "readonly"?>></td>
+                                            <td><input class="marks" name="endterm[]" value="<?php echo $row['end_term']; ?>" <?php if($flag_et == 1 || $row['grade']=='XX') echo "readonly"?> style="<?php if($flag_et == 1 || $row['grade']=='XX') echo "background-color:#dadcde;"; if($row['end_term']=='Ab') echo "color:red;";?>"></td>
                                             <td><?php echo $row['total_marks']; ?></td>
                                             <td><?php echo $row['grade']; ?></td>
                                         </tr>
