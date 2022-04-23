@@ -157,22 +157,29 @@ if (isset($_SESSION['id'])) {
                                             <td><?php echo $i++ ?></td>
                                             <td><?php echo $row['roll_no']; ?></td>
                                             <td><?php echo $row['name']; ?></td>
-                                            <td><?php echo $row['class_test_1'];
-                                                $tct1 += $row['class_test_1']; ?></td>
-                                            <td><?php echo $row['class_test_2'];
-                                                $tct2 += $row['class_test_2']; ?></td>
-                                            <td><?php echo $row['class_test_3'];
-                                                $tct3 += $row['class_test_3']; ?></td>
-                                            <td><?php echo $row['class_test_4'];
-                                                $tct4 += $row['class_test_4']; ?></td>
-                                            <td><?php echo $row['mid_term_1'];
-                                                $tmt1 += $row['mid_term_1']; ?></td>
-                                            <td><?php echo $row['mid_term_2'];
-                                                $tmt2 += $row['mid_term_2']; ?></td>
+                                            <td style=<?php if($row['class_test_1']=='Ab') echo "color:red;";?>><?php echo $row['class_test_1'];
+                                                if($row['class_test_1']=='Ab') $tct1+=0;
+                                                else $tct1+=$row['class_test_1']; ?></td>
+                                            <td style=<?php if($row['class_test_2']=='Ab') echo "color:red;";?>><?php echo $row['class_test_2'];
+                                                if($row['class_test_2']=='Ab') $tct2+=0;
+                                                else $tct2+=$row['class_test_2']; ?></td>
+                                            <td style=<?php if($row['class_test_3']=='Ab') echo "color:red;";?>><?php echo $row['class_test_3'];
+                                                if($row['class_test_3']=='Ab') $tct3+=0;
+                                                else $tct3+=$row['class_test_3']; ?></td>
+                                            <td style=<?php if($row['class_test_4']=='Ab') echo "color:red;";?>><?php echo $row['class_test_4'];
+                                                if($row['class_test_4']=='Ab') $tct4+=0;
+                                                else $tct4+=$row['class_test_4']; ?></td>
+                                            <td style=<?php if($row['mid_term_1']=='Ab') echo "color:red;";?>><?php echo $row['mid_term_1'];
+                                                if($row['mid_term_1']=='Ab') $tmt1+=0;
+                                                else $tmt1+=$row['mid_term_1']; ?></td>
+                                            <td style=<?php if($row['mid_term_2']=='Ab') echo "color:red;";?>><?php echo $row['mid_term_2'];
+                                                if($row['mid_term_2']=='Ab') $tmt2+=0;
+                                                else $tmt2+=$row['mid_term_2']; ?></td>
                                             <td><?php echo $row['total_assessment'];
                                                 $tass += $row['total_assessment']; ?></td>
-                                            <td><?php echo $row['end_term'];
-                                                $tet += $row['end_term']; ?></td>
+                                            <td style=<?php if($row['end_term']=='Ab') echo "color:red;";?>><?php echo $row['end_term'];
+                                                if($row['end_term']=='Ab') $tet+=0;
+                                                else $tet+=$row['end_term']; ?></td>
                                             <td><?php echo $row['total_marks'];
                                                 $tt += $row['total_marks']; ?></td>
                                             <td><?php echo $row['grade']; ?></td>

@@ -229,7 +229,7 @@
 
         <div class="modal fade" id="edit_profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="width:35rem;">
                     <form action="updateProfilePicture.php" method="post" enctype="multipart/form-data">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
@@ -249,52 +249,55 @@
                             </div>
 
                             <div class="d-flex justify-content-end"><button type="button" class="btn btn-dark" data-bs-target="#changePassword" data-bs-toggle="modal" data-bs-dismiss="modal">Change Password</button></div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark" data-bs-target="#freezeMt1" data-bs-toggle="modal" data-bs-dismiss="modal">
-                                    <?php
-                                    $sql = "SELECT * FROM flag";
-                                    $res = $conn->query($sql);
-                                    $row1 = $res->fetch_assoc();
-                                    $flag_mt1 = $row1['mt1'];
-                                    $flag_mt2 = $row1['mt2'];
-                                    $flag_ct = $row1['ct'];
-                                    $flag_et = $row1['et'];
-                                    if ($flag_mt1 == 0)
-                                        echo "Freeze MT1";
-                                    else
-                                        echo "Unfreeze MT1";
-                                    ?>
-                                </button>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark" data-bs-target="#freezeMt2" data-bs-toggle="modal" data-bs-dismiss="modal">
-                                    <?php
-                                    if ($flag_mt2 == 0)
-                                        echo "Freeze MT2";
-                                    else
-                                        echo "Unfreeze MT2";
-                                    ?>
-                                </button>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark" data-bs-target="#freezeCT" data-bs-toggle="modal" data-bs-dismiss="modal">
-                                    <?php
-                                    if ($flag_ct == 0)
-                                        echo "Freeze CT";
-                                    else
-                                        echo "Unfreeze CT";
-                                    ?>
-                                </button>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark" data-bs-target="#freezeET" data-bs-toggle="modal" data-bs-dismiss="modal">
-                                    <?php
-                                    if ($flag_et == 0)
-                                        echo "Freeze ET";
-                                    else
-                                        echo "Unfreeze ET";
-                                    ?>
-                                </button>
+
+                            <div class="d-flex justify-content-between" style="margin-top: 1rem;">
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary" data-bs-target="#freezeMt1" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                        <?php
+                                        $sql = "SELECT * FROM flag";
+                                        $res = $conn->query($sql);
+                                        $row1 = $res->fetch_assoc();
+                                        $flag_mt1 = $row1['mt1'];
+                                        $flag_mt2 = $row1['mt2'];
+                                        $flag_ct = $row1['ct'];
+                                        $flag_et = $row1['et'];
+                                        if ($flag_mt1 == 0)
+                                            echo "Freeze MT1";
+                                        else
+                                            echo "Unfreeze MT1";
+                                        ?>
+                                    </button>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary" data-bs-target="#freezeMt2" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                        <?php
+                                        if ($flag_mt2 == 0)
+                                            echo "Freeze MT2";
+                                        else
+                                            echo "Unfreeze MT2";
+                                        ?>
+                                    </button>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary" data-bs-target="#freezeCT" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                        <?php
+                                        if ($flag_ct == 0)
+                                            echo "Freeze CT";
+                                        else
+                                            echo "Unfreeze CT";
+                                        ?>
+                                    </button>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary" data-bs-target="#freezeET" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                        <?php
+                                        if ($flag_et == 0)
+                                            echo "Freeze ET";
+                                        else
+                                            echo "Unfreeze ET";
+                                        ?>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -347,7 +350,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Freeze MT1 Marks?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            <?php
+                            if ($flag_mt1 == 0)
+                                echo "Freeze MT1 Marks?";
+                            else
+                                echo "Unfreeze MT1 Marks?";
+                            ?>
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-footer">
@@ -361,7 +371,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Freeze MT2 Marks?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">
+                        <?php
+                            if ($flag_mt2 == 0)
+                                echo "Freeze MT2 Marks?";
+                            else
+                                echo "Unfreeze MT2 Marks?";
+                            ?>
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-footer">
@@ -375,7 +392,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Freeze CT Marks?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">
+                        <?php
+                            if ($flag_ct == 0)
+                                echo "Freeze CT Marks?";
+                            else
+                                echo "Unfreeze CT Marks?";
+                            ?>
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-footer">
@@ -389,7 +413,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Freeze ET Marks?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">
+                        <?php
+                            if ($flag_et == 0)
+                                echo "Freeze ET Marks?";
+                            else
+                                echo "Unfreeze ET Marks?";
+                            ?>
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#edit_profile" data-bs-toggle="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-footer">
@@ -399,7 +430,6 @@
                 </div>
             </div>
         </div>
-
 
 
         <button type="button" id="addIcon" data-bs-toggle="modal" data-bs-target="#new_user">

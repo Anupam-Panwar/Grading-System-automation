@@ -58,7 +58,7 @@ if (isset($_SESSION['id'])) {
         <nav class="navbar navbar-light bg-dark">
             <div class="container-fluid sameline">
                 <div>
-                    <a href="dashboard.php">
+                    <a href="dashboard_admin.php">
                         <div class="initials text-white text-center fs-3"><?php echo substr($uname, 0, 1); ?></div>
                     </a>
                 </div>
@@ -157,14 +157,14 @@ if (isset($_SESSION['id'])) {
                                             <td class='sno' style="font-weight:bold"><?php echo $i++; ?></td>
                                             <td><input class="rollno" name="roll[]" value="<?php echo $row['roll_no']; ?>" style="font-weight:bold" readonly></input></td>
                                             <td><input class="name" name="name[]" value="<?php echo $row['name']; ?>"></input></td>
-                                            <td><?php echo $row['class_test_1']; ?></td>
-                                            <td><?php echo $row['class_test_2']; ?></td>
-                                            <td><?php echo $row['class_test_3']; ?></td>
-                                            <td><?php echo $row['class_test_4']; ?></td>
-                                            <td><?php echo $row['mid_term_1']; ?></td>
-                                            <td><?php echo $row['mid_term_2']; ?></td>
+                                            <td style=<?php if($row['class_test_1']=='Ab') echo "color:red;"?>><?php echo $row['class_test_1']; ?></td>
+                                            <td style=<?php if($row['class_test_2']=='Ab') echo "color:red;"?>><?php echo $row['class_test_2']; ?></td>
+                                            <td style=<?php if($row['class_test_3']=='Ab') echo "color:red;"?>><?php echo $row['class_test_3']; ?></td>
+                                            <td style=<?php if($row['class_test_4']=='Ab') echo "color:red;"?>><?php echo $row['class_test_4']; ?></td>
+                                            <td style=<?php if($row['mid_term_1']=='Ab') echo "color:red;"?>><?php echo $row['mid_term_1']; ?></td>
+                                            <td style=<?php if($row['mid_term_2']=='Ab') echo "color:red;"?>><?php echo $row['mid_term_2']; ?></td>
                                             <td><?php echo $row['total_assessment']; ?></td>
-                                            <td><?php echo $row['end_term']; ?></td>
+                                            <td style=<?php if($row['end_term']=='Ab') echo "color:red;"?>><?php echo $row['end_term']; ?></td>
                                             <td><?php echo $row['total_marks']; ?></td>
                                             <td><?php echo $row['grade']; ?></td>
                                             <td style="display:flex; flex-direction: row;   ">
@@ -258,6 +258,7 @@ if (isset($_SESSION['id'])) {
                     $(".tbl_code_with_mark tbody tr:last td:first").text(rowCount)
 
                 });
+                
                 $(document).on('click', ".btn_row_delete", function(e) {
                     let rowCount = $('.tbl_code_with_mark tbody tr').length;
                     var r = $(this).closest('tr').remove();
