@@ -242,10 +242,6 @@
                         <div class="modal-body">
                             <div class="d-flex justify-content-center align-items-center flex-column" style="position:relative;">
                                 <img id="picture" src="uploads/<?php echo $_SESSION['image_url'] ?>" class="rounded-circle" width="200px" height="200px" alt="Profile Picture">
-                                <!-- <div class="mb-2" style="align-self:center; position:absolute; bottom:-18%">
-                                    <input class="form-control" name="my_image" type="file" id="editPicture" onchange="preview()">
-                                    <label for="editPicture" class=""></label>
-                                </div> -->
                             </div>
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>

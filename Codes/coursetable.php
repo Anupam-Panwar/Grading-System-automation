@@ -243,6 +243,7 @@ if (isset($_SESSION['id'])) {
                             <div class="sameline grades">
                                 <div class="text-start h5">Grade Point Cutoff</div>
                                 <div>
+                                    <button class="btn btn-outline-secondary mb-2" data-bs-toggle="modal" data-bs-target="#plot_graph" >Plot Graph</button>
                                     <a class="btn btn-outline-secondary mb-2" href="default.php?course=<?php echo $cd ?>">Set Default Grades</a>
                                     <a class="btn btn-outline-secondary mb-2" style="padding-right: 1.63rem; padding-left:1.63rem" href="clear.php?course=<?php echo $cd ?>">Clear Grades</a>
                                     <a class="btn btn-outline-secondary mb-2" href="generate.php?course=<?php echo $cd ?>">Generate Grades</a>
@@ -291,6 +292,35 @@ if (isset($_SESSION['id'])) {
             </div>
         </div>
 
+
+        <div class="modal fade" id="plot_graph" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Grade Distribution Plot</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                             <img class="img-fluid" src="<?php 
+                                $url = "https://quickchart.io/chart/render/zm-5bf54868-70cf-4122-b7ea-faf3b5c71be1?data1=";
+                                $sql = "SELECT grade,no_of_students FROM gradewindow WHERE course_code='$cd' ORDER BY grade";
+                                $result = $conn->query($sql);
+                                $data = "";
+                                while ($row = $result->fetch_assoc()) {
+                                    $data = $data . $row['no_of_students'] . ",";
+                                }
+                                $data = substr($data, 0, -1);
+                                $url = $url . $data ."&data2=" . $data;
+                                echo $url;
+                                ?>" alt="Grade Distribution Plot">
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                        </div>
+                </div>
+            </div>
+        </div>
 
 
 
