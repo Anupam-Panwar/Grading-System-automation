@@ -317,7 +317,7 @@ if (isset($_SESSION['id'])) {
                     }
                     var rno = this.id;
                     toDelete.push(rno);
-                    
+                    console.log(toDelete);
                     // $.ajax({
                     //     type: 'post',
                     //     url: 'ajax.php',
