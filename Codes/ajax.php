@@ -21,12 +21,12 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
         $sql = "DELETE FROM users WHERE id=" . $id;
         if ($conn->query($sql) !== TRUE)
         {
-            echo "nahi hua gaya guys";
+            echo "Error deleting user";
             exit();
         } 
         else
         { 
-            echo "hua gaya guys";
+            echo "Successfully Deleted User";
             exit();
         }
     }
@@ -50,12 +50,12 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
         $sql = "UPDATE users SET username='" . $username . "',password='" . $password . "',email='" . $email . "' WHERE id=" . $id;
         if ($conn->query($sql) !== TRUE)
         {
-            echo "nahi hua gaya guys";
+            echo "Error updating user";
             exit();
         } 
         else
         { 
-            echo "hua gaya guys";
+            echo "Successfully Updated User";
             exit();
         }
     }
@@ -77,12 +77,12 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
         $sql = "DELETE FROM courses WHERE course_code="."'". $id."'";
         if ($conn->query($sql) !== TRUE)
         {
-            echo "nahi hua gaya guys";
+            echo "Error deleting course";
             exit();
         } 
         else
         { 
-            echo "hua gaya guys";
+            echo "Successfully Deleted Course";
             exit();
         }
     }
@@ -108,12 +108,12 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
         $sql = "UPDATE courses SET course_name='" . $course_name . "',course_code='" . $course_code . "',batch='" . $year . "',semester='" . $semester . "' WHERE course_code="."'". $id ."'";
         if ($conn->query($sql) === TRUE)
         {
-            echo "hua gaya guys";
+            echo "Successfully Updated Course";
             exit();
         } 
         else
         { 
-            echo "nahi hua gaya guys";
+            echo "Error updating course details";
             exit();
         }
     }
@@ -131,7 +131,7 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
             }
             else
             { 
-                echo "ho gaya guys";
+                echo "Student deleted";
                 exit();
             }
         }
@@ -151,12 +151,16 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
         $sql = "UPDATE flag SET mt1=" . $set . " WHERE user_id =" . $id;
         if ($conn->query($sql) === TRUE)
         {
-            echo "hua gaya guys";
+            if($set==0) {
+                echo "Successfully Unfreezed MT1 Marks";
+            } else {
+                echo "Successfully Freezed MT1 Marks";
+            }
             exit();
         } 
         else
         { 
-            echo "nahi hua gaya guys";
+            echo "Error updating flag";
             exit();
         }
     }
@@ -171,12 +175,16 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
         $sql = "UPDATE flag SET mt2=" . $set . " WHERE user_id =" . $id;
         if ($conn->query($sql) === TRUE)
         {
-            echo "hua gaya guys";
+            if($set==0) {
+                echo "Successfully Unfreezed MT2 Marks";
+            } else {
+                echo "Successfully Freezed MT2 Marks";
+            }
             exit();
         } 
         else
         { 
-            echo "nahi hua gaya guys";
+            echo "Error updating flag";
             exit();
         }
     }
@@ -191,12 +199,16 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
         $sql = "UPDATE flag SET ct=" . $set . " WHERE user_id =" . $id;
         if ($conn->query($sql) === TRUE)
         {
-            echo "hua gaya guys";
+            if($set==0) {
+                echo "Successfully Unfreezed CT Marks";
+            } else {
+                echo "Successfully Freezed CT Marks";
+            }
             exit();
         } 
         else
         { 
-            echo "nahi hua gaya guys";
+            echo "Error updating flag";
             exit();
         }
     }
@@ -211,12 +223,16 @@ if (isset($_POST['ajax']) && isset($_POST['id']))
         $sql = "UPDATE flag SET et=" . $set . " WHERE user_id =" . $id;
         if ($conn->query($sql) === TRUE)
         {
-            echo "hua gaya guys";
+            if($set==0) {
+                echo "Successfully Unfreezed ET Marks";
+            } else {
+                echo "Successfully Freezed ET Marks";
+            }
             exit();
         } 
         else
         { 
-            echo "nahi hua gaya guys";
+            echo "Error updating flag";
             exit();
         }
     }
