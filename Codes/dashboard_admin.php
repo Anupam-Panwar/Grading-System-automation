@@ -101,6 +101,7 @@
                             <span class="btn-close closebtn" onclick="this.parentElement.style.display='none';" aria-label="Close"></span>
                         </div>
                     <?php } ?>
+                    
                     <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-4">
                         <?php
                         $sql = "SELECT id, username, email, level FROM users";
