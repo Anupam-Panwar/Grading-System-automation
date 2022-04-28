@@ -97,7 +97,7 @@ if (isset($_SESSION['id'])) {
                                 <?php $cn = $row['course_name']; ?>
 
                                 <div class="d-grid gap-2 d-md-block" role="group" aria-label="First group">
-                                    <input type="submit" value="Save" class="btn btn-outline-secondary d-print-none" id ="save" onclick="deleteStudent();"/>
+                                    <input type="submit" value="Save" class="btn btn-outline-secondary d-print-none" id ="save"/>
                                     <a href="coursetable.php?course=<?php echo $cd; ?>"><input type="button" value="Cancel" class="btn btn-outline-secondary d-print-none" /></a>
                                 </div>
                         </div>
