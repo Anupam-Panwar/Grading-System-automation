@@ -120,10 +120,12 @@ if (isset($_SESSION['id'])) {
                                         <p class="card-text"><?php echo $row['course_code'] ?><?php echo " | " . $row['batch'] ?><br><?php echo $row['department'] ?><?php echo " | Type : " . $row['type'] ?></p>
                                     </div>
                                 </a>
-                                <div class="button mt-2 d-flex flex-row align-items-center p-2">
-                                    <button class="btn btn-sm btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#edit_course" data-bs-whatever="<?php echo $row['course_code'] ?>">Edit</button>
-                                    <button class="btn btn-sm btn-primary w-100 ml-2" data-bs-toggle="modal" data-bs-target="#delete_course" data-bs-whatever="<?php echo $row['course_code'] ?>">Delete</button>
-                                </div>
+                                <?php if($level!=1) { ?>
+                                    <div class="button mt-2 d-flex flex-row align-items-center p-2">
+                                        <button class="btn btn-sm btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#edit_course" data-bs-whatever="<?php echo $row['course_code'] ?>">Edit</button>
+                                        <button class="btn btn-sm btn-primary w-100 ml-2" data-bs-toggle="modal" data-bs-target="#delete_course" data-bs-whatever="<?php echo $row['course_code'] ?>">Delete</button>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     <?php
